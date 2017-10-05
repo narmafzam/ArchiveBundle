@@ -1,0 +1,47 @@
+{
+    "name": "narmafzam/archive-bundle",
+    "description": "Archive system",
+    "license": "proprietary",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Farshad Asgharzade",
+            "email": "farshad@narmafzam.com"
+        },
+        {
+            "name": "Morteza Farhadi",
+            "email": "morteza@narmafzam.com"
+        },
+        {
+            "name": "Mohamad Mazraeshahi",
+            "email": "mohamad@narmafzam.com"
+        },
+        {
+            "name": "Peyman Mohamadpour",
+            "email": "peyman@narmafzam.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Narmafzam\\ArchiveBundle\\": ""
+        }
+    },
+    "require": {
+        "php": ">=5.5.9",
+        "doctrine/doctrine-bundle": "^1.6",
+        "doctrine/orm": "^2.5",
+        "sensio/framework-extra-bundle": "^3.0.2",
+        "symfony/monolog-bundle": "^3.1.0",
+        "symfony/polyfill-apcu": "^1.0",
+        "symfony/swiftmailer-bundle": "^2.3.10",
+        "symfony/symfony": "3.3.*",
+        "twig/twig": "^1.0||^2.0"
+    },
+    "require-dev": {
+        "sensio/generator-bundle": "^3.0",
+        "symfony/phpunit-bridge": "^3.0"
+    },
+    "extra": {
+        "branch-alias": null
+    }
+}
