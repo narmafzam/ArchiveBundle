@@ -3,15 +3,15 @@
  * Created by PhpStorm.
  * User: peyman
  * Date: 10/5/17
- * Time: 4:32 PM
+ * Time: 4:22 PM
  */
 
-namespace Narmafzam\ArchiveBundle\Form\Type\Generic;
+namespace Narmafzam\ArchiveBundle\Form\Common\Type\Generic;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType as BaseType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType as BaseType;
 
-class TextareaType extends AbstractType
+class CheckboxType extends AbstractType
 {
     public function getParent()
     {

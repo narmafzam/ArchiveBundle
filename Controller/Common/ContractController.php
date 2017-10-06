@@ -12,5 +12,4 @@ use Narmafzam\ArchiveBundle\Controller\BaseController;
 
 class ContractController extends BaseController
 {
-
 }
