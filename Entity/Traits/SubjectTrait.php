@@ -15,7 +15,7 @@ trait SubjectTrait
     /**
      * @ORM\Column(type="string")
      */
-    private $subject;
+    protected $subject;
 
     /**
      * @return static

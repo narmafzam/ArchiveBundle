@@ -14,34 +14,12 @@ use Narmafzam\ArchiveBundle\Entity\Traits\TitleTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
- * @ORM\Table(name="contract_attachment")
+ * @ORM\MappedSuperclass
  */
 class ContractAttachment
 {
     use IdTrait;
     use TitleTrait;
     use AttachmentTrait;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Narmafzam\ArchiveBundle\Entity\Contract", inversedBy="attachments")
-     */
-    private $contract;
-
-    /**
-     * @return Contract
-     */
-    public function getContract()
-    {
-        return $this->contract;
-    }
-
-    /**
-     * @param Contract $contract
-     */
-    public function setContract($contract)
-    {
-        $this->contract = $contract;
-    }
 
 }

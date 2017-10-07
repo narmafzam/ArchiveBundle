@@ -18,8 +18,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
- * @ORM\Table(name="document")
+ * @ORM\MappedSuperclass
  */
 class Document
 {
@@ -33,26 +32,7 @@ class Document
     /**
      * @ORM\ManyToOne(targetEntity="Narmafzam\ArchiveBundle\Entity\DocumentType", inversedBy="documents")
      */
-    private $type;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Narmafzam\ArchiveBundle\Entity\DocumentAttachment", mappedBy="document")
-     */
-    private $attachments;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Narmafzam\ArchiveBundle\Entity\DocumentNote", mappedBy="document")
-     */
-    private $notes;
-
-    /**
-     * Document constructor.
-     */
-    public function __construct()
-    {
-        $this->attachments = new ArrayCollection();
-        $this->notes = new ArrayCollection();
-    }
+    protected $type;
 
     /**
      * @return DocumentType
@@ -68,38 +48,6 @@ class Document
     public function setType(DocumentType $type)
     {
         $this->type = $type;
-    }
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getAttachments()
-    {
-        return $this->attachments;
-    }
-
-    /**
-     * @param DocumentAttachment $attachment
-     */
-    public function addAttachment(DocumentAttachment $attachment)
-    {
-        $this->attachments->add($attachment);
-    }
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getNotes()
-    {
-        return $this->notes;
-    }
-
-    /**
-     * @param DocumentNote $note
-     */
-    public function addNote(DocumentNote $note)
-    {
-        $this->notes->add($note);
     }
 
 }

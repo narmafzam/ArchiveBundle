@@ -15,7 +15,7 @@ trait TitleTrait
     /**
      * @ORM\Column(type="string")
      */
-    private $title;
+    protected $title;
 
     /**
      * @return string

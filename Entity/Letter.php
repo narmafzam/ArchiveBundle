@@ -17,8 +17,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
- * @ORM\Table(name="letter")
+ * @ORM\MappedSuperclass
  */
 class Letter
 {
@@ -28,56 +27,5 @@ class Letter
     use SubjectTrait;
     use TimestampableTrait;
     use DeletedTrait;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Narmafzam\ArchiveBundle\Entity\LetterAttachment", mappedBy="letter")
-     */
-    private $attachments;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Narmafzam\ArchiveBundle\Entity\LetterNote", mappedBy="letter")
-     */
-    private $notes;
-
-    /**
-     * Letter constructor.
-     */
-    public function __construct()
-    {
-        $this->attachments = new ArrayCollection();
-        $this->notes = new ArrayCollection();
-    }
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getAttachments()
-    {
-        return $this->attachments;
-    }
-
-    /**
-     * @param LetterAttachment $attachment
-     */
-    public function addAttachment(LetterAttachment $attachment)
-    {
-        $this->attachments->add($attachment);
-    }
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getNotes()
-    {
-        return $this->notes;
-    }
-
-    /**
-     * @param LetterNote $note
-     */
-    public function addNote(LetterNote $note)
-    {
-        $this->notes->add($note);
-    }
 
 }

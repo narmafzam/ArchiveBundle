@@ -13,34 +13,12 @@ use Narmafzam\ArchiveBundle\Entity\Traits\TimestampableTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
- * @ORM\Table(name="contract_note")
+ * @ORM\MappedSuperclass
  */
 class ContractNote
 {
     use IdTrait;
     use BodyTrait;
     use TimestampableTrait;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Narmafzam\ArchiveBundle\Entity\Contract", inversedBy="ntoes")
-     */
-    private $contract;
-
-    /**
-     * @return Contract
-     */
-    public function getContract()
-    {
-        return $this->contract;
-    }
-
-    /**
-     * @param Contract $contract
-     */
-    public function setContract(Contract $contract)
-    {
-        $this->contract = $contract;
-    }
 
 }

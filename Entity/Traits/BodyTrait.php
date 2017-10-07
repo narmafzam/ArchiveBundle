@@ -14,7 +14,7 @@ trait BodyTrait
     /**
      * @ORM\Column(type="text")
      */
-    private $body;
+    protected $body;
 
     /**
      * @return string

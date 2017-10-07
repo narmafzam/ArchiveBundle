@@ -34,7 +34,7 @@ trait AttachmentTrait
      *     }
      * )
      */
-    private $location;
+    protected $location;
 
     /**
      * @return mixed

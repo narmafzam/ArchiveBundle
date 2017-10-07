@@ -14,34 +14,12 @@ use Narmafzam\ArchiveBundle\Entity\Traits\TimestampableTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
- * @ORM\Table(name="document_note")
+ * @ORM\MappedSuperclass
  */
 class DocumentNote
 {
     use IdTrait;
     use BodyTrait;
     use TimestampableTrait;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Narmafzam\ArchiveBundle\Entity\Document", inversedBy="notes")
-     */
-    private $document;
-
-    /**
-     * @return Document
-     */
-    public function getDocument()
-    {
-        return $this->document;
-    }
-
-    /**
-     * @param Document $document
-     */
-    public function setDocument($document)
-    {
-        $this->document = $document;
-    }
 
 }

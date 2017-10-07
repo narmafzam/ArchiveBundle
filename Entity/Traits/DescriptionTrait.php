@@ -15,7 +15,7 @@ trait DescriptionTrait
     /**
      * @ORM\Column(type="text")
      */
-    private $description;
+    protected $description;
 
     /**
      * @return string

@@ -14,34 +14,12 @@ use Narmafzam\ArchiveBundle\Entity\Traits\TitleTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
- * @ORM\Table(name="document_attachment")
+ * @ORM\MappedSuperclass
  */
 class DocumentAttachment
 {
     use IdTrait;
     use TitleTrait;
     use AttachmentTrait;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Narmafzam\ArchiveBundle\Entity\Document", inversedBy="attachments")
-     */
-    private $document;
-
-    /**
-     * @return Document
-     */
-    public function getDocument()
-    {
-        return $this->document;
-    }
-
-    /**
-     * @param Document $document
-     */
-    public function setDocument(Document $document)
-    {
-        $this->document = $document;
-    }
 
 }

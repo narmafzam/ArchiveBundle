@@ -13,8 +13,7 @@ use Narmafzam\ArchiveBundle\Entity\Traits\TitleTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
- * @ORM\Table(name="document_type")
+ * @ORM\MappedSuperclass
  */
 class DocumentType
 {
@@ -24,7 +23,7 @@ class DocumentType
     /**
      * @ORM\OneToMany(targetEntity="Narmafzam\ArchiveBundle\Entity\Document", mappedBy="type")
      */
-    private $documents;
+    protected $documents;
 
     /**
      * @return mixed

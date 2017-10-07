@@ -14,7 +14,7 @@ trait DeletedTrait
     /**
      * @ORM\Column(type="boolean")
      */
-    private $deleted;
+    protected $deleted;
 
     /**
      * @return boolean

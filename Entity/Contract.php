@@ -17,8 +17,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
- * @ORM\Table(name="contract")
+ * @ORM\MappedSuperclass
  */
 class Contract
 {
@@ -28,56 +27,4 @@ class Contract
     use SubjectTrait;
     use DeletedTrait;
     use TimestampableTrait;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Narmafzam\ArchiveBundle\Entity\ContractAttachment", mappedBy="contract")
-     */
-    private $attachments;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Narmafzam\ArchiveBundle\Entity\ContractNote", mappedBy="contract")
-     */
-    private $notes;
-
-    /**
-     * Contract constructor.
-     */
-    public function __construct()
-    {
-        $this->attachments = new ArrayCollection();
-        $this->notes = new ArrayCollection();
-    }
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getAttachments()
-    {
-        return $this->attachments;
-    }
-
-    /**
-     * @param ContractAttachment $attachment
-     */
-    public function addAttachment(ContractAttachment $attachment)
-    {
-        $this->attachments->add($attachment);
-    }
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getNotes()
-    {
-        return $this->notes;
-    }
-
-    /**
-     * @param ContractNote $note
-     */
-    public function addNote(ContractNote $note)
-    {
-        $this->notes->add($note);
-    }
-
 }
