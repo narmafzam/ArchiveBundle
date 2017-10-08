@@ -1,16 +1,12 @@
 {
     "name": "narmafzam/archive-bundle",
-    "description": "Archive system",
+    "description": "Reusable archive bundle by Narmafzam",
     "license": "proprietary",
-    "type": "project",
+    "type": "symfony-bundle",
     "authors": [
         {
             "name": "Farshad Asgharzade",
             "email": "farshad@narmafzam.com"
-        },
-        {
-            "name": "Morteza Farhadi",
-            "email": "morteza@narmafzam.com"
         },
         {
             "name": "Mohamad Mazraeshahi",
@@ -38,10 +34,11 @@
         "twig/twig": "^1.0||^2.0"
     },
     "require-dev": {
-        "sensio/generator-bundle": "^3.0",
         "symfony/phpunit-bridge": "^3.0"
     },
     "extra": {
-        "branch-alias": null
+        "branch-alias": {
+            "dev-master": "0.1.x-dev"
+        }
     }
 }
