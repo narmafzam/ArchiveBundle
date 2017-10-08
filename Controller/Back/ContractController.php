@@ -9,17 +9,20 @@
 namespace Narmafzam\ArchiveBundle\Controller\Back;
 
 use Narmafzam\ArchiveBundle\Controller\Common\ContractController as BaseController;
+use Narmafzam\ArchiveBundle\Entity\Contract;
+use Narmafzam\ArchiveBundle\Form\Common\ContractType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 /**
  * Class ContractController
  * @package Narmafzam\ArchiveBundle\Controller
- * @Route('/contract', 'back_contract')
+ * @Route("/contract", name="back_contract")
  */
 class ContractController extends BaseController
 {
     /**
-     * @Route('/', 'back_contract_list')
+     * @Route("/", name="back_contract_list")
      */
     public function listAction()
     {
@@ -27,15 +30,21 @@ class ContractController extends BaseController
     }
 
     /**
-     * @Route('/new', 'back_contract_new')
+     * @Route("/new", name="back_contract_new")
+     * @Method({"GET", "POST"})
      */
-    public function newAction()
+    public function newAction(ContractType $contractType)
     {
+        $form = $this->createForm($contractType);
+        $form->handleRequest();
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            // TODO: Insert new Contract record
+        }
     }
 
     /**
-     * @Route('/edit', 'back_contract_edit')
+     * @Route("/edit", name="back_contract_edit")
      */
     public function editAction()
     {
@@ -43,7 +52,7 @@ class ContractController extends BaseController
     }
 
     /**
-     * @Route('/delete', 'back_contract_delete')
+     * @Route("/delete", name="back_contract_delete")
      */
     public function deleteAction()
     {
