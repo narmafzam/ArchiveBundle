@@ -25,11 +25,11 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('entity')->end()
                         ->arrayNode('form')
                             ->children()
-                                ->arrayNode('back')
+                                ->arrayNode('common')
                                     ->children()
                                         ->scalarNode('type')->end()
                                     ->end()
-                                ->end() // back
+                                ->end() // common
                             ->end()
                         ->end() // form
                     ->end()

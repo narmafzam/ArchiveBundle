@@ -1,0 +1,7 @@
+parameters:
+    narmafzam_archive_contract_class: Narmafzam\ArchiveBundle\Entity\Contract
+
+services:
+    Narmafzam\ArchiveBundle\Form\Common\ContractType:
+        arguments:
+            $class: %narmafzam_archive_contract_class%
