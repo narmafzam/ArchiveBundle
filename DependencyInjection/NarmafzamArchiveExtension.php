@@ -14,7 +14,7 @@ use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\ConfigurableExtension;
 
-class ArchiveExtension extends ConfigurableExtension implements ExtensionInterface
+class NarmafzamArchiveExtension extends ConfigurableExtension implements ExtensionInterface
 {
     protected function loadInternal(array $mergedConfig, ContainerBuilder $container)
     {
