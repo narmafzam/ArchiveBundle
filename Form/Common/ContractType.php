@@ -8,6 +8,7 @@
 
 namespace Narmafzam\ArchiveBundle\Form\Common;
 
+use Narmafzam\ArchiveBundle\Form\Common\Interfaces\ContractTypeInterface;
 use Narmafzam\ArchiveBundle\Form\Common\Type\DescriptionType;
 use Narmafzam\ArchiveBundle\Form\Common\Type\SubjectType;
 use Narmafzam\ArchiveBundle\Form\Common\Type\TitleType;
@@ -18,20 +19,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ContractType extends AbstractType
 {
-    /**
-     * @var string
-     */
-    protected $class;
-
-    /**
-     * ContractType constructor.
-     * @param string $class
-     */
-    public function __construct($class)
-    {
-        $this->class = $class;
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -47,10 +34,4 @@ class ContractType extends AbstractType
             ;
     }
 
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults(array(
-            'data_class' => $this->class
-        ));
-    }
 }

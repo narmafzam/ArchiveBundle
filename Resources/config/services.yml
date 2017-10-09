@@ -2,6 +2,13 @@ parameters:
     narmafzam_archive_contract_class: Narmafzam\ArchiveBundle\Entity\Contract
 
 services:
-    Narmafzam\ArchiveBundle\Form\Common\ContractType:
+    Narmafzam\ArchiveBundle\Form\Back\ContractType:
+        public: true
         arguments:
-            $class: %narmafzam_archive_contract_class%
+            $dataClass: %narmafzam_archive_contract_class%
+        tags:
+            - {name: form.type}
+
+    Narmafzam\ArchiveBundle\Controller\Back\:
+        resource: '../../Controller/Back'
+        tags: ['controller.service_arguments']

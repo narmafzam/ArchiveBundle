@@ -11,9 +11,42 @@ namespace Narmafzam\ArchiveBundle\Form\Back;
 use Narmafzam\ArchiveBundle\Form\Common\Type\DeletedType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ContractType extends AbstractType
 {
+    /**
+     * @var string
+     */
+    protected $dataClass;
+
+    /**
+     * ContractType constructor.
+     * @param string $dataClass
+     */
+    public function __construct($dataClass)
+    {
+        $this->dataClass = $dataClass;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDataClass()
+    {
+        return $this->dataClass;
+    }
+
+    public function getParent()
+    {
+        return \Narmafzam\ArchiveBundle\Form\Common\ContractType::class;
+    }
+
+    public function getFQCN()
+    {
+        return get_class($this);
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -22,8 +55,10 @@ class ContractType extends AbstractType
         ;
     }
 
-    public function getParent()
+    public function configureOptions(OptionsResolver $resolver)
     {
-        return \Narmafzam\ArchiveBundle\Form\Common\ContractType::class;
+        $resolver->setDefaults(array(
+            'data_class' => $this->getDataClass()
+        ));
     }
 }

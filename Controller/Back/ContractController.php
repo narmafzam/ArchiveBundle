@@ -10,9 +10,11 @@ namespace Narmafzam\ArchiveBundle\Controller\Back;
 
 use Narmafzam\ArchiveBundle\Controller\Common\ContractController as BaseController;
 use Narmafzam\ArchiveBundle\Entity\Contract;
-use Narmafzam\ArchiveBundle\Form\Common\ContractType;
+use Narmafzam\ArchiveBundle\Form\Back\ContractType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class ContractController
@@ -33,14 +35,19 @@ class ContractController extends BaseController
      * @Route("/new", name="back_contract_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(ContractType $contractType)
+    public function newAction(Request $request, ContractType $contractType)
     {
-        $form = $this->createForm($contractType);
-        $form->handleRequest();
+        $form = $this->createForm($contractType->getFQCN());
+        $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             // TODO: Insert new Contract record
         }
+
+        return $this->render('@NarmafzamArchive/Contract/new.html.twig', array(
+            'form' => $form->createView()
+        ));
+
     }
 
     /**

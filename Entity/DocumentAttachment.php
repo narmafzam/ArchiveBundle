@@ -21,5 +21,4 @@ class DocumentAttachment
     use IdTrait;
     use TitleTrait;
     use AttachmentTrait;
-
 }

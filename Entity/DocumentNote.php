@@ -21,5 +21,4 @@ class DocumentNote
     use IdTrait;
     use BodyTrait;
     use TimestampableTrait;
-
 }

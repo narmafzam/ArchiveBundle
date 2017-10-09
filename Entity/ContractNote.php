@@ -20,5 +20,4 @@ class ContractNote
     use IdTrait;
     use BodyTrait;
     use TimestampableTrait;
-
 }

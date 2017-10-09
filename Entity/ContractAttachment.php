@@ -21,5 +21,4 @@ class ContractAttachment
     use IdTrait;
     use TitleTrait;
     use AttachmentTrait;
-
 }

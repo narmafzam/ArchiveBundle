@@ -19,5 +19,4 @@ class LetterNote
     use IdTrait;
     use BodyTrait;
     use TimestampableTrait;
-
 }

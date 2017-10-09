@@ -27,5 +27,4 @@ class Letter
     use SubjectTrait;
     use TimestampableTrait;
     use DeletedTrait;
-
 }

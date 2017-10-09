@@ -20,5 +20,4 @@ class LetterAttachment
     use IdTrait;
     use TitleTrait;
     use AttachmentTrait;
-
 }
