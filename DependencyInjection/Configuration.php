@@ -25,15 +25,34 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('entity')->end()
                         ->arrayNode('form')
                             ->children()
-                                ->arrayNode('back')
-                                    ->children()
-                                        ->scalarNode('type')->end()
-                                    ->end()
-                                ->end() // common
+                                ->scalarNode('back')->end()
+                                ->scalarNode('front')->end()
                             ->end()
                         ->end() // form
                     ->end()
                 ->end() // contract
+                ->arrayNode('document')
+                    ->children()
+                        ->scalarNode('entity')->end()
+                        ->arrayNode('form')
+                            ->children()
+                                ->scalarNode('back')->end()
+                                ->scalarNode('front')->end()
+                            ->end()
+                        ->end() // form
+                    ->end()
+                ->end() // document
+                ->arrayNode('letter')
+                    ->children()
+                        ->scalarNode('entity')->end()
+                        ->arrayNode('form')
+                            ->children()
+                                ->scalarNode('back')->end()
+                                ->scalarNode('front')->end()
+                            ->end()
+                        ->end() // form
+                    ->end()
+                ->end() // letter
             ->end()
         ;
 

@@ -1,0 +1,25 @@
+<?php
+/**
+ * This file is part of archive
+ * Copyrighted by Narmafzam (Farzam Webnegar Sivan Co.), info@narmafzam.com
+ * Created by peyman
+ * Date: 2017/10/12
+ */
+
+namespace Narmafzam\ArchiveBundle\Controller\Front;
+
+use Narmafzam\ArchiveBundle\Controller\Common\LetterController as BaseController;
+
+class LetterController extends BaseController
+{
+    protected $formTypeClass;
+
+    /**
+     * ContractController constructor.
+     * @param $contractType
+     */
+    public function __construct($formTypeClass)
+    {
+        $this->formTypeClass = $formTypeClass;
+    }
+}

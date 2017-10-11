@@ -15,36 +15,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ContractType extends AbstractType
 {
-    /**
-     * @var string
-     */
-    protected $dataClass;
-
-    /**
-     * ContractType constructor.
-     * @param string $dataClass
-     */
-    public function __construct($dataClass)
-    {
-        $this->dataClass = $dataClass;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDataClass()
-    {
-        return $this->dataClass;
-    }
-
     public function getParent()
     {
         return \Narmafzam\ArchiveBundle\Form\Common\ContractType::class;
-    }
-
-    public function getFQCN()
-    {
-        return get_class($this);
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -55,10 +28,4 @@ class ContractType extends AbstractType
         ;
     }
 
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults(array(
-            'data_class' => $this->getDataClass()
-        ));
-    }
 }

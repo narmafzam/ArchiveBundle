@@ -13,6 +13,16 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class DocumentController extends BaseController
 {
+    protected $formTypeClass;
+
+    /**
+     * ContractController constructor.
+     * @param $contractType
+     */
+    public function __construct($formTypeClass)
+    {
+        $this->formTypeClass = $formTypeClass;
+    }
 //    /**
 //     * @Route('/', 'front_document_list')
 //     */

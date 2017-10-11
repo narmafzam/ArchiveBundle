@@ -1,14 +1,81 @@
 parameters:
-    narmafzam_archive_contract_class: Narmafzam\ArchiveBundle\Entity\Contract
+
+    # Contract
+
+    narmafzam_archive_entity_contract: Narmafzam\ArchiveBundle\Entity\Contract
+    narmafzam_archive_form_back_contract: Narmafzam\ArchiveBundle\Form\Back\ContractType
+    narmafzam_archive_form_front_contract: Narmafzam\ArchiveBundle\Form\Front\ContractType
+
+    # Document
+
+    narmafzam_archive_entity_document: Narmafzam\ArchiveBundle\Entity\Document
+    narmafzam_archive_form_back_document: Narmafzam\ArchiveBundle\Form\Back\DocumentType
+    narmafzam_archive_form_front_document: Narmafzam\ArchiveBundle\Form\Front\DocumentType
+
+    # Letter
+
+    narmafzam_archive_entity_letter: Narmafzam\ArchiveBundle\Entity\Letter
+    narmafzam_archive_form_back_letter: Narmafzam\ArchiveBundle\Form\Back\LetterType
+    narmafzam_archive_form_front_letter: Narmafzam\ArchiveBundle\Form\Front\LetterType
 
 services:
-    Narmafzam\ArchiveBundle\Form\Back\ContractType:
-        public: true
+
+    # Contract
+
+    Narmafzam\ArchiveBundle\Form\Common\ContractType:
         arguments:
-            $dataClass: %narmafzam_archive_contract_class%
+            $dataClass: %narmafzam_archive_entity_contract%
         tags:
             - {name: form.type}
 
-    Narmafzam\ArchiveBundle\Controller\Back\:
-        resource: '../../Controller/Back'
-        tags: ['controller.service_arguments']
+    Narmafzam\ArchiveBundle\Controller\Back\ContractController:
+        arguments:
+            $formTypeClass: %narmafzam_archive_form_back_contract%
+        tags:
+            - name: 'controller.service_arguments'
+
+    Narmafzam\ArchiveBundle\Controller\Front\ContractController:
+        arguments:
+            $formTypeClass: %narmafzam_archive_form_front_contract%
+        tags:
+            - name: 'controller.service_arguments'
+
+    # Document
+
+    Narmafzam\ArchiveBundle\Form\Common\DocumentType:
+        arguments:
+            $dataClass: %narmafzam_archive_entity_document%
+        tags:
+            - {name: form.type}
+
+    Narmafzam\ArchiveBundle\Controller\Back\DocumentController:
+        arguments:
+            $formTypeClass: %narmafzam_archive_form_back_document%
+        tags:
+            - name: 'controller.service_arguments'
+
+    Narmafzam\ArchiveBundle\Controller\Front\DocumentController:
+        arguments:
+            $formTypeClass: %narmafzam_archive_form_front_document%
+        tags:
+            - name: 'controller.service_arguments'
+
+    # Letter
+
+    Narmafzam\ArchiveBundle\Form\Common\LetterType:
+        arguments:
+            $dataClass: %narmafzam_archive_entity_letter%
+        tags:
+            - {name: form.type}
+
+    Narmafzam\ArchiveBundle\Controller\Back\LetterController:
+        arguments:
+            $formTypeClass: %narmafzam_archive_form_back_letter%
+        tags:
+            - name: 'controller.service_arguments'
+
+    Narmafzam\ArchiveBundle\Controller\Front\LetterController:
+        arguments:
+            $formTypeClass: %narmafzam_archive_form_front_letter%
+        tags:
+            - name: 'controller.service_arguments'

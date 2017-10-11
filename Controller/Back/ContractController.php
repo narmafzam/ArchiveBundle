@@ -23,6 +23,17 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class ContractController extends BaseController
 {
+    protected $formTypeClass;
+
+    /**
+     * ContractController constructor.
+     * @param $contractType
+     */
+    public function __construct($formTypeClass)
+    {
+        $this->formTypeClass = $formTypeClass;
+    }
+
     /**
      * @Route("/", name="back_contract_list")
      */
@@ -35,9 +46,9 @@ class ContractController extends BaseController
      * @Route("/new", name="back_contract_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request, ContractType $contractType)
+    public function newAction(Request $request)
     {
-        $form = $this->createForm($contractType->getFQCN());
+        $form = $this->createForm($this->formTypeClass);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

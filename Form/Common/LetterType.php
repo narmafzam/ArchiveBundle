@@ -17,7 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ContractType extends AbstractType
+class LetterType extends AbstractType
 {
     /**
      * @var string
@@ -25,7 +25,7 @@ class ContractType extends AbstractType
     protected $dataClass;
 
     /**
-     * ContractType constructor.
+     * LetterType constructor.
      * @param string $dataClass
      */
     public function __construct($dataClass)

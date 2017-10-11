@@ -8,7 +8,8 @@
 
 namespace Narmafzam\ArchiveBundle\DependencyInjection;
 
-use Narmafzam\ArchiveBundle\Form\Back\ContractType;
+use Narmafzam\ArchiveBundle\Controller\Back\ContractController;
+use Narmafzam\ArchiveBundle\Form\Common\ContractType;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
@@ -22,7 +23,14 @@ class NarmafzamArchiveExtension extends ConfigurableExtension implements Extensi
         $loader = new YamlFileLoader($container, new FileLocator(dirname(__DIR__ ) . '/Resources/config'));
         $loader->load('services.yml');
 
-        $def = $container->getDefinition(ContractType::class);
-        $def->replaceArgument('$dataClass', $mergedConfig['contract']['entity']);
+        if ($mergedConfig['contract']['entity']) {
+            $def = $container->getDefinition(ContractType::class);
+            $def->replaceArgument('$dataClass', $mergedConfig['contract']['entity']);
+        }
+
+        if ($mergedConfig['contract']['form']['back']) {
+            $def = $container->getDefinition(ContractController::class);
+            $def->replaceArgument('formTypeClass', $mergedConfig['contract']['form']['back']);
+        }
     }
 }
