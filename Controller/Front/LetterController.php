@@ -12,14 +12,4 @@ use Narmafzam\ArchiveBundle\Controller\Common\LetterController as BaseController
 
 class LetterController extends BaseController
 {
-    protected $formTypeClass;
-
-    /**
-     * ContractController constructor.
-     * @param $contractType
-     */
-    public function __construct($formTypeClass)
-    {
-        $this->formTypeClass = $formTypeClass;
-    }
 }

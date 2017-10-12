@@ -12,5 +12,22 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class BaseController extends Controller
 {
+    protected $formTypeClass;
 
+    /**
+     * Controller constructor.
+     * @param $contractType
+     */
+    public function __construct($formTypeClass)
+    {
+        $this->formTypeClass = $formTypeClass;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFormTypeClass()
+    {
+        return $this->formTypeClass;
+    }
 }

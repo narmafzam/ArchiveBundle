@@ -9,9 +9,9 @@
 namespace Narmafzam\ArchiveBundle\Controller\Front;
 
 use Narmafzam\ArchiveBundle\Controller\Common\ContractController as BaseController;
-use Narmafzam\ArchiveBundle\Entity\Contract;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method as Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class ContractController
@@ -30,14 +30,23 @@ class ContractController extends BaseController
 //
 //    }
 //
-//    /**
-//     * @Route("/new", name="front_contract_new")
-//     * @Method({"GET", "POST"})
-//     */
-//    public function newAction()
-//    {
-//
-//    }
+    /**
+     * @Route("/new", name="front_contract_new")
+     * @Method({"GET", "POST"})
+     */
+    public function newAction(Request $request)
+    {
+        $form = $this->createForm($this->getFormTypeClass());
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // TODO: Insert new Contract record
+        }
+
+        return $this->render('@NarmafzamArchive/Contract/new.html.twig', array(
+            'form' => $form->createView()
+        ));
+    }
 //
 //    /**
 //     * @Route("/{id}/edit", name="front_contract_edit")

@@ -12,14 +12,5 @@ use Narmafzam\ArchiveBundle\Controller\BaseController;
 
 class ContractController extends BaseController
 {
-    protected $formTypeClass;
 
-    /**
-     * ContractController constructor.
-     * @param $contractType
-     */
-    public function __construct($formTypeClass)
-    {
-        $this->formTypeClass = $formTypeClass;
-    }
 }

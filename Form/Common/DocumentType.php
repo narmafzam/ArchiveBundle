@@ -62,9 +62,4 @@ class DocumentType extends AbstractType
             'data_class' => $this->getDataClass()
         ));
     }
-
-    public function getBlockPrefix()
-    {
-        return 'back_contract';
-    }
 }

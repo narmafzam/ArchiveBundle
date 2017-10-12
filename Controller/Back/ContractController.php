@@ -9,12 +9,9 @@
 namespace Narmafzam\ArchiveBundle\Controller\Back;
 
 use Narmafzam\ArchiveBundle\Controller\Common\ContractController as BaseController;
-use Narmafzam\ArchiveBundle\Entity\Contract;
-use Narmafzam\ArchiveBundle\Form\Back\ContractType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class ContractController
@@ -37,7 +34,7 @@ class ContractController extends BaseController
      */
     public function newAction(Request $request)
     {
-        $form = $this->createForm($this->formTypeClass);
+        $form = $this->createForm($this->getFormTypeClass());
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

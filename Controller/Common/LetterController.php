@@ -8,8 +8,9 @@
 
 namespace Narmafzam\ArchiveBundle\Controller\Common;
 
+use Narmafzam\ArchiveBundle\Controller\BaseController;
 
-class LetterController
+class LetterController extends BaseController
 {
 
 }
