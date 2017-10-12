@@ -23,17 +23,6 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class ContractController extends BaseController
 {
-    protected $formTypeClass;
-
-    /**
-     * ContractController constructor.
-     * @param $contractType
-     */
-    public function __construct($formTypeClass)
-    {
-        $this->formTypeClass = $formTypeClass;
-    }
-
     /**
      * @Route("/", name="back_contract_list")
      */
