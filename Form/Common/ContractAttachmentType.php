@@ -5,6 +5,7 @@
  * Created by peyman
  * Date: 2017/10/5
  */
+
 namespace Narmafzam\ArchiveBundle\Form\Common;
 
 use Narmafzam\ArchiveBundle\Entity\ContractAttachment;
@@ -15,6 +16,28 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ContractAttachmentType extends AbstractType
 {
+    /**
+     * @var string
+     */
+    protected $dataClass;
+
+    /**
+     * ContractAttachmentType constructor.
+     * @param string $dataClass
+     */
+    public function __construct($dataClass)
+    {
+        $this->dataClass = $dataClass;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDataClass()
+    {
+        return $this->dataClass;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -25,7 +48,7 @@ class ContractAttachmentType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => ContractAttachment::class
+            'data_class' => $this->getDataClass()
         ));
     }
 }

@@ -9,10 +9,9 @@
 namespace Narmafzam\ArchiveBundle\Form\Common\Type;
 
 use Narmafzam\ArchiveBundle\Form\Common\Type\Generic\TextType;
-use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class SubjectType extends AbstractType
+class SubjectType extends TextType
 {
     public function configureOptions(OptionsResolver $resolver)
     {
