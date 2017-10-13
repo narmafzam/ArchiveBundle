@@ -10,6 +10,7 @@ namespace Narmafzam\ArchiveBundle\DependencyInjection;
 
 use Narmafzam\ArchiveBundle\Controller\Back\ContractController;
 use Narmafzam\ArchiveBundle\Form\Common\ContractType;
+use Narmafzam\ArchiveBundle\Form\Common\ContractAttachmentType;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
@@ -32,5 +33,11 @@ class NarmafzamArchiveExtension extends ConfigurableExtension implements Extensi
             $def = $container->getDefinition(ContractController::class);
             $def->replaceArgument('formTypeClass', $mergedConfig['contract']['form']['back']);
         }
+
+        if ($mergedConfig['contract']['attachment']['entity']) {
+            $def = $container->getDefinition(ContractAttachmentType::class);
+            $def->replaceArgument('$dataClass', $mergedConfig['contract']['attachment']['entity']);
+        }
+
     }
 }
