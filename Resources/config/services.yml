@@ -1,19 +1,21 @@
 parameters:
 
     # Contract
-
     narmafzam_archive_entity_contract: Narmafzam\ArchiveBundle\Entity\Contract
     narmafzam_archive_form_back_contract: Narmafzam\ArchiveBundle\Form\Back\ContractType
     narmafzam_archive_form_front_contract: Narmafzam\ArchiveBundle\Form\Front\ContractType
 
-    # Document
+    # ContractAttachment
+    narmafzam_archive_entity_contract_attachment: Narmafzam\ArchiveBundle\Entity\ContractAttachment
+    narmafzam_archive_form_back_contract_attachment: Narmafzam\ArchiveBundle\Form\Back\ContractAttachmentType
+    narmafzam_archive_form_front_contract_attachment: Narmafzam\ArchiveBundle\Form\Front\ContractAttachmentType
 
+    # Document
     narmafzam_archive_entity_document: Narmafzam\ArchiveBundle\Entity\Document
     narmafzam_archive_form_back_document: Narmafzam\ArchiveBundle\Form\Back\DocumentType
     narmafzam_archive_form_front_document: Narmafzam\ArchiveBundle\Form\Front\DocumentType
 
     # Letter
-
     narmafzam_archive_entity_letter: Narmafzam\ArchiveBundle\Entity\Letter
     narmafzam_archive_form_back_letter: Narmafzam\ArchiveBundle\Form\Back\LetterType
     narmafzam_archive_form_front_letter: Narmafzam\ArchiveBundle\Form\Front\LetterType
@@ -21,7 +23,6 @@ parameters:
 services:
 
     # Contract
-
     Narmafzam\ArchiveBundle\Form\Common\ContractType:
         arguments:
             $dataClass: %narmafzam_archive_entity_contract%
@@ -40,8 +41,15 @@ services:
         tags:
             - name: 'controller.service_arguments'
 
-    # Document
+    # ContractAttachment
+    Narmafzam\ArchiveBundle\Form\Common\ContractAttachmentType:
+        arguments:
+            $dataClass: %narmafzam_archive_entity_contract_attachment%
+        tags:
+            - {name: form.type}
 
+
+    # Document
     Narmafzam\ArchiveBundle\Form\Common\DocumentType:
         arguments:
             $dataClass: %narmafzam_archive_entity_document%
@@ -61,7 +69,6 @@ services:
             - name: 'controller.service_arguments'
 
     # Letter
-
     Narmafzam\ArchiveBundle\Form\Common\LetterType:
         arguments:
             $dataClass: %narmafzam_archive_entity_letter%
