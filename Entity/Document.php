@@ -29,25 +29,4 @@ class Document
     use SubjectTrait;
     use DeletedTrait;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Narmafzam\ArchiveBundle\Entity\DocumentType", inversedBy="documents")
-     */
-    protected $type;
-
-    /**
-     * @return DocumentType
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * @param DocumentType $type
-     */
-    public function setType(DocumentType $type)
-    {
-        $this->type = $type;
-    }
-
 }
