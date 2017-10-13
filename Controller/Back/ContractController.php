@@ -25,7 +25,7 @@ class ContractController extends BaseController
      */
     public function listAction()
     {
-
+        
     }
 
     /**
