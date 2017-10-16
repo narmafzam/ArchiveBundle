@@ -8,6 +8,10 @@
 
 namespace Narmafzam\ArchiveBundle\Entity;
 
+use Narmafzam\ArchiveBundle\Entity\Interfaces\DescriptionInterface;
+use Narmafzam\ArchiveBundle\Entity\Interfaces\DocumentInterface;
+use Narmafzam\ArchiveBundle\Entity\Interfaces\Subjectinterface;
+use Narmafzam\ArchiveBundle\Entity\Interfaces\TitleInterface;
 use Narmafzam\ArchiveBundle\Entity\Traits\DeletedTrait;
 use Narmafzam\ArchiveBundle\Entity\Traits\DescriptionTrait;
 use Narmafzam\ArchiveBundle\Entity\Traits\IdTrait;
@@ -19,8 +23,9 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\MappedSuperclass
+ * @ORM\HasLifecycleCallbacks()
  */
-class Document
+abstract class Document implements DocumentInterface, TitleInterface, DescriptionInterface, Subjectinterface
 {
     use IdTrait;
     use TitleTrait;
@@ -28,5 +33,4 @@ class Document
     use DescriptionTrait;
     use SubjectTrait;
     use DeletedTrait;
-
 }

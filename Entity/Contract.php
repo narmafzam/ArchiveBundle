@@ -9,6 +9,9 @@
 namespace Narmafzam\ArchiveBundle\Entity;
 
 use Narmafzam\ArchiveBundle\Entity\Interfaces\ContractInterface;
+use Narmafzam\ArchiveBundle\Entity\Interfaces\DescriptionInterface;
+use Narmafzam\ArchiveBundle\Entity\Interfaces\Subjectinterface;
+use Narmafzam\ArchiveBundle\Entity\Interfaces\TitleInterface;
 use Narmafzam\ArchiveBundle\Entity\Traits\DeletedTrait;
 use Narmafzam\ArchiveBundle\Entity\Traits\DescriptionTrait;
 use Narmafzam\ArchiveBundle\Entity\Traits\IdTrait;
@@ -20,8 +23,9 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\MappedSuperclass
+ * @ORM\HasLifecycleCallbacks()
  */
-abstract class Contract implements ContractInterface
+abstract class Contract implements ContractInterface, TitleInterface, DescriptionInterface, Subjectinterface
 {
     use IdTrait;
     use TitleTrait;
