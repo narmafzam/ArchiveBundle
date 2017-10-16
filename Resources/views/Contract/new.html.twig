@@ -2,6 +2,81 @@
 
 {% block body %}
     <div class="grid-container">
-        {{ form_widget(form) }}
+        {{ form_start(form) }}
+        {# render the contract's only field: description #}
+        {{ form_row(form.title) }}
+        {{ form_row(form.description) }}
+        {{ form_row(form.subject) }}
+
+        <h3>Attachments</h3>
+        <ul class="attachments" data-prototype="{{ form_widget(form.attachments.vars.prototype)|e('html_attr') }}">
+            {# iterate over each existing attachment and render its only field: name #}
+            {% for attachment in form.attachments %}
+                {#<li>{{ form_row(attachment.title) }}</li>#}
+            {% endfor %}
+        </ul>
+        {{ form_end(form) }}
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        var $collectionHolder;
+
+        var $addAttachmentLink = $('<a href="#" class="add_attachment_link">Add an attachment</a>');
+        var $newLinkLi = $('<li></li>').append($addAttachmentLink);
+
+        $(document).ready(function() {
+
+            $collectionHolder = $('ul.attachments');
+
+            $collectionHolder.find('li').each(function() {
+                addAttachmentFormDeleteLink($(this));
+            });
+
+            $collectionHolder.append($newLinkLi);
+            $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+            $addAttachmentLink.on('click', function(e) {
+
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+                addAttachmentForm($collectionHolder, $newLinkLi);
+            });
+        });
+
+        function addAttachmentForm($collectionHolder, $newLinkLi) {
+            var prototype = $collectionHolder.data('prototype');
+            var index = $collectionHolder.data('index');
+            var newForm = prototype;
+
+            // You need this only if you didn't set 'label' => false in your attachments field in ContractType
+            // Replace '__title__label__' in the prototype's HTML to
+            // instead be a number based on how many items we have
+            // newForm = newForm.replace(/__title__label__/g, index);
+
+            // Replace '__title__' in the prototype's HTML to
+            // instead be a number based on how many items we have
+            newForm = newForm.replace(/__title__/g, index);
+            $collectionHolder.data('index', index + 1);
+            var $newFormLi = $('<li></li>').append(newForm);
+            $newLinkLi.before($newFormLi);
+            addAttachmentFormDeleteLink($newFormLi);
+
+        }
+
+        function addAttachmentFormDeleteLink($attachmentFormLi) {
+            var $removeFormA = $('<a href="#">delete this attachment</a>');
+            $attachmentFormLi.append($removeFormA);
+
+            $removeFormA.on('click', function(e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+
+                // remove the li for the attachment form
+                $attachmentFormLi.remove();
+            });
+        }
+    </script>
 {% endblock %}
