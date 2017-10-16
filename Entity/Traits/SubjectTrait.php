@@ -9,10 +9,13 @@
 namespace Narmafzam\ArchiveBundle\Entity\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 trait SubjectTrait
 {
     /**
+     * @Assert\NotBlank()
+     * @Assert\Length(min=Interfaces\SubjectInterface::SUBJECT_LENGTH_MIN)
      * @ORM\Column(type="string")
      */
     protected $subject;

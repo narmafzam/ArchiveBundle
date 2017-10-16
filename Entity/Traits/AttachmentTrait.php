@@ -13,31 +13,43 @@ use Symfony\Component\Validator\Constraints as Assert;
 trait AttachmentTrait
 {
     /**
-     * @ORM\Column(type="string")
      * @Assert\NotBlank()
      * @Assert\File(
      *     mimeTypes = {
-     *         "application/pdf",
-     *         "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-     *         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-     *         "application/vnd.openxmlformats-officedocument.presentationml.presentation",
-     *         "application/msword",
-     *         "application/vnd.ms-excel",
-     *         "application/vnd.ms-powerpoint",
-     *         "application/vnd.ms-access",
-     *         "image/bmp",
-     *         "image/jpeg",
-     *         "image/png",
-     *         "image/tiff",
-     *         "image/vnd.adobe.photoshop",
-     *         "image/vnd.dwg"
-     *     }
+     *         Interfaces\AttachmentInterface::MIME_7Z,
+     *         Interfaces\AttachmentInterface::MIME_BMP,
+     *         Interfaces\AttachmentInterface::MIME_JPG,
+     *         Interfaces\AttachmentInterface::MIME_GIF,
+     *         Interfaces\AttachmentInterface::MIME_PNG,
+     *         Interfaces\AttachmentInterface::MIME_SVG,
+     *         Interfaces\AttachmentInterface::MIME_TIFF,
+     *         Interfaces\AttachmentInterface::MIME_PSD,
+     *         Interfaces\AttachmentInterface::MIME_DWG,
+     *         Interfaces\AttachmentInterface::MIME_WAV,
+     *         Interfaces\AttachmentInterface::MIME_MP3,
+     *         Interfaces\AttachmentInterface::MIME_AVI,
+     *         Interfaces\AttachmentInterface::MIME_MPEG,
+     *         Interfaces\AttachmentInterface::MIME_HTML,
+     *         Interfaces\AttachmentInterface::MIME_XML,
+     *         Interfaces\AttachmentInterface::MIME_PDF,
+     *         Interfaces\AttachmentInterface::MIME_DOC,
+     *         Interfaces\AttachmentInterface::MIME_XLS,
+     *         Interfaces\AttachmentInterface::MIME_PPT,
+     *         Interfaces\AttachmentInterface::MIME_MDB,
+     *         Interfaces\AttachmentInterface::MIME_ZIP,
+     *         Interfaces\AttachmentInterface::MIME_RAR,
+     *         Interfaces\AttachmentInterface::MIME_DOCX,
+     *         Interfaces\AttachmentInterface::MIME_XLSX,
+     *         Interfaces\AttachmentInterface::MIME_PPTX
+     *     },
+     *     maxSize=Interfaces\AttachmentInterface::FILE_MAX_SIZE
      * )
+     * @ORM\Column(type="string")
      */
     protected $location;
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getLocation()
     {
@@ -45,7 +57,7 @@ trait AttachmentTrait
     }
 
     /**
-     * @param mixed $location
+     * @param string $location
      */
     public function setLocation($location)
     {

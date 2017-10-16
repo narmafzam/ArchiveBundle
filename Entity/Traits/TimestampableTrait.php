@@ -18,7 +18,7 @@ trait TimestampableTrait
     protected $createdAt;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     protected $updatedAt;
 
@@ -32,10 +32,11 @@ trait TimestampableTrait
 
     /**
      * @param datetime $createdAt
+     * @ORM\PrePersist()
      */
-    public function setCreatedAt($createdAt)
+    public function setCreatedAt()
     {
-        $this->createdAt = $createdAt;
+        $this->createdAt = new \DateTime();
     }
 
     /**
@@ -48,10 +49,11 @@ trait TimestampableTrait
 
     /**
      * @param datetime $updatedAt
+     * @ORM\PreUpdate()
      */
-    public function setUpdatedAt($updatedAt)
+    public function setUpdatedAt()
     {
-        $this->updatedAt = $updatedAt;
+        $this->updatedAt = new \DateTime();
     }
 
 }
