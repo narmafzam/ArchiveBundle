@@ -8,8 +8,33 @@
 
 namespace Narmafzam\ArchiveBundle\Form\Common;
 
+use Symfony\Component\Form\AbstractType;
 
-class DocumentAttachmentType
+class DocumentAttachmentType extends AbstractType
 {
+    /**
+     * @var string
+     */
+    protected $dataClass;
 
+    /**
+     * @param string $dataClass
+     */
+    public function __construct($dataClass)
+    {
+        $this->dataClass = $dataClass;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDataClass()
+    {
+        return $this->dataClass;
+    }
+
+    public function getParent()
+    {
+        return AttachmentType::class;
+    }
 }

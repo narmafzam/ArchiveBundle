@@ -8,47 +8,12 @@
 
 namespace Narmafzam\ArchiveBundle\Form\Common;
 
-use Narmafzam\ArchiveBundle\Entity\ContractAttachment;
-use Narmafzam\ArchiveBundle\Form\Common\Type\LocationType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ContractAttachmentType extends AbstractType
 {
-    /**
-     * @var string
-     */
-    protected $dataClass;
-
-    /**
-     * ContractAttachmentType constructor.
-     * @param string $dataClass
-     */
-    public function __construct($dataClass)
+    public function getParent()
     {
-        $this->dataClass = $dataClass;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDataClass()
-    {
-        return $this->dataClass;
-    }
-
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder
-            ->add('location', LocationType::class)
-        ;
-    }
-
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults(array(
-            'data_class' => $this->getDataClass()
-        ));
+        return AttachmentType::class;
     }
 }

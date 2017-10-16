@@ -25,7 +25,6 @@ class DocumentType extends AbstractType
     protected $dataClass;
 
     /**
-     * DocumentType constructor.
      * @param string $dataClass
      */
     public function __construct($dataClass)

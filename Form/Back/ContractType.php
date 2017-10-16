@@ -24,7 +24,6 @@ class ContractType extends AbstractType
     {
         $builder
             ->add('deleted', DeletedType::class)
-
         ;
     }
 

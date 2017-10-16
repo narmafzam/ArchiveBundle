@@ -24,7 +24,6 @@ class ContractType extends AbstractType
     protected $dataClass;
 
     /**
-     * ContractType constructor.
      * @param string $dataClass
      */
     public function __construct($dataClass)
@@ -49,8 +48,11 @@ class ContractType extends AbstractType
             ->add('attachments', CollectionType::class, array(
                 'entry_type'    => ContractAttachmentType::class,
                 'entry_options' => array(
-                    'label'     => false
-                )
+                    'label'     => false,
+                ),
+                'allow_add'     => true,
+                'allow_delete'  => true,
+                'by_reference'  => false,
             ))
             ;
     }

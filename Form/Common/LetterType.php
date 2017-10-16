@@ -25,7 +25,6 @@ class LetterType extends AbstractType
     protected $dataClass;
 
     /**
-     * LetterType constructor.
      * @param string $dataClass
      */
     public function __construct($dataClass)

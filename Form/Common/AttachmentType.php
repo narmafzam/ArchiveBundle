@@ -8,8 +8,17 @@
 
 namespace Narmafzam\ArchiveBundle\Form\Common;
 
+use Narmafzam\ArchiveBundle\Form\Common\Type\LocationType;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class AttachmentType
+class AttachmentType extends AbstractType
 {
-
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
+            ->add('location', LocationType::class)
+        ;
+    }
 }
