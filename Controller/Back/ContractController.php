@@ -8,7 +8,11 @@
 
 namespace Narmafzam\ArchiveBundle\Controller\Back;
 
+use ArchiveAppBundle\Entity\Contract;
+use ArchiveAppBundle\Entity\ContractAttachment;
 use Narmafzam\ArchiveBundle\Controller\Common\ContractController as BaseController;
+use Narmafzam\ArchiveBundle\Entity\Interfaces\ContractAttachmentInterface;
+use Narmafzam\ArchiveBundle\Entity\Interfaces\ContractInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -34,11 +38,20 @@ class ContractController extends BaseController
      */
     public function newAction(Request $request)
     {
-        $form = $this->createForm($this->getFormTypeClass());
+        $dataClass = $this->getDataClass();
+        $contract = new $dataClass;
+
+        $form = $this->getAddForm($contract);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // TODO: Insert new Contract record
+
+            $this->storeAttachments($contract);
+
+            dump($contract);
+
+            $this->getManager()->persist($contract);
+            $this->getManager()->flush();
         }
 
         return $this->render('@NarmafzamArchive/Contract/new.html.twig', array(
