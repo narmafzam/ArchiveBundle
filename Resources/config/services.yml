@@ -1,14 +1,10 @@
 parameters:
+    content_directory: '%kernel.project_dir%/var/uploads'
 
     # Contract
     narmafzam_archive_entity_contract: Narmafzam\ArchiveBundle\Entity\Contract
     narmafzam_archive_form_back_contract: Narmafzam\ArchiveBundle\Form\Back\ContractType
     narmafzam_archive_form_front_contract: Narmafzam\ArchiveBundle\Form\Front\ContractType
-
-    # ContractAttachment
-    narmafzam_archive_entity_contract_attachment: Narmafzam\ArchiveBundle\Entity\ContractAttachment
-    narmafzam_archive_form_back_contract_attachment: Narmafzam\ArchiveBundle\Form\Back\ContractAttachmentType
-    narmafzam_archive_form_front_contract_attachment: Narmafzam\ArchiveBundle\Form\Front\ContractAttachmentType
 
     # Document
     narmafzam_archive_entity_document: Narmafzam\ArchiveBundle\Entity\Document
@@ -31,23 +27,17 @@ services:
 
     Narmafzam\ArchiveBundle\Controller\Back\ContractController:
         arguments:
+            $dataClass: %narmafzam_archive_entity_contract%
             $formTypeClass: %narmafzam_archive_form_back_contract%
         tags:
             - name: 'controller.service_arguments'
 
     Narmafzam\ArchiveBundle\Controller\Front\ContractController:
         arguments:
+            $dataClass: %narmafzam_archive_entity_contract%
             $formTypeClass: %narmafzam_archive_form_front_contract%
         tags:
             - name: 'controller.service_arguments'
-
-    # ContractAttachment
-    Narmafzam\ArchiveBundle\Form\Common\ContractAttachmentType:
-        arguments:
-            $dataClass: %narmafzam_archive_entity_contract_attachment%
-        tags:
-            - {name: form.type}
-
 
     # Document
     Narmafzam\ArchiveBundle\Form\Common\DocumentType:
@@ -58,12 +48,14 @@ services:
 
     Narmafzam\ArchiveBundle\Controller\Back\DocumentController:
         arguments:
+            $dataClass: %narmafzam_archive_entity_document%
             $formTypeClass: %narmafzam_archive_form_back_document%
         tags:
             - name: 'controller.service_arguments'
 
     Narmafzam\ArchiveBundle\Controller\Front\DocumentController:
         arguments:
+            $dataClass: %narmafzam_archive_entity_document%
             $formTypeClass: %narmafzam_archive_form_front_document%
         tags:
             - name: 'controller.service_arguments'
@@ -77,12 +69,14 @@ services:
 
     Narmafzam\ArchiveBundle\Controller\Back\LetterController:
         arguments:
+            $dataClass: %narmafzam_archive_entity_letter%
             $formTypeClass: %narmafzam_archive_form_back_letter%
         tags:
             - name: 'controller.service_arguments'
 
     Narmafzam\ArchiveBundle\Controller\Front\LetterController:
         arguments:
+            $dataClass: %narmafzam_archive_entity_letter%
             $formTypeClass: %narmafzam_archive_form_front_letter%
         tags:
             - name: 'controller.service_arguments'
