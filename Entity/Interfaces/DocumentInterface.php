@@ -8,9 +8,11 @@
 
 namespace Narmafzam\ArchiveBundle\Entity\Interfaces;
 
+/**
+ * Interface DocumentInterface
+ * @package Narmafzam\ArchiveBundle\Entity\Interfaces
+ */
 interface DocumentInterface extends AttachableInterface
 {
-    public function addAttachment(DocumentAttachmentInterface $documentAttachment);
 
-    public function removeAttachment(DocumentAttachmentInterface $documentAttachment);
 }

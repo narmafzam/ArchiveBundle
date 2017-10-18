@@ -8,9 +8,21 @@
 
 namespace Narmafzam\ArchiveBundle\Entity\Interfaces;
 
+/**
+ * Interface ContractAttachmentInterface
+ * @package Narmafzam\ArchiveBundle\Entity\Interfaces
+ */
 interface ContractAttachmentInterface extends AttachmentInterface
 {
-    public function getContract();
+    /**
+     * @return \Narmafzam\ArchiveBundle\Entity\Interfaces\ContractInterface
+     */
+    public function getContract() : ContractInterface;
 
+    /**
+     * @param \Narmafzam\ArchiveBundle\Entity\Interfaces\ContractInterface $contract
+     *
+     * @return mixed
+     */
     public function setContract(ContractInterface $contract);
 }

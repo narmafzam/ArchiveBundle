@@ -8,7 +8,30 @@
 
 namespace Narmafzam\ArchiveBundle\Entity\Interfaces;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * Interface AttachableInterface
+ * @package Narmafzam\ArchiveBundle\Entity\Interfaces
+ */
 interface AttachableInterface
 {
-    public function getAttachments();
+    /**
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getAttachments() : ArrayCollection;
+
+    /**
+     * @param \Narmafzam\ArchiveBundle\Entity\Interfaces\AttachmentInterface $attachment
+     *
+     * @return mixed
+     */
+    public function addAttachment(AttachmentInterface $attachment);
+
+    /**
+     * @param \Narmafzam\ArchiveBundle\Entity\Interfaces\AttachmentInterface $attachment
+     *
+     * @return mixed
+     */
+    public function removeAttachment(AttachmentInterface $attachment);
 }

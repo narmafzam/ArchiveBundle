@@ -8,9 +8,11 @@
 
 namespace Narmafzam\ArchiveBundle\Entity\Interfaces;
 
+/**
+ * Interface LetterInterface
+ * @package Narmafzam\ArchiveBundle\Entity\Interfaces
+ */
 interface LetterInterface extends AttachableInterface
 {
-    public function addAttachment(LetterAttachmentInterface $letterAttachment);
 
-    public function removeAttachment(LetterAttachmentInterface $letterAttachment);
 }

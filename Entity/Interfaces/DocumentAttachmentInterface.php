@@ -8,9 +8,21 @@
 
 namespace Narmafzam\ArchiveBundle\Entity\Interfaces;
 
-interface DocumentAttachmentInterface
+/**
+ * Interface DocumentAttachmentInterface
+ * @package Narmafzam\ArchiveBundle\Entity\Interfaces
+ */
+interface DocumentAttachmentInterface extends AttachmentInterface
 {
-    public function getDocument();
+    /**
+     * @return \Narmafzam\ArchiveBundle\Entity\Interfaces\DocumentInterface
+     */
+    public function getDocument() : DocumentInterface;
 
+    /**
+     * @param \Narmafzam\ArchiveBundle\Entity\Interfaces\DocumentInterface $document
+     *
+     * @return mixed
+     */
     public function setDocument(DocumentInterface $document);
 }

@@ -8,6 +8,10 @@
 
 namespace Narmafzam\ArchiveBundle\Entity\Interfaces;
 
+/**
+ * Interface AttachmentInterface
+ * @package Narmafzam\ArchiveBundle\Entity\Interfaces
+ */
 interface AttachmentInterface
 {
     const FILE_MAX_SIZE = '1024k';
@@ -37,11 +41,27 @@ interface AttachmentInterface
     const MIME_XLSX = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
     const MIME_PPTX = "application/vnd.openxmlformats-officedocument.presentationml.presentation";
 
+    /**
+     * @return string
+     */
     public function getLocation();
 
+    /**
+     * @param string $location
+     *
+     * @return mixed
+     */
     public function setLocation($location);
 
+    /**
+     * @return string
+     */
     public function getTitle();
 
+    /**
+     * @param string $title
+     *
+     * @return mixed
+     */
     public function setTitle($title);
 }

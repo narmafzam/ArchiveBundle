@@ -8,10 +8,21 @@
 
 namespace Narmafzam\ArchiveBundle\Entity\Interfaces;
 
-
+/**
+ * Interface LetterAttachmentInterface
+ * @package Narmafzam\ArchiveBundle\Entity\Interfaces
+ */
 interface LetterAttachmentInterface extends AttachmentInterface
 {
-    public function getLetter();
+    /**
+     * @return \Narmafzam\ArchiveBundle\Entity\Interfaces\LetterInterface
+     */
+    public function getLetter() : LetterInterface;
 
+    /**
+     * @param \Narmafzam\ArchiveBundle\Entity\Interfaces\LetterInterface $letter
+     *
+     * @return mixed
+     */
     public function setLetter(LetterInterface $letter);
 }
