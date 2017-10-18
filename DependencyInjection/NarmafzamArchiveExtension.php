@@ -14,8 +14,11 @@ use Narmafzam\ArchiveBundle\Controller\Back\LetterController as BackLetterContro
 use Narmafzam\ArchiveBundle\Controller\Front\ContractController as FrontContractController;
 use Narmafzam\ArchiveBundle\Controller\Front\DocumentController as FrontDocumentController;
 use Narmafzam\ArchiveBundle\Controller\Front\LetterController as FrontLetterController;
+use Narmafzam\ArchiveBundle\Form\Common\ContractAttachmentType;
 use Narmafzam\ArchiveBundle\Form\Common\ContractType;
+use Narmafzam\ArchiveBundle\Form\Common\DocumentAttachmentType;
 use Narmafzam\ArchiveBundle\Form\Common\DocumentType;
+use Narmafzam\ArchiveBundle\Form\Common\LetterAttachmentType;
 use Narmafzam\ArchiveBundle\Form\Common\LetterType;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -56,6 +59,14 @@ class NarmafzamArchiveExtension extends ConfigurableExtension implements Extensi
             $def->replaceArgument('$formTypeClass', $mergedConfig['contract']['form']['front']);
         }
 
+        // ContractAttachment
+
+        if ($mergedConfig['contract']['attachment']['entity']) {
+
+            $def = $container->getDefinition(ContractAttachmentType::class);
+            $def->replaceArgument('$dataClass', $mergedConfig['contract']['attachment']['entity']);
+        }
+
         // Document
 
         if ($mergedConfig['document']['entity']) {
@@ -82,6 +93,14 @@ class NarmafzamArchiveExtension extends ConfigurableExtension implements Extensi
             $def->replaceArgument('$formTypeClass', $mergedConfig['document']['form']['front']);
         }
 
+        // DocumentAttachment
+
+        if ($mergedConfig['document']['attachment']['entity']) {
+
+            $def = $container->getDefinition(DocumentAttachmentType::class);
+            $def->replaceArgument('$dataClass', $mergedConfig['document']['attachment']['entity']);
+        }
+
         // Letter
 
         if ($mergedConfig['letter']['entity']) {
@@ -106,6 +125,14 @@ class NarmafzamArchiveExtension extends ConfigurableExtension implements Extensi
 
             $def = $container->getDefinition(FrontLetterController::class);
             $def->replaceArgument('$formTypeClass', $mergedConfig['letter']['form']['front']);
+        }
+
+        // LetterAttachment
+
+        if ($mergedConfig['letter']['attachment']['entity']) {
+
+            $def = $container->getDefinition(LetterAttachmentType::class);
+            $def->replaceArgument('$dataClass', $mergedConfig['letter']['attachment']['entity']);
         }
 
     }

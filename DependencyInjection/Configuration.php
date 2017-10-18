@@ -29,6 +29,17 @@ class Configuration implements ConfigurationInterface
                                 ->scalarNode('front')->end()
                             ->end()
                         ->end() // form
+                        ->arrayNode('attachment')
+                            ->children()
+                                ->scalarNode('entity')->end()
+                                ->arrayNode('form')
+                                    ->children()
+                                        ->scalarNode('back')->end()
+                                        ->scalarNode('front')->end()
+                                    ->end()
+                                ->end() // attachment form
+                            ->end()
+                        ->end() // attachment
                     ->end()
                 ->end() // contract
                 ->arrayNode('document')
@@ -40,6 +51,17 @@ class Configuration implements ConfigurationInterface
                                 ->scalarNode('front')->end()
                             ->end()
                         ->end() // form
+                        ->arrayNode('attachment')
+                            ->children()
+                                ->scalarNode('entity')->end()
+                                ->arrayNode('form')
+                                    ->children()
+                                        ->scalarNode('back')->end()
+                                        ->scalarNode('front')->end()
+                                    ->end()
+                                ->end() // attachment form
+                            ->end()
+                        ->end() // attachment
                     ->end()
                 ->end() // document
                 ->arrayNode('letter')
@@ -51,6 +73,17 @@ class Configuration implements ConfigurationInterface
                                 ->scalarNode('front')->end()
                             ->end()
                         ->end() // form
+                        ->arrayNode('attachment')
+                            ->children()
+                                ->scalarNode('entity')->end()
+                                ->arrayNode('form')
+                                    ->children()
+                                        ->scalarNode('back')->end()
+                                        ->scalarNode('front')->end()
+                                    ->end()
+                                ->end() // attachment form
+                            ->end()
+                        ->end() // attachment
                     ->end()
                 ->end() // letter
             ->end()
