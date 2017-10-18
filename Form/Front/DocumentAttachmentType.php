@@ -8,25 +8,17 @@
 
 namespace Narmafzam\ArchiveBundle\Form\Front;
 
-use Narmafzam\ArchiveBundle\Entity\DocumentAttachment;
-use Narmafzam\ArchiveBundle\Form\Common\Type\LocationType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class DocumentAttachmentType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function getParent()
     {
-        $builder
-            ->add('location', LocationType::class)
-        ;
+        return \Narmafzam\ArchiveBundle\Form\Common\DocumentAttachmentType::class;
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function getBlockPrefix()
     {
-        $resolver->setDefaults(array(
-            'data_class' => DocumentAttachment::class
-        ));
+        return 'front_document_attachment';
     }
 }

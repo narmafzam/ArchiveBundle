@@ -8,8 +8,17 @@
 
 namespace Narmafzam\ArchiveBundle\Form\Front;
 
+use Symfony\Component\Form\AbstractType;
 
-class LetterType
+class LetterType extends AbstractType
 {
+    public function getParent()
+    {
+        return \Narmafzam\ArchiveBundle\Form\Common\LetterType::class;
+    }
 
+    public function getBlockPrefix()
+    {
+        return 'front_letter';
+    }
 }

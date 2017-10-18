@@ -10,11 +10,11 @@ namespace Narmafzam\ArchiveBundle\Form\Front;
 
 use Symfony\Component\Form\AbstractType;
 
-class LetterAttachment extends AbstractType
+class LetterAttachmentType extends AbstractType
 {
     public function getParent()
     {
-        return 
+        return \Narmafzam\ArchiveBundle\Form\Common\LetterAttachmentType::class;
     }
 
     public function getBlockPrefix()

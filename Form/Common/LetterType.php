@@ -8,7 +8,6 @@
 
 namespace Narmafzam\ArchiveBundle\Form\Common;
 
-use Narmafzam\ArchiveBundle\Form\Common\Interfaces\ContractTypeInterface;
 use Narmafzam\ArchiveBundle\Form\Common\Type\DescriptionType;
 use Narmafzam\ArchiveBundle\Form\Common\Type\SubjectType;
 use Narmafzam\ArchiveBundle\Form\Common\Type\TitleType;
@@ -47,10 +46,13 @@ class LetterType extends AbstractType
             ->add('description', DescriptionType::class)
             ->add('subject', SubjectType::class)
             ->add('attachments', CollectionType::class, array(
-                'entry_type'    => ContractAttachmentType::class,
+                'entry_type'    => LetterAttachmentType::class,
                 'entry_options' => array(
                     'label'     => false
-                )
+                ),
+                'allow_add'     => true,
+                'allow_delete'  => true,
+                'by_reference'  => false,
             ))
             ;
     }
@@ -60,10 +62,5 @@ class LetterType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => $this->getDataClass()
         ));
-    }
-
-    public function getBlockPrefix()
-    {
-        return 'back_contract';
     }
 }

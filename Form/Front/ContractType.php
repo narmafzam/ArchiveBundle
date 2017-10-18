@@ -9,14 +9,9 @@
 namespace Narmafzam\ArchiveBundle\Form\Front;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
 
 class ContractType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-    }
-
     public function getParent()
     {
         return \Narmafzam\ArchiveBundle\Form\Common\ContractType::class;

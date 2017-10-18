@@ -5,27 +5,20 @@
  * Created by peyman
  * Date: 2017/10/5
  */
+
 namespace Narmafzam\ArchiveBundle\Form\Front;
 
-use Narmafzam\ArchiveBundle\Entity\ContractAttachment;
-use Narmafzam\ArchiveBundle\Form\Common\Type\LocationType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ContractAttachmentType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function getParent()
     {
-        $builder
-            ->add('location', LocationType::class)
-        ;
+        return \Narmafzam\ArchiveBundle\Form\Common\ContractAttachmentType::class;
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function getBlockPrefix()
     {
-        $resolver->setDefaults(array(
-            'data_class' => ContractAttachment::class
-        ));
+        return 'front_contract_attachment';
     }
 }

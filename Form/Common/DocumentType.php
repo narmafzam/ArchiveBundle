@@ -8,7 +8,6 @@
 
 namespace Narmafzam\ArchiveBundle\Form\Common;
 
-use Narmafzam\ArchiveBundle\Form\Common\Interfaces\ContractTypeInterface;
 use Narmafzam\ArchiveBundle\Form\Common\Type\DescriptionType;
 use Narmafzam\ArchiveBundle\Form\Common\Type\SubjectType;
 use Narmafzam\ArchiveBundle\Form\Common\Type\TitleType;
@@ -47,12 +46,15 @@ class DocumentType extends AbstractType
             ->add('description', DescriptionType::class)
             ->add('subject', SubjectType::class)
             ->add('attachments', CollectionType::class, array(
-                'entry_type'    => ContractAttachmentType::class,
+                'entry_type'    => DocumentAttachmentType::class,
                 'entry_options' => array(
                     'label'     => false
-                )
+                ),
+                'allow_add'     => true,
+                'allow_delete'  => true,
+                'by_reference'  => false,
             ))
-            ;
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

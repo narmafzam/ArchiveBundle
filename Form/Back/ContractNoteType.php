@@ -19,4 +19,9 @@ class ContractNoteType extends AbstractType
             ->add('body', BodyType::class)
             ;
     }
+
+    public function getBlockPrefix()
+    {
+        return 'back_contract_note';
+    }
 }

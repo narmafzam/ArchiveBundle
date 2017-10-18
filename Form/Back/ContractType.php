@@ -15,16 +15,16 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ContractType extends AbstractType
 {
-    public function getParent()
-    {
-        return \Narmafzam\ArchiveBundle\Form\Common\ContractType::class;
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('deleted', DeletedType::class)
         ;
+    }
+
+    public function getParent()
+    {
+        return \Narmafzam\ArchiveBundle\Form\Common\ContractType::class;
     }
 
     public function getBlockPrefix()

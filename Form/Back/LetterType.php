@@ -11,19 +11,20 @@ namespace Narmafzam\ArchiveBundle\Form\Back;
 use Narmafzam\ArchiveBundle\Form\Common\Type\DeletedType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class LetterType extends AbstractType
 {
-    public function getParent()
-    {
-        return \Narmafzam\ArchiveBundle\Form\Common\LetterType::class;
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('deleted', DeletedType::class)
         ;
+    }
+
+    public function getParent()
+    {
+        return \Narmafzam\ArchiveBundle\Form\Common\LetterType::class;
     }
 
     public function getBlockPrefix()
