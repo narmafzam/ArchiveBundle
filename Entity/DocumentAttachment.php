@@ -18,7 +18,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\MappedSuperclass
  */
-class DocumentAttachment implements DocumentAttachmentInterface, TitleInterface
+abstract class DocumentAttachment implements DocumentAttachmentInterface, TitleInterface
 {
     use IdTrait;
     use TitleTrait;

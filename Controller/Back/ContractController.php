@@ -8,11 +8,7 @@
 
 namespace Narmafzam\ArchiveBundle\Controller\Back;
 
-use ArchiveAppBundle\Entity\Contract;
-use ArchiveAppBundle\Entity\ContractAttachment;
 use Narmafzam\ArchiveBundle\Controller\Common\ContractController as BaseController;
-use Narmafzam\ArchiveBundle\Entity\Interfaces\ContractAttachmentInterface;
-use Narmafzam\ArchiveBundle\Entity\Interfaces\ContractInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;

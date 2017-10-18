@@ -20,21 +20,24 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class DocumentController extends BaseController
 {
-//    /**
-//     * @Route("/", "back_document_list")
-//     */
-//    public function listAction()
-//    {
-//
-//    }
-//
+    /**
+     * @Route("/", name="""back_document_list")
+     */
+    public function listAction()
+    {
+
+    }
+
     /**
      * @Route("/new", name="back_document_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
-        $form = $this->createForm($this->getFormTypeClass());
+        $dataClass = $this->getDataClass();
+        $document = new $dataClass;
+
+        $form = $this->getAddForm($document);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -45,20 +48,20 @@ class DocumentController extends BaseController
             'form' => $form->createView()
         ));
     }
-//
-//    /**
-//     * @Route("/edit", "back_document_edit")
-//     */
-//    public function editAction()
-//    {
-//
-//    }
-//
-//    /**
-//     * @Route("/delete", "back_document_delete")
-//     */
-//    public function deleteAction()
-//    {
-//
-//    }
+
+    /**
+     * @Route("/edit", name="""back_document_edit")
+     */
+    public function editAction()
+    {
+
+    }
+
+    /**
+     * @Route("/delete", name="""back_document_delete")
+     */
+    public function deleteAction()
+    {
+
+    }
 }
