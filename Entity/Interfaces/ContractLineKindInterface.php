@@ -72,16 +72,16 @@ interface ContractLineKindInterface
     public function getCommonLines() : ArrayCollection;
 
     /**
-     * @param ContractCommonLine $commonLine
+     * @param ContractCommonLineInterface $commonLine
      *
      * @return mixed
      */
-    public function addCommonLine(ContractCommonLine $commonLine);
+    public function addCommonLine(ContractCommonLineInterface $commonLine);
 
     /**
-     * @param ContractCommonLine $commonLine
+     * @param ContractCommonLineInterface $commonLine
      *
      * @return mixed
      */
-    public function removeCommonLine(ContractCommonLine $commonLine);
+    public function removeCommonLine(ContractCommonLineInterface $commonLine);
 }

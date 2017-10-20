@@ -14,7 +14,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * Interface ContractCommonLine
  * @package Narmafzam\ArchiveBundle\Entity\Interfaces
  */
-interface ContractCommonLine
+interface ContractCommonLineInterface
 {
     /**
      * @return ArrayCollection

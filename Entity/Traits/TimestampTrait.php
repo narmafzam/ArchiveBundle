@@ -10,7 +10,7 @@ namespace Narmafzam\ArchiveBundle\Entity\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
 
-trait TimestampableTrait
+trait TimestampTrait
 {
     /**
      * @ORM\Column(type="datetime")

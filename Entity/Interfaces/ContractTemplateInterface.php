@@ -17,21 +17,52 @@ use Doctrine\Common\Collections\ArrayCollection;
 interface ContractTemplateInterface
 {
     /**
+     * @return ContractTemplateInterface
+     */
+    public function getParent() : ContractTemplateInterface;
+
+    /**
+     * @param ContractTemplateInterface $parent
+     *
+     * @return mixed
+     */
+    public function setParent(ContractTemplateInterface $parent);
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getChildren() : ArrayCollection;
+
+    /**
+     * @param ContractTemplateInterface $child
+     *
+     * @return mixed
+     */
+    public function addChild(ContractTemplateInterface $child);
+
+    /**
+     * @param ContractTemplateInterface $child
+     *
+     * @return mixed
+     */
+    public function removeChild(ContractTemplateInterface $child);
+
+    /**
      * @return ArrayCollection
      */
     public function getCommonLines() : ArrayCollection;
 
     /**
-     * @param ContractCommonLine $commonLine
+     * @param ContractCommonLineInterface $commonLine
      *
      * @return mixed
      */
-    public function addCommonLine(ContractCommonLine $commonLine);
+    public function addCommonLine(ContractCommonLineInterface $commonLine);
 
     /**
-     * @param ContractCommonLine $commonLine
+     * @param ContractCommonLineInterface $commonLine
      *
      * @return mixed
      */
-    public function removeCommonLine(ContractCommonLine $commonLine);
+    public function removeCommonLine(ContractCommonLineInterface $commonLine);
 }
