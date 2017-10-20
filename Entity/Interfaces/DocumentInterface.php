@@ -14,5 +14,17 @@ namespace Narmafzam\ArchiveBundle\Entity\Interfaces;
  */
 interface DocumentInterface extends AttachableInterface
 {
+    /**
+     * @param \Narmafzam\ArchiveBundle\Entity\Interfaces\DocumentAttachmentInterface $attachment
+     *
+     * @return mixed
+     */
+    public function addAttachment(DocumentAttachmentInterface $attachment);
 
+    /**
+     * @param \Narmafzam\ArchiveBundle\Entity\Interfaces\DocumentAttachmentInterface $attachment
+     *
+     * @return mixed
+     */
+    public function removeAttachment(DocumentAttachmentInterface $attachment);
 }

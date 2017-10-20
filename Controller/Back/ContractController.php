@@ -22,6 +22,7 @@ class ContractController extends BaseController
 {
     /**
      * @Route("/", name="back_contract_list")
+     * @Method("GET")
      */
     public function listAction()
     {
@@ -34,20 +35,14 @@ class ContractController extends BaseController
      */
     public function newAction(Request $request)
     {
-        $dataClass = $this->getDataClass();
-        $contract = new $dataClass;
-
-        $form = $this->getAddForm($contract);
+        $form = $this->getAddForm();
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $this->storeAttachments($contract);
-
-            dump($contract);
-
-            $this->getManager()->persist($contract);
-            $this->getManager()->flush();
+            $data = $form->getData();
+            $handler = $this->getHandler();
+            $handler->newContract($data);
         }
 
         return $this->render('@NarmafzamArchive/Contract/new.html.twig', array(
@@ -59,9 +54,21 @@ class ContractController extends BaseController
     /**
      * @Route("/edit", name="back_contract_edit")
      */
-    public function editAction()
+    public function editAction(Request $request)
     {
+        $form = $this->getUpdateForm();
+        $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $data = $form->getData();
+            $handler = $this->getHandler();
+            $handler->editContract($data);
+        }
+
+        return $this->render('@NarmafzamArchive/Contract/new.html.twig', array(
+            'form' => $form->createView()
+        ));
     }
 
     /**
