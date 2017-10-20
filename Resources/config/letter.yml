@@ -1,0 +1,46 @@
+parameters:
+
+    # Letter
+    narmafzam_archive_entity_letter: Narmafzam\ArchiveBundle\Entity\Letter
+    narmafzam_archive_form_back_letter: Narmafzam\ArchiveBundle\Form\Back\LetterType
+    narmafzam_archive_form_front_letter: Narmafzam\ArchiveBundle\Form\Front\LetterType
+
+    # LetterAttachment
+    narmafzam_archive_entity_letter_attachment: Narmafzam\ArchiveBundle\Entity\LetterAttachment
+
+services:
+
+    # Letter
+    Narmafzam\ArchiveBundle\Model\Handler\LetterHandler:
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - %upload_directory%
+
+    Narmafzam\ArchiveBundle\Form\Common\LetterType:
+        arguments:
+            $dataClass: %narmafzam_archive_entity_letter%
+        tags:
+            - {name: form.type}
+
+    Narmafzam\ArchiveBundle\Controller\Back\LetterController:
+        arguments:
+            $dataClass: %narmafzam_archive_entity_letter%
+            $formTypeClass: %narmafzam_archive_form_back_letter%
+            $handler: '@Narmafzam\ArchiveBundle\Model\Handler\LetterHandler'
+        tags:
+            - name: 'controller.service_arguments'
+
+    Narmafzam\ArchiveBundle\Controller\Front\LetterController:
+        arguments:
+            $dataClass: %narmafzam_archive_entity_letter%
+            $formTypeClass: %narmafzam_archive_form_front_letter%
+            $handler: '@Narmafzam\ArchiveBundle\Model\Handler\LetterHandler'
+        tags:
+            - name: 'controller.service_arguments'
+
+    # LetterAttachment
+    Narmafzam\ArchiveBundle\Form\Common\LetterAttachmentType:
+        arguments:
+            $dataClass: %narmafzam_archive_entity_letter_attachment%
+        tags:
+            - {name: form.type}

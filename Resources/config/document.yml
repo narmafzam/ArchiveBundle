@@ -1,0 +1,46 @@
+parameters:
+
+    # Document
+    narmafzam_archive_entity_document: Narmafzam\ArchiveBundle\Entity\Document
+    narmafzam_archive_form_back_document: Narmafzam\ArchiveBundle\Form\Back\DocumentType
+    narmafzam_archive_form_front_document: Narmafzam\ArchiveBundle\Form\Front\DocumentType
+
+    # DocumentAttachment
+    narmafzam_archive_entity_document_attachment: Narmafzam\ArchiveBundle\Entity\DocumentAttachment
+
+services:
+
+    # Document
+    Narmafzam\ArchiveBundle\Model\Handler\DocumentHandler:
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - %upload_directory%
+
+    Narmafzam\ArchiveBundle\Form\Common\DocumentType:
+        arguments:
+            $dataClass: %narmafzam_archive_entity_document%
+        tags:
+            - {name: form.type}
+
+    Narmafzam\ArchiveBundle\Controller\Back\DocumentController:
+        arguments:
+            $dataClass: %narmafzam_archive_entity_document%
+            $formTypeClass: %narmafzam_archive_form_back_document%
+            $handler: '@Narmafzam\ArchiveBundle\Model\Handler\DocumentHandler'
+        tags:
+            - name: 'controller.service_arguments'
+
+    Narmafzam\ArchiveBundle\Controller\Front\DocumentController:
+        arguments:
+            $dataClass: %narmafzam_archive_entity_document%
+            $formTypeClass: %narmafzam_archive_form_front_document%
+            $handler: '@Narmafzam\ArchiveBundle\Model\Handler\DocumentHandler'
+        tags:
+            - name: 'controller.service_arguments'
+
+    #DocumentAttachment
+    Narmafzam\ArchiveBundle\Form\Common\DocumentAttachmentType:
+        arguments:
+            $dataClass: %narmafzam_archive_entity_document_attachment%
+        tags:
+            - {name: form.type}
