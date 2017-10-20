@@ -6,21 +6,33 @@
  * Date: 2017/10/18
  */
 
-namespace Narmafzam\ArchiveBundle\Model\Handler\Contract;
+namespace Narmafzam\ArchiveBundle\Model\Handler;
 
 use Narmafzam\ArchiveBundle\Entity\Interfaces\ContractInterface;
-use Narmafzam\ArchiveBundle\Model\Handler\Handler;
 use Narmafzam\ArchiveBundle\Model\Handler\Interfaces\ContractHandlerInterface;
 
 /**
  * Class ContractHandler
- * @package Narmafzam\ArchiveBundle\Model\Handler\Contract
+ * @package Narmafzam\ArchiveBundle\Model\Handler
  */
 class ContractHandler extends Handler implements ContractHandlerInterface
 {
+    /**
+     * @param ContractInterface $contract
+     */
     public function newContract(ContractInterface $contract)
     {
-        $dataClass = $this->getDataClass();
-        $contract = new $dataClass;
+        $this->storeAttachments($contract);
+        $this->getEntityManager()->persist($contract);
+        $this->getEntityManager()->flush();
+    }
+
+    /**
+     * @param ContractInterface $contract
+     */
+    public function editContract(ContractInterface $contract)
+    {
+        $this->getEntityManager()->persist($contract);
+        $this->getEntityManager()->flush();
     }
 }

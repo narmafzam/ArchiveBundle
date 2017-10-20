@@ -8,7 +8,25 @@
 
 namespace Narmafzam\ArchiveBundle\Model\Handler\Interfaces;
 
-interface DocumentHandler
-{
+use Narmafzam\ArchiveBundle\Entity\Interfaces\DocumentInterface;
 
+/**
+ * Interface DocumentHandlerInterface
+ * @package Narmafzam\ArchiveBundle\Model\Handler\Interfaces
+ */
+interface DocumentHandlerInterface extends HandlerInterface
+{
+    /**
+     * @param DocumentInterface $document
+     *
+     * @return mixed
+     */
+    public function newDocument(DocumentInterface $document);
+
+    /**
+     * @param DocumentInterface $document
+     *
+     * @return mixed
+     */
+    public function editDocument(DocumentInterface $document);
 }

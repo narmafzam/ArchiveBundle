@@ -8,8 +8,16 @@
 
 namespace Narmafzam\ArchiveBundle\Model\Handler\Interfaces;
 
+use Doctrine\ORM\EntityManagerInterface;
+use Narmafzam\ArchiveBundle\Entity\Interfaces\AttachableInterface;
 
+/**
+ * Interface HandlerInterface
+ * @package Narmafzam\ArchiveBundle\Model\Handler\Interfaces
+ */
 interface HandlerInterface
 {
+    public function __construct(EntityManagerInterface $entityManager, $uploadDirectory);
 
+    public function storeAttachments(AttachableInterface $attachable) : AttachableInterface;
 }

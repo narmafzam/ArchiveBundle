@@ -8,8 +8,25 @@
 
 namespace Narmafzam\ArchiveBundle\Model\Handler\Interfaces;
 
+use Narmafzam\ArchiveBundle\Entity\Interfaces\ContractInterface;
 
-interface ContractHandlerInterface
+/**
+ * Interface ContractHandlerInterface
+ * @package Narmafzam\ArchiveBundle\Model\Handler\Interfaces
+ */
+interface ContractHandlerInterface extends HandlerInterface
 {
+    /**
+     * @param ContractInterface $contract
+     *
+     * @return mixed
+     */
+    public function newContract(ContractInterface $contract);
 
+    /**
+     * @param ContractInterface $contract
+     *
+     * @return mixed
+     */
+    public function editContract(ContractInterface $contract);
 }
