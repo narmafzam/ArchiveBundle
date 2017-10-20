@@ -6,9 +6,9 @@
  * Date: 2017/10/20
  */
 
-namespace Narmafzam\ArchiveBundle\Entity\Interfaces;
+namespace Narmafzam\ArchiveBundle\Entity;
 
-interface ContractTemplateKindInterface
+class ContractTemplate
 {
-    public function getParent();
+
 }
