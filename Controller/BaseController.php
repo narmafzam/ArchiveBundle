@@ -11,30 +11,33 @@ namespace Narmafzam\ArchiveBundle\Controller;
 use Narmafzam\ArchiveBundle\Entity\Interfaces\AttachableInterface;
 use Narmafzam\ArchiveBundle\Entity\Interfaces\AttachmentInterface;
 use Narmafzam\ArchiveBundle\Entity\Interfaces\ContractInterface;
+use Narmafzam\ArchiveBundle\Model\Handler\Interfaces\HandlerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class BaseController extends Controller
 {
     protected $dataClass;
     protected $formTypeClass;
+    protected $handler;
 
     /**
      * Controller constructor.
      * @param $dataClass
      * @param $formTypeClass
      */
-    public function __construct($dataClass, $formTypeClass)
+    public function __construct($dataClass, $formTypeClass, $handler)
     {
         $this->dataClass = $dataClass;
         $this->formTypeClass = $formTypeClass;
-    }
+        $this->handler = $handler;
+   }
 
     /**
-     *
      * @return string FQCN for the injected Entity
      */
-    public function getDataClass()
+    protected function getDataClass()
     {
         return $this->dataClass;
     }
@@ -42,7 +45,7 @@ class BaseController extends Controller
     /**
      * @return string FQCN for the injected FormType
      */
-    public function getFormTypeClass()
+    protected function getFormTypeClass()
     {
         return $this->formTypeClass;
     }
@@ -53,7 +56,7 @@ class BaseController extends Controller
      * @param null $name
      * @return \Doctrine\Common\Persistence\ObjectManager|object
      */
-    public function getManager($name = null)
+    protected function getManager($name = null)
     {
         return $this->getDoctrine()->getManager();
     }
@@ -64,48 +67,31 @@ class BaseController extends Controller
      * @param string $entityName The name of the entity
      * @return \Doctrine\ORM\EntityRepository The repository class.
      */
-    public function getRepository($entityName)
+    protected function getRepository($entityName)
     {
         $this->getEntityManager()->getRepository($entityName);
     }
 
-    protected function storeAttachments(AttachableInterface $contract)
+    /**
+     * @return $this|\Symfony\Component\Form\FormInterface
+     */
+    protected function getAddForm()
     {
-        foreach ($contract->getAttachments() as $attachment) {
+        $form = $this->createForm($this->getFormTypeClass())
+            ->add('submit', SubmitType::class);
 
-            if (!$attachment instanceof AttachmentInterface) {
-
-                throw new \Exception(
-                    sprintf(
-                        "AttachableInterface:getAttachments should return ArrayCollection of AttachmentInterface, %s given",
-                        is_object($attachment) ? get_class($attachment) : gettype($attachment)
-                    )
-                );
-            }
-
-            $file = $attachment->getLocation();
-
-            if (!$file instanceof UploadedFile) {
-
-                throw new \Exception(
-                    sprintf(
-                        "AttachmentInterface:getLocation should return instance of UploadedFile, %s given",
-                        is_object($file) ? get_class($file) : gettype($file)
-                    )
-                );
-            }
-
-            $fileName = md5(uniqid()) . '.' . $file->guessExtension();
-
-            $file->move(
-                $this->getParameter('content_directory') . '/attachments',
-                $fileName
-            );
-
-            $attachment->setTitle($file->getClientOriginalName());
-            $attachment->setLocation($fileName);
-        }
-
-        return $contract;
+        return $form;
     }
+
+    /**
+     * @return $this|\Symfony\Component\Form\FormInterface
+     */
+    protected function getUpdateForm()
+    {
+        $form = $this->createForm($this->getFormTypeClass())
+            ->add('update', SubmitType::class);
+
+        return $form;
+    }
+
 }
