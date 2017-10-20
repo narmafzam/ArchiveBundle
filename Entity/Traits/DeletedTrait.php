@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 trait DeletedTrait
 {
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
     protected $deleted;
 
