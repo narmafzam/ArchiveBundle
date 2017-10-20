@@ -20,18 +20,4 @@ interface AttachableInterface
      * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getAttachments() : ArrayCollection;
-
-    /**
-     * @param \Narmafzam\ArchiveBundle\Entity\Interfaces\AttachmentInterface $attachment
-     *
-     * @return mixed
-     */
-    public function addAttachment(AttachmentInterface $attachment);
-
-    /**
-     * @param \Narmafzam\ArchiveBundle\Entity\Interfaces\AttachmentInterface $attachment
-     *
-     * @return mixed
-     */
-    public function removeAttachment(AttachmentInterface $attachment);
 }

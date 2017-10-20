@@ -14,5 +14,17 @@ namespace Narmafzam\ArchiveBundle\Entity\Interfaces;
  */
 interface ContractInterface extends AttachableInterface
 {
+    /**
+     * @param \Narmafzam\ArchiveBundle\Entity\Interfaces\ContractAttachmentInterface $attachment
+     *
+     * @return mixed
+     */
+    public function addAttachment(ContractAttachmentInterface $attachment);
 
+    /**
+     * @param \Narmafzam\ArchiveBundle\Entity\Interfaces\ContractAttachmentInterface $attachment
+     *
+     * @return mixed
+     */
+    public function removeAttachment(ContractAttachmentInterface $attachment);
 }

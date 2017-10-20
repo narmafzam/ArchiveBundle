@@ -14,5 +14,17 @@ namespace Narmafzam\ArchiveBundle\Entity\Interfaces;
  */
 interface LetterInterface extends AttachableInterface
 {
+    /**
+     * @param \Narmafzam\ArchiveBundle\Entity\Interfaces\LetterAttachmentInterface $attachment
+     *
+     * @return mixed
+     */
+    public function addAttachment(LetterAttachmentInterface $attachment);
 
+    /**
+     * @param \Narmafzam\ArchiveBundle\Entity\Interfaces\LetterAttachmentInterface $attachment
+     *
+     * @return mixed
+     */
+    public function removeAttachment(LetterAttachmentInterface $attachment);
 }
