@@ -8,7 +8,18 @@
 
 namespace Narmafzam\ArchiveBundle\Entity;
 
-class ContractLine
-{
+use Narmafzam\ArchiveBundle\Entity\Interfaces\ContractLineInterface;
+use Narmafzam\ArchiveBundle\Entity\Interfaces\DescriptionInterface;
+use Narmafzam\ArchiveBundle\Entity\Interfaces\TitleInterface;
+use Narmafzam\ArchiveBundle\Entity\Traits\DescriptionTrait;
+use Narmafzam\ArchiveBundle\Entity\Traits\IdTrait;
+use Narmafzam\ArchiveBundle\Entity\Traits\TimestampTrait;
+use Narmafzam\ArchiveBundle\Entity\Traits\TitleTrait;
 
+abstract class ContractLine implements ContractLineInterface, TitleInterface, DescriptionInterface
+{
+    use IdTrait;
+    use TitleTrait;
+    use DescriptionTrait;
+    use TimestampTrait;
 }

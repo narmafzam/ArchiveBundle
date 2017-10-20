@@ -16,7 +16,7 @@ use Narmafzam\ArchiveBundle\Entity\Traits\DeletedTrait;
 use Narmafzam\ArchiveBundle\Entity\Traits\DescriptionTrait;
 use Narmafzam\ArchiveBundle\Entity\Traits\IdTrait;
 use Narmafzam\ArchiveBundle\Entity\Traits\SubjectTrait;
-use Narmafzam\ArchiveBundle\Entity\Traits\TimestampableTrait;
+use Narmafzam\ArchiveBundle\Entity\Traits\TimestampTrait;
 use Narmafzam\ArchiveBundle\Entity\Traits\TitleTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -29,7 +29,7 @@ abstract class Document implements DocumentInterface, TitleInterface, Descriptio
 {
     use IdTrait;
     use TitleTrait;
-    use TimestampableTrait;
+    use TimestampTrait;
     use DescriptionTrait;
     use SubjectTrait;
     use DeletedTrait;

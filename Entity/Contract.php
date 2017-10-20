@@ -16,7 +16,7 @@ use Narmafzam\ArchiveBundle\Entity\Traits\DeletedTrait;
 use Narmafzam\ArchiveBundle\Entity\Traits\DescriptionTrait;
 use Narmafzam\ArchiveBundle\Entity\Traits\IdTrait;
 use Narmafzam\ArchiveBundle\Entity\Traits\SubjectTrait;
-use Narmafzam\ArchiveBundle\Entity\Traits\TimestampableTrait;
+use Narmafzam\ArchiveBundle\Entity\Traits\TimestampTrait;
 use Narmafzam\ArchiveBundle\Entity\Traits\TitleTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -32,5 +32,5 @@ abstract class Contract implements ContractInterface, TitleInterface, Descriptio
     use DescriptionTrait;
     use SubjectTrait;
     use DeletedTrait;
-    use TimestampableTrait;
+    use TimestampTrait;
 }

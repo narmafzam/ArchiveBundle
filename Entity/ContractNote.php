@@ -9,7 +9,7 @@ namespace Narmafzam\ArchiveBundle\Entity;
 
 use Narmafzam\ArchiveBundle\Entity\Traits\BodyTrait;
 use Narmafzam\ArchiveBundle\Entity\Traits\IdTrait;
-use Narmafzam\ArchiveBundle\Entity\Traits\TimestampableTrait;
+use Narmafzam\ArchiveBundle\Entity\Traits\TimestampTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -19,5 +19,5 @@ class ContractNote
 {
     use IdTrait;
     use BodyTrait;
-    use TimestampableTrait;
+    use TimestampTrait;
 }
