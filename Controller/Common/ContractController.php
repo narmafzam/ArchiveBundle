@@ -9,17 +9,12 @@
 namespace Narmafzam\ArchiveBundle\Controller\Common;
 
 use Narmafzam\ArchiveBundle\Controller\BaseController;
-use Narmafzam\ArchiveBundle\Entity\Interfaces\ContractInterface;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Narmafzam\ArchiveBundle\Model\Handler\Interfaces\ContractHandlerInterface;
 
 class ContractController extends BaseController
 {
-    protected function getAddForm(ContractInterface $contract = null)
+    protected function getHandler(): ContractHandlerInterface
     {
-        $form = $this->createForm($this->getFormTypeClass(), $contract)
-            ->add('submit', SubmitType::class);
-
-        return $form;
+        return $this->handler;
     }
-
 }

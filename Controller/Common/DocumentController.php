@@ -9,17 +9,8 @@
 namespace Narmafzam\ArchiveBundle\Controller\Common;
 
 use Narmafzam\ArchiveBundle\Controller\BaseController;
-use Narmafzam\ArchiveBundle\Entity\Interfaces\DocumentInterface;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class DocumentController extends BaseController
 {
-    protected function getAddForm(DocumentInterface $document = null)
-    {
-        $form = $this->createForm($this->getFormTypeClass(), $document)
-            ->add('submit', SubmitType::class);
-
-        return $form;
-    }
 
 }
