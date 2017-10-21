@@ -11,9 +11,9 @@ namespace Narmafzam\ArchiveBundle\Controller;
 use Narmafzam\ArchiveBundle\Entity\Interfaces\AttachableInterface;
 use Narmafzam\ArchiveBundle\Entity\Interfaces\AttachmentInterface;
 use Narmafzam\ArchiveBundle\Entity\Interfaces\ContractInterface;
+use Narmafzam\ArchiveBundle\Form\Common\Type\Generic\SubmitType;
 use Narmafzam\ArchiveBundle\Model\Handler\Interfaces\HandlerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class BaseController extends Controller
@@ -78,7 +78,12 @@ class BaseController extends Controller
     protected function getAddForm()
     {
         $form = $this->createForm($this->getFormTypeClass())
-            ->add('submit', SubmitType::class);
+            ->add('add', SubmitType::class, array(
+                'attr' => array(
+                    'class' => 'button',
+                    'label' => 'add'
+                ),
+            ));
 
         return $form;
     }
@@ -89,7 +94,12 @@ class BaseController extends Controller
     protected function getUpdateForm()
     {
         $form = $this->createForm($this->getFormTypeClass())
-            ->add('update', SubmitType::class);
+            ->add('update', SubmitType::class, array(
+                'attr' => array(
+                    'class' => 'button',
+                    'label' => 'update',
+                ),
+            ));
 
         return $form;
     }

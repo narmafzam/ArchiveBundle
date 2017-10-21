@@ -61,7 +61,7 @@ class ContractController extends BaseController
 
     /**
      * @Route("/{id}", name="front_contract_delete")
-     * @Method({"DELETE"})
+     * @Method("DELETE")
      */
     public function deleteAction()
     {

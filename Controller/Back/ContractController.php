@@ -21,10 +21,10 @@ use Symfony\Component\HttpFoundation\Request;
 class ContractController extends BaseController
 {
     /**
-     * @Route("/", name="back_contract_list")
+     * @Route("/", name="back_contract_index")
      * @Method("GET")
      */
-    public function listAction()
+    public function indexAction()
     {
         
     }
@@ -52,7 +52,8 @@ class ContractController extends BaseController
     }
 
     /**
-     * @Route("/edit", name="back_contract_edit")
+     * @Route("/{id}/edit", name="back_contract_edit")
+     * @Method({"GET", "POST"})
      */
     public function editAction(Request $request)
     {
@@ -72,7 +73,8 @@ class ContractController extends BaseController
     }
 
     /**
-     * @Route("/delete", name="back_contract_delete")
+     * @Route("/{id}", name="back_contract_delete")
+     * @Method("DELETE")
      */
     public function deleteAction()
     {

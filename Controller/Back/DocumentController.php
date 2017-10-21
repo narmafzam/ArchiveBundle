@@ -21,9 +21,10 @@ use Symfony\Component\HttpFoundation\Request;
 class DocumentController extends BaseController
 {
     /**
-     * @Route("/", name="""back_document_list")
+     * @Route("/", name="""back_document_index")
+     * @Method("GET")
      */
-    public function listAction()
+    public function indexAction()
     {
 
     }
@@ -34,14 +35,14 @@ class DocumentController extends BaseController
      */
     public function newAction(Request $request)
     {
-        $dataClass = $this->getDataClass();
-        $document = new $dataClass;
-
-        $form = $this->getAddForm($document);
+        $form = $this->getAddForm();
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // TODO: Insert new Document record
+
+            $data = $form->getData();
+            $handler = $this->getHandler();
+            $handler->newDocument($data);
         }
 
         return $this->render('@NarmafzamArchive/Document/new.html.twig', array(
@@ -50,15 +51,29 @@ class DocumentController extends BaseController
     }
 
     /**
-     * @Route("/edit", name="""back_document_edit")
+     * @Route("/{id}/edit", name="""back_document_edit")
+     * @Method({"GET", "POST"})
      */
-    public function editAction()
+    public function editAction(Request $request)
     {
+        $form = $this->getUpdateForm();
+        $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $data = $form->getData();
+            $handler = $this->getHandler();
+            $handler->editDocument($data);
+        }
+
+        return $this->render('@NarmafzamArchive/Document/new.html.twig', array(
+            'form' => $form->createView()
+        ));
     }
 
     /**
-     * @Route("/delete", name="""back_document_delete")
+     * @Route("/{id}", name="""back_document_delete")
+     * @Method("DELETE")
      */
     public function deleteAction()
     {

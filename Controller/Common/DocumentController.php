@@ -9,8 +9,12 @@
 namespace Narmafzam\ArchiveBundle\Controller\Common;
 
 use Narmafzam\ArchiveBundle\Controller\BaseController;
+use Narmafzam\ArchiveBundle\Model\Handler\Interfaces\DocumentHandlerInterface;
 
 class DocumentController extends BaseController
 {
-
+    protected function getHandler(): DocumentHandlerInterface
+    {
+        return $this->handler;
+    }
 }

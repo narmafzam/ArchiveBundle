@@ -20,45 +20,60 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class DocumentController extends BaseController
 {
-//    /**
-//     * @Route("/", "front_document_list")
-//     */
-//    public function listAction()
-//    {
-//
-//    }
-//
     /**
-     * @Route("/new", name="""front_document_new")
+     * @Route("/", name="front_document_index")
+     */
+    public function indexAction()
+    {
+
+    }
+
+    /**
+     * @Route("/new", name="front_document_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
-        $form = $this->createForm($this->getFormTypeClass());
+        $form = $this->getAddForm();
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // TODO: Insert new Document record
+
+            $data = $form->getData();
+            $handler = $this->getHandler();
+            $handler->newDocument($data);
         }
 
         return $this->render('@NarmafzamArchive/Document/new.html.twig', array(
             'form' => $form->createView()
         ));
     }
-//
-//    /**
-//     * @Route("/edit", "front_document_edit")
-//     */
-//    public function editAction()
-//    {
-//
-//    }
-//
-//    /**
-//     * @Route("/delete", "front_document_delete")
-//     */
-//    public function deleteAction()
-//    {
-//
-//    }
+
+    /**
+     * @Route("/{id}/edit", name="front_document_edit")
+     */
+    public function editAction(Request $request)
+    {
+        $form = $this->getUpdateForm();
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $data = $form->getData();
+            $handler = $this->getHandler();
+            $handler->editDocument($data);
+        }
+
+        return $this->render('@NarmafzamArchive/Document/new.html.twig', array(
+            'form' => $form->createView()
+        ));
+    }
+
+    /**
+     * @Route("/{id}", name="front_document_delete")
+     */
+    public function deleteAction()
+    {
+
+    }
 }
