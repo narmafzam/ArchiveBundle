@@ -15,11 +15,18 @@ use Narmafzam\ArchiveBundle\Controller\Front\ContractController as FrontContract
 use Narmafzam\ArchiveBundle\Controller\Front\DocumentController as FrontDocumentController;
 use Narmafzam\ArchiveBundle\Controller\Front\LetterController as FrontLetterController;
 use Narmafzam\ArchiveBundle\Form\Common\ContractAttachmentType;
+use Narmafzam\ArchiveBundle\Form\Common\Type\ContractCommonLineChoicesType;
 use Narmafzam\ArchiveBundle\Form\Common\ContractType;
 use Narmafzam\ArchiveBundle\Form\Common\DocumentAttachmentType;
 use Narmafzam\ArchiveBundle\Form\Common\DocumentType;
 use Narmafzam\ArchiveBundle\Form\Common\LetterAttachmentType;
 use Narmafzam\ArchiveBundle\Form\Common\LetterType;
+use Narmafzam\ArchiveBundle\Form\Common\Type\ContractChoiceType;
+use Narmafzam\ArchiveBundle\Form\Common\Type\ContractLineChoicesType;
+use Narmafzam\ArchiveBundle\Form\Common\Type\ContractLineKindChoicesType;
+use Narmafzam\ArchiveBundle\Form\Common\Type\ContractLineKindChoiceType;
+use Narmafzam\ArchiveBundle\Form\Common\Type\ContractTemplateChoicesType;
+use Narmafzam\ArchiveBundle\Form\Common\Type\ContractTemplateChoiceType;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
@@ -38,6 +45,9 @@ class NarmafzamArchiveExtension extends ConfigurableExtension implements Extensi
         if ($mergedConfig['contract']['entity']) {
 
             $def = $container->getDefinition(ContractType::class);
+            $def->replaceArgument('$dataClass', $mergedConfig['contract']['entity']);
+
+            $def = $container->getDefinition(ContractChoiceType::class);
             $def->replaceArgument('$dataClass', $mergedConfig['contract']['entity']);
 
             $def = $container->getDefinition(BackContractController::class);
@@ -65,6 +75,44 @@ class NarmafzamArchiveExtension extends ConfigurableExtension implements Extensi
 
             $def = $container->getDefinition(ContractAttachmentType::class);
             $def->replaceArgument('$dataClass', $mergedConfig['contract']['attachment']['entity']);
+        }
+
+        // ContractCommonLine
+
+        if ($mergedConfig['contract']['common_line']['entity']) {
+
+            $def = $container->getDefinition(ContractCommonLineChoicesType::class);
+            $def->replaceArgument('$dataClass', $mergedConfig['contract']['common_line']['entity']);
+        }
+
+        // ContractLine
+
+        if ($mergedConfig['contract']['line']['entity']) {
+
+            $def = $container->getDefinition(ContractLineChoicesType::class);
+            $def->replaceArgument('$dataClass', $mergedConfig['contract']['line']['entity']);
+        }
+
+        // ContractLineKind
+
+        if ($mergedConfig['contract']['line_kind']['entity']) {
+
+            $def = $container->getDefinition(ContractLineKindChoiceType::class);
+            $def->replaceArgument('$dataClass', $mergedConfig['contract']['line_kind']['entity']);
+
+            $def = $container->getDefinition(ContractLineKindChoicesType::class);
+            $def->replaceArgument('$dataClass', $mergedConfig['contract']['line_kind']['entity']);
+        }
+
+        // ContractTemplate
+
+        if ($mergedConfig['contract']['line_kind']['entity']) {
+
+            $def = $container->getDefinition(ContractTemplateChoicesType::class);
+            $def->replaceArgument('$dataClass', $mergedConfig['contract']['template']['entity']);
+
+            $def = $container->getDefinition(ContractTemplateChoiceType::class);
+            $def->replaceArgument('$dataClass', $mergedConfig['contract']['template']['entity']);
         }
 
         // Document

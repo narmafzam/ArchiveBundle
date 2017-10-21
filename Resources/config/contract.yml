@@ -8,6 +8,18 @@ parameters:
     # ContractAttachment
     narmafzam_archive_entity_contract_attachment: Narmafzam\ArchiveBundle\Entity\ContractAttachment
 
+    # ContractCommonLine
+    narmafzam_archive_entity_contract_common_line: Narmafzam\ArchiveBundle\Entity\ContractCommonLine
+
+    # ContractLine
+    narmafzam_archive_entity_contract_line: Narmafzam\ArchiveBundle\Entity\ContractLine
+
+    # ContractLineKind
+    narmafzam_archive_entity_contract_line_kind: Narmafzam\ArchiveBundle\Entity\ContractLineKind
+
+    # ContractTemplate
+    narmafzam_archive_entity_contract_template: Narmafzam\ArchiveBundle\Entity\ContractTemplate
+
 services:
 
     # Contract
@@ -17,6 +29,12 @@ services:
             - %upload_directory%
 
     Narmafzam\ArchiveBundle\Form\Common\ContractType:
+        arguments:
+            $dataClass: %narmafzam_archive_entity_contract%
+        tags:
+            - {name: form.type}
+
+    Narmafzam\ArchiveBundle\Form\Common\Type\ContractChoiceType:
         arguments:
             $dataClass: %narmafzam_archive_entity_contract%
         tags:
@@ -42,5 +60,45 @@ services:
     Narmafzam\ArchiveBundle\Form\Common\ContractAttachmentType:
         arguments:
             $dataClass: %narmafzam_archive_entity_contract_attachment%
+        tags:
+            - {name: form.type}
+
+    # ContractCommonLine
+    Narmafzam\ArchiveBundle\Form\Common\Type\ContractCommonLineChoicesType:
+        arguments:
+            $dataClass: %narmafzam_archive_entity_contract_common_line%
+        tags:
+            - {name: form.type}
+
+    # ContractLine
+    Narmafzam\ArchiveBundle\Form\Common\Type\ContractLineChoicesType:
+        arguments:
+            $dataClass: %narmafzam_archive_entity_contract_line%
+        tags:
+            - {name: form.type}
+
+    # ContractLineKind
+    Narmafzam\ArchiveBundle\Form\Common\Type\ContractLineKindChoiceType:
+        arguments:
+            $dataClass: %narmafzam_archive_entity_contract_line_kind%
+        tags:
+            - {name: form.type}
+
+    Narmafzam\ArchiveBundle\Form\Common\Type\ContractLineKindChoicesType:
+        arguments:
+            $dataClass: %narmafzam_archive_entity_contract_line_kind%
+        tags:
+            - {name: form.type}
+
+    # ContractTemplate
+    Narmafzam\ArchiveBundle\Form\Common\Type\ContractTemplateChoiceType:
+        arguments:
+            $dataClass: %narmafzam_archive_entity_contract_template%
+        tags:
+            - {name: form.type}
+
+    Narmafzam\ArchiveBundle\Form\Common\Type\ContractTemplateChoicesType:
+        arguments:
+            $dataClass: %narmafzam_archive_entity_contract_template%
         tags:
             - {name: form.type}

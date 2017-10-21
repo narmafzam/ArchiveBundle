@@ -8,6 +8,7 @@
 
 namespace Narmafzam\ArchiveBundle\Form\Common;
 
+use Narmafzam\ArchiveBundle\Form\Common\Type\ContractLineChoicesType;
 use Narmafzam\ArchiveBundle\Form\Common\Type\DescriptionType;
 use Narmafzam\ArchiveBundle\Form\Common\Type\SubjectType;
 use Narmafzam\ArchiveBundle\Form\Common\Type\TitleType;
@@ -54,7 +55,8 @@ class ContractType extends AbstractType
                 'allow_delete'  => true,
                 'by_reference'  => false,
             ))
-            ;
+            ->add('lines', ContractLineChoicesType::class)
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

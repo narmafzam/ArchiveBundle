@@ -40,6 +40,26 @@ class Configuration implements ConfigurationInterface
                                 ->end() // attachment form
                             ->end()
                         ->end() // attachment
+                        ->arrayNode('common_line')
+                            ->children()
+                                ->scalarNode('entity')->end()
+                            ->end()
+                        ->end() // common_line
+                        ->arrayNode('line')
+                            ->children()
+                                ->scalarNode('entity')->end()
+                            ->end()
+                        ->end() // line
+                        ->arrayNode('line_kind')
+                            ->children()
+                                ->scalarNode('entity')->end()
+                            ->end()
+                        ->end() // line_kind
+                        ->arrayNode('template')
+                            ->children()
+                                ->scalarNode('entity')->end()
+                            ->end()
+                        ->end() // template
                     ->end()
                 ->end() // contract
                 ->arrayNode('document')

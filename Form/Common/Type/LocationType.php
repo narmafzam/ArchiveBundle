@@ -16,7 +16,7 @@ class LocationType extends FileType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'label' => 'location',
+            'label'    => 'location',
             'required' => false
         ));
     }
