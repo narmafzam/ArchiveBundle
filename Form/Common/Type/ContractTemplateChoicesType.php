@@ -8,33 +8,12 @@
 
 namespace Narmafzam\ArchiveBundle\Form\Common\Type;
 
+use Narmafzam\ArchiveBundle\Form\AbstractWithDataClassType;
 use Narmafzam\ArchiveBundle\Form\Common\Type\Generic\EntityType;
-use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ContractTemplateChoicesType extends AbstractType
+class ContractTemplateChoicesType extends AbstractWithDataClassType
 {
-    /**
-     * @var string
-     */
-    protected $dataClass;
-
-    /**
-     * @param string $dataClass
-     */
-    public function __construct($dataClass)
-    {
-        $this->dataClass = $dataClass;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDataClass()
-    {
-        return $this->dataClass;
-    }
-
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(

@@ -8,38 +8,17 @@
 
 namespace Narmafzam\ArchiveBundle\Form\Common;
 
+use Narmafzam\ArchiveBundle\Form\AbstractWithDataClassType;
 use Narmafzam\ArchiveBundle\Form\Common\Type\ContractLineChoicesType;
 use Narmafzam\ArchiveBundle\Form\Common\Type\DescriptionType;
 use Narmafzam\ArchiveBundle\Form\Common\Type\SubjectType;
 use Narmafzam\ArchiveBundle\Form\Common\Type\TitleType;
-use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ContractType extends AbstractType
+class ContractType extends AbstractWithDataClassType
 {
-    /**
-     * @var string
-     */
-    protected $dataClass;
-
-    /**
-     * @param string $dataClass
-     */
-    public function __construct($dataClass)
-    {
-        $this->dataClass = $dataClass;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDataClass()
-    {
-        return $this->dataClass;
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder

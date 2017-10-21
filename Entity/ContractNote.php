@@ -7,6 +7,8 @@
  */
 namespace Narmafzam\ArchiveBundle\Entity;
 
+use Narmafzam\ArchiveBundle\Entity\Interfaces\BodyInterface;
+use Narmafzam\ArchiveBundle\Entity\Interfaces\ContractNoteInterface;
 use Narmafzam\ArchiveBundle\Entity\Traits\BodyTrait;
 use Narmafzam\ArchiveBundle\Entity\Traits\IdTrait;
 use Narmafzam\ArchiveBundle\Entity\Traits\TimestampTrait;
@@ -15,7 +17,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\MappedSuperclass
  */
-class ContractNote
+abstract class ContractNote implements ContractNoteInterface, BodyInterface
 {
     use IdTrait;
     use BodyTrait;

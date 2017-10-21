@@ -48,4 +48,23 @@ interface ContractInterface extends AttachableInterface
      * @return mixed
      */
     public function removeLine(ContractLineInterface $line);
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getNotes() : ArrayCollection;
+
+    /**
+     * @param ContractNoteInterface $note
+     *
+     * @return mixed
+     */
+    public function addNote(ContractNoteInterface $note);
+
+    /**
+     * @param ContractNoteInterface $note
+     *
+     * @return mixed
+     */
+    public function removeNote(ContractNoteInterface $note);
 }

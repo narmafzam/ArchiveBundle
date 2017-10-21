@@ -8,16 +8,16 @@
 
 namespace Narmafzam\ArchiveBundle\Form\Common;
 
+use Narmafzam\ArchiveBundle\Form\AbstractWithDataClassType;
 use Narmafzam\ArchiveBundle\Form\Common\Type\ContractCommonLineChoicesType;
 use Narmafzam\ArchiveBundle\Form\Common\Type\ContractLineChoicesType;
 use Narmafzam\ArchiveBundle\Form\Common\Type\ContractLineKindChoicesType;
 use Narmafzam\ArchiveBundle\Form\Common\Type\ContractLineKindChoiceType;
 use Narmafzam\ArchiveBundle\Form\Common\Type\DescriptionType;
 use Narmafzam\ArchiveBundle\Form\Common\Type\TitleType;
-use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-class ContractLineKindType extends AbstractType
+class ContractLineKindType extends AbstractWithDataClassType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -29,5 +29,12 @@ class ContractLineKindType extends AbstractType
             ->add('commonLines', ContractCommonLineChoicesType::class)
             ->add('lines', ContractLineChoicesType::class)
         ;
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => $this->getDataClass()
+        ));
     }
 }
