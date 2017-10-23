@@ -80,7 +80,7 @@ class BaseController extends Controller
         $form = $this->createForm($this->getFormTypeClass())
             ->add('add', SubmitType::class, array(
                 'attr' => array(
-                    'class' => 'button',
+                    'class' => 'btn btn-default',
                     'label' => 'add'
                 ),
             ));
@@ -96,7 +96,7 @@ class BaseController extends Controller
         $form = $this->createForm($this->getFormTypeClass())
             ->add('update', SubmitType::class, array(
                 'attr' => array(
-                    'class' => 'button',
+                    'class' => 'btn btn-default',
                     'label' => 'update',
                 ),
             ));
