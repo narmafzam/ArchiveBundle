@@ -1,22 +1,23 @@
-{% extends '@NarmafzamArchive/base.html.twig' %}
+{% extends '@NarmafzamArchive/container.html.twig' %}
 
-{% block body %}
-    <div class="grid-container">
-        {{ form_start(form) }}
-        {# render the contract's only field: description #}
-        {{ form_row(form.title) }}
-        {{ form_row(form.description) }}
-        {{ form_row(form.subject) }}
+{% block main %}
 
-        <h3>Attachments</h3>
-        <ul class="attachments" data-prototype="{{ form_widget(form.attachments.vars.prototype)|e('html_attr') }}">
-            {# iterate over each existing attachment and render its only field: name #}
-            {% for attachment in form.attachments %}
-                {#<li>{{ form_row(attachment.title) }}</li>#}
-            {% endfor %}
-        </ul>
-        {{ form_end(form) }}
-    </div>
+    <h1 class="page-header">Add Contract</h1>
+
+    {{ form_start(form) }}
+    {# render the contract's only field: description #}
+    {{ form_row(form.title) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.subject) }}
+
+    <h3>Attachments</h3>
+    <ul class="attachments" data-prototype="{{ form_widget(form.attachments.vars.prototype)|e('html_attr') }}">
+        {# iterate over each existing attachment and render its only field: name #}
+        {% for attachment in form.attachments %}
+            {#<li>{{ form_row(attachment.title) }}</li>#}
+        {% endfor %}
+    </ul>
+    {{ form_end(form) }}
 {% endblock %}
 
 {% block javascripts %}

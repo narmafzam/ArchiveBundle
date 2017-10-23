@@ -1,7 +1,5 @@
-{% extends '@NarmafzamArchive/base.html.twig' %}
+{% extends '@NarmafzamArchive/layout_fixed_width.html.twig' %}
 
-{% block body %}
-    <div class="grid-container">
-        {{ form_widget(form) }}
-    </div>
+{% block container %}
+    {{ form_widget(form) }}
 {% endblock %}
