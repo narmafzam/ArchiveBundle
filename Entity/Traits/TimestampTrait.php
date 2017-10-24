@@ -23,7 +23,6 @@ trait TimestampTrait
     protected $updatedAt;
 
     /**
-     * @return datetime
      */
     public function getCreatedAt()
     {
@@ -31,7 +30,6 @@ trait TimestampTrait
     }
 
     /**
-     * @param datetime $createdAt
      * @ORM\PrePersist()
      */
     public function setCreatedAt()
@@ -40,7 +38,6 @@ trait TimestampTrait
     }
 
     /**
-     * @return datetime
      */
     public function getUpdatedAt()
     {
@@ -48,7 +45,6 @@ trait TimestampTrait
     }
 
     /**
-     * @param datetime $updatedAt
      * @ORM\PreUpdate()
      */
     public function setUpdatedAt()

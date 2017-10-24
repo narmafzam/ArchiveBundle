@@ -15,7 +15,7 @@ trait SubjectTrait
 {
     /**
      * @Assert\NotBlank()
-     * @Assert\Length(min=Interfaces\SubjectInterface::SUBJECT_LENGTH_MIN)
+     * @Assert\Length(min=Narmafzam\ArchiveBundle\Entity\Interfaces\SubjectInterface::SUBJECT_LENGTH_MIN)
      * @ORM\Column(type="string")
      */
     protected $subject;

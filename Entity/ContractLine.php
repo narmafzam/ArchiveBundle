@@ -6,20 +6,47 @@
  * Date: 2017/10/20
  */
 
-namespace Narmafzam\ArchiveBundle\Entity;
+namespace ArchiveBundle\Entity;
 
-use Narmafzam\ArchiveBundle\Entity\Interfaces\ContractLineInterface;
-use Narmafzam\ArchiveBundle\Entity\Interfaces\DescriptionInterface;
-use Narmafzam\ArchiveBundle\Entity\Interfaces\TitleInterface;
-use Narmafzam\ArchiveBundle\Entity\Traits\DescriptionTrait;
-use Narmafzam\ArchiveBundle\Entity\Traits\IdTrait;
-use Narmafzam\ArchiveBundle\Entity\Traits\TimestampTrait;
-use Narmafzam\ArchiveBundle\Entity\Traits\TitleTrait;
+use Doctrine\ORM\Mapping as ORM;
+use Narmafzam\ArchiveBundle\Entity\Base\ContractLine as BaseClass;
+use Narmafzam\ArchiveBundle\Entity\Interfaces\ContractInterface;
+use Narmafzam\ArchiveBundle\Entity\Interfaces\ContractLineKindInterface;
 
-abstract class ContractLine implements ContractLineInterface, TitleInterface, DescriptionInterface
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="contract_line")
+ */
+class ContractLine extends BaseClass
 {
-    use IdTrait;
-    use TitleTrait;
-    use DescriptionTrait;
-    use TimestampTrait;
+    /**
+     * @ORM\ManyToOne(targetEntity="ArchiveBundle\Entity\Contract", inversedBy="lines")
+     */
+    protected $contract;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="ArchiveBundle\Entity\ContractLineKind", inversedBy="lines")
+     */
+    protected $kind;
+
+    public function getContract(): ContractInterface
+    {
+        return $this->contract;
+    }
+
+    public function setContract(ContractInterface $contract)
+    {
+        $this->contract = $contract;
+    }
+
+    public function getKind(): ContractLineKindInterface
+    {
+        return $this->kind;
+    }
+
+    public function setKind(ContractLineKindInterface $contractLineKind)
+    {
+        $this->kind = $contractLineKind;
+    }
+
 }

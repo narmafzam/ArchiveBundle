@@ -2,11 +2,9 @@
 /**
  * This file is part of archive.
  * Copyrighted by Narmafzam (Farzam Webnegar Sivan Co.), info@narmafzam.com
- * Created by peyman
- * Date: 2017/9/26
+ * Date: 2017/9/29
  */
-
-namespace Narmafzam\ArchiveBundle\Entity;
+namespace Narmafzam\ArchiveBundle\Entity\Base;
 
 use Narmafzam\ArchiveBundle\Entity\Traits\BodyTrait;
 use Narmafzam\ArchiveBundle\Entity\Traits\IdTrait;
@@ -16,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\MappedSuperclass
  */
-class DocumentNote
+class LetterNote
 {
     use IdTrait;
     use BodyTrait;

@@ -1,26 +1,36 @@
 <?php
 /**
- * This file is part of archive.
+ * This file is part of archive
  * Copyrighted by Narmafzam (Farzam Webnegar Sivan Co.), info@narmafzam.com
  * Created by peyman
- * Date: 2017/9/26
+ * Date: 2017/10/18
  */
 
-namespace Narmafzam\ArchiveBundle\Entity;
+namespace ArchiveBundle\Entity;
 
-use Narmafzam\ArchiveBundle\Entity\Interfaces\DocumentAttachmentInterface;
-use Narmafzam\ArchiveBundle\Entity\Interfaces\TitleInterface;
-use Narmafzam\ArchiveBundle\Entity\Traits\AttachmentTrait;
-use Narmafzam\ArchiveBundle\Entity\Traits\IdTrait;
-use Narmafzam\ArchiveBundle\Entity\Traits\TitleTrait;
 use Doctrine\ORM\Mapping as ORM;
+use Narmafzam\ArchiveBundle\Entity\Base\DocumentAttachment as BaseClass;
+use Narmafzam\ArchiveBundle\Entity\Interfaces\DocumentInterface;
 
 /**
- * @ORM\MappedSuperclass
+ * @ORM\Entity
+ * @ORM\Table(name="document_attachment")
  */
-abstract class DocumentAttachment implements DocumentAttachmentInterface, TitleInterface
+class DocumentAttachment extends BaseClass
 {
-    use IdTrait;
-    use TitleTrait;
-    use AttachmentTrait;
+    /**
+     * @ORM\ManyToOne(targetEntity="ArchiveBundle\Entity\Document", inversedBy="attachments")
+     */
+    protected $document;
+
+    public function getDocument (): DocumentInterface
+    {
+        return $this->document;
+    }
+
+    public function setDocument (DocumentInterface $document)
+    {
+        $this->document = $document;
+    }
+
 }

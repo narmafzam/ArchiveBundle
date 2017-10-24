@@ -15,7 +15,7 @@ trait TitleTrait
 {
     /**
      * @Assert\NotBlank()
-     * @Assert\Length(min=Interfaces\TitleInterface::TITLE_LENGTH_MIN)
+     * @Assert\Length(min=Narmafzam\ArchiveBundle\Entity\Interfaces\TitleInterface::TITLE_LENGTH_MIN)
      * @ORM\Column(type="string")
      */
     protected $title;

@@ -1,36 +1,49 @@
 <?php
 /**
- * This file is part of archive.
+ * This file is part of archive
  * Copyrighted by Narmafzam (Farzam Webnegar Sivan Co.), info@narmafzam.com
  * Created by peyman
- * Date: 2017/9/29
+ * Date: 2017/10/11
  */
 
-namespace Narmafzam\ArchiveBundle\Entity;
+namespace ArchiveBundle\Entity;
 
-use Narmafzam\ArchiveBundle\Entity\Interfaces\DescriptionInterface;
-use Narmafzam\ArchiveBundle\Entity\Interfaces\LetterInterface;
-use Narmafzam\ArchiveBundle\Entity\Interfaces\Subjectinterface;
-use Narmafzam\ArchiveBundle\Entity\Interfaces\TitleInterface;
-use Narmafzam\ArchiveBundle\Entity\Traits\DeletedTrait;
-use Narmafzam\ArchiveBundle\Entity\Traits\DescriptionTrait;
-use Narmafzam\ArchiveBundle\Entity\Traits\IdTrait;
-use Narmafzam\ArchiveBundle\Entity\Traits\SubjectTrait;
-use Narmafzam\ArchiveBundle\Entity\Traits\TimestampTrait;
-use Narmafzam\ArchiveBundle\Entity\Traits\TitleTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Narmafzam\ArchiveBundle\Entity\Interfaces\LetterAttachmentInterface;
+use Narmafzam\ArchiveBundle\Entity\Base\Letter as BaseClass;
 
 /**
- * @ORM\MappedSuperclass
- * @ORM\HasLifecycleCallbacks()
+ * @ORM\Entity
+ * @ORM\Table(name="letter")
  */
-abstract class Letter implements LetterInterface, TitleInterface, DescriptionInterface, Subjectinterface
+class Letter extends BaseClass
 {
-    use IdTrait;
-    use TitleTrait;
-    use DescriptionTrait;
-    use SubjectTrait;
-    use TimestampTrait;
-    use DeletedTrait;
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="ArchiveBundle\Entity\LetterAttachment", mappedBy="letter", cascade={"persist", "remove"})
+     */
+    protected $attachments;
+
+    public function __construct ()
+    {
+        $this->attachments = new ArrayCollection();
+    }
+
+    public function getAttachments (): ArrayCollection
+    {
+        return $this->attachments;
+    }
+
+    public function addAttachment (LetterAttachmentInterface $attachment)
+    {
+        $this->attachments->add($attachment);
+    }
+
+    public function removeAttachment (LetterAttachmentInterface $attachment)
+    {
+        $this->attachments->removeElement($attachment);
+    }
+
 }

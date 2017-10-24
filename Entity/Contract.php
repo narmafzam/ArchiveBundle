@@ -1,36 +1,96 @@
 <?php
 /**
- * This file is part of archive.
+ * This file is part of archive
  * Copyrighted by Narmafzam (Farzam Webnegar Sivan Co.), info@narmafzam.com
  * Created by peyman
- * Date: 2017/9/29
+ * Date: 2017/10/9
  */
 
-namespace Narmafzam\ArchiveBundle\Entity;
+namespace ArchiveBundle\Entity;
 
-use Narmafzam\ArchiveBundle\Entity\Interfaces\ContractInterface;
-use Narmafzam\ArchiveBundle\Entity\Interfaces\DescriptionInterface;
-use Narmafzam\ArchiveBundle\Entity\Interfaces\Subjectinterface;
-use Narmafzam\ArchiveBundle\Entity\Interfaces\TitleInterface;
-use Narmafzam\ArchiveBundle\Entity\Traits\DeletedTrait;
-use Narmafzam\ArchiveBundle\Entity\Traits\DescriptionTrait;
-use Narmafzam\ArchiveBundle\Entity\Traits\IdTrait;
-use Narmafzam\ArchiveBundle\Entity\Traits\SubjectTrait;
-use Narmafzam\ArchiveBundle\Entity\Traits\TimestampTrait;
-use Narmafzam\ArchiveBundle\Entity\Traits\TitleTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Narmafzam\ArchiveBundle\Entity\Base\Contract as BaseClass;
+use Narmafzam\ArchiveBundle\Entity\Interfaces\ContractAttachmentInterface;
+use Narmafzam\ArchiveBundle\Entity\Interfaces\ContractLineInterface;
+use Narmafzam\ArchiveBundle\Entity\Interfaces\ContractNoteInterface;
 
 /**
- * @ORM\MappedSuperclass
- * @ORM\HasLifecycleCallbacks()
+ * @ORM\Entity
+ * @ORM\Table(name="contract")
  */
-abstract class Contract implements ContractInterface, TitleInterface, DescriptionInterface, Subjectinterface
+class Contract extends BaseClass
 {
-    use IdTrait;
-    use TitleTrait;
-    use DescriptionTrait;
-    use SubjectTrait;
-    use DeletedTrait;
-    use TimestampTrait;
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="ArchiveBundle\Entity\ContractAttachment", mappedBy="contract", cascade={"persist", "remove"})
+     */
+    protected $attachments;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ArchiveBundle\Entity\ContractLine", mappedBy="contract")
+     */
+    protected $lines;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ArchiveBundle\Entity\ContractNote", mappedBy="contract")
+     */
+    protected $notes;
+
+    public function __construct()
+    {
+        $this->attachments = new ArrayCollection();
+        $this->lines = new ArrayCollection();
+        $this->notes = new ArrayCollection();
+    }
+
+    public function getAttachments (): ArrayCollection
+    {
+        return $this->attachments;
+    }
+
+    public function addAttachment (ContractAttachmentInterface $attachment)
+    {
+        $this->attachments->add($attachment);
+        $attachment->setContract($this);
+    }
+
+    public function removeAttachment (ContractAttachmentInterface $attachment)
+    {
+        $this->attachments->removeElement($attachment);
+    }
+
+    public function getLines(): ArrayCollection
+    {
+        return $this->lines;
+    }
+
+    public function addLine(ContractLineInterface $line)
+    {
+        $this->lines->add($line);
+        $line->setContract($this);
+    }
+
+    public function removeLine(ContractLineInterface $line)
+    {
+        $this->lines->removeElement($line);
+    }
+
+    public function getNotes(): ArrayCollection
+    {
+        return $this->notes;
+    }
+
+    public function addNote(ContractNoteInterface $note)
+    {
+        $this->notes->add($note);
+        $note->setContract($this);
+    }
+
+    public function removeNote(ContractNoteInterface $note)
+    {
+        $this->notes->removeElement($note);
+    }
+
 }

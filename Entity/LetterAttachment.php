@@ -1,25 +1,36 @@
 <?php
 /**
- * This file is part of archive.
+ * This file is part of archive
  * Copyrighted by Narmafzam (Farzam Webnegar Sivan Co.), info@narmafzam.com
- * Date: 2017/9/29
+ * Created by peyman
+ * Date: 2017/10/18
  */
 
-namespace Narmafzam\ArchiveBundle\Entity;
+namespace ArchiveBundle\Entity;
 
-use Narmafzam\ArchiveBundle\Entity\Interfaces\LetterAttachmentInterface;
-use Narmafzam\ArchiveBundle\Entity\Interfaces\TitleInterface;
-use Narmafzam\ArchiveBundle\Entity\Traits\AttachmentTrait;
-use Narmafzam\ArchiveBundle\Entity\Traits\IdTrait;
-use Narmafzam\ArchiveBundle\Entity\Traits\TitleTrait;
 use Doctrine\ORM\Mapping as ORM;
+use Narmafzam\ArchiveBundle\Entity\Interfaces\LetterInterface;
+use Narmafzam\ArchiveBundle\Entity\Base\LetterAttachment as BaseClass;
 
 /**
- * @ORM\MappedSuperclass
+ * @ORM\Entity
+ * @ORM\Table(name="letter_attachment")
  */
-abstract class LetterAttachment implements LetterAttachmentInterface, TitleInterface
+class LetterAttachment extends BaseClass
 {
-    use IdTrait;
-    use TitleTrait;
-    use AttachmentTrait;
+    /**
+     * @ORM\ManyToOne(targetEntity="ArchiveBundle\Entity\Letter", inversedBy="attachments")
+     */
+    protected $letter;
+
+    public function getLetter (): LetterInterface
+    {
+        return $this->letter;
+    }
+
+    public function setLetter (LetterInterface $letter)
+    {
+        $this->letter = $letter;
+    }
+
 }
