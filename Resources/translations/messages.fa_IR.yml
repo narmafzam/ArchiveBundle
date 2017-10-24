@@ -1,0 +1,17 @@
+archive:
+    management:
+        system: 'سامانه مدیریت بایگانی اسناد'
+
+search: 'جستجو'
+
+contract:
+    index: 'لیست قرارداد'
+    new: 'افزودن قرارداد'
+
+document:
+    index: 'لیست اسناد'
+    new: 'افزودن اسناد'
+
+letter:
+    index: 'لیست نامه'
+    new: 'افزودن نامه'

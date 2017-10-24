@@ -1,0 +1,2 @@
+imports:
+    - {resource: messages.fa_IR.yml}
