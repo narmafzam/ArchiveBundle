@@ -8,10 +8,10 @@
 
 namespace Narmafzam\ArchiveBundle\Controller\Common;
 
-use Narmafzam\ArchiveBundle\Controller\BaseController;
+use Narmafzam\ArchiveBundle\Controller\BaseWithDataClassController;
 use Narmafzam\ArchiveBundle\Model\Handler\Interfaces\DocumentHandlerInterface;
 
-class DocumentController extends BaseController
+class DocumentController extends BaseWithDataClassController
 {
     protected function getHandler(): DocumentHandlerInterface
     {

@@ -8,10 +8,10 @@
 
 namespace Narmafzam\ArchiveBundle\Controller\Common;
 
-use Narmafzam\ArchiveBundle\Controller\BaseController;
+use Narmafzam\ArchiveBundle\Controller\BaseWithDataClassController;
 use Narmafzam\ArchiveBundle\Model\Handler\Interfaces\LetterHandlerInterface;
 
-class LetterController extends BaseController
+class LetterController extends BaseWithDataClassController
 {
     protected function getHandler(): LetterHandlerInterface
     {

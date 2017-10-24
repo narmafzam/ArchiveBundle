@@ -11,7 +11,7 @@ namespace Narmafzam\ArchiveBundle\Controller;
 use Narmafzam\ArchiveBundle\Form\Common\Type\Generic\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class BaseController extends Controller
+class BaseWithDataClassController extends Controller
 {
     protected $dataClass;
     protected $formTypeClass;

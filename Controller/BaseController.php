@@ -8,8 +8,9 @@
 
 namespace Narmafzam\ArchiveBundle\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class BaseController
+class BaseController extends Controller
 {
 
 }
