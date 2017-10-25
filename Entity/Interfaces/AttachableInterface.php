@@ -17,6 +17,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 interface AttachableInterface
 {
     /**
+     * Empty constructor enforces application bundle, not to pass arguments to the constructor, as it's used by form class
+     */
+    public function __construct();
+
+    /**
      * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getAttachments() : ArrayCollection;

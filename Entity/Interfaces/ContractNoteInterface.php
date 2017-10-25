@@ -15,6 +15,11 @@ namespace Narmafzam\ArchiveBundle\Entity\Interfaces;
 interface ContractNoteInterface
 {
     /**
+     * Empty constructor enforces application bundle, not to pass arguments to the constructor, as it's used by form class
+     */
+    public function __construct();
+
+    /**
      * @return ContractInterface
      */
     public function getContract() : ContractInterface;
