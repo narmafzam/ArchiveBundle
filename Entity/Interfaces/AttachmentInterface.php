@@ -42,11 +42,6 @@ interface AttachmentInterface
     const MIME_PPTX = "application/vnd.openxmlformats-officedocument.presentationml.presentation";
 
     /**
-     * Empty constructor enforces application bundle, not to pass arguments to the constructor, as it's used by form class
-     */
-    public function __construct();
-
-    /**
      * @return string
      */
     public function getLocation();
