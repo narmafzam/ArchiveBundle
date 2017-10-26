@@ -28,26 +28,41 @@ class Handler implements HandlerInterface
     /**
      * @var string
      */
+    protected $dataClass;
+
+    /**
+     * @var string
+     */
     protected $uploadDirectory;
 
     /**
      * Handler constructor.
      *
      * @param EntityManagerInterface $entityManager
+     * @param string                 $dataClass
      * @param string                 $uploadDirectory
      */
-    public function __construct(EntityManagerInterface $entityManager, $uploadDirectory)
+    public function __construct(EntityManagerInterface $entityManager, $dataClass, $uploadDirectory)
     {
         $this->entityManager = $entityManager;
+        $this->dataClass = $dataClass;
         $this->uploadDirectory = $uploadDirectory;
     }
 
     /**
      * @return EntityManagerInterface
      */
-    protected function getEntityManager()
+    public function getEntityManager(): EntityManagerInterface
     {
         return $this->entityManager;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDataClass(): string
+    {
+        return $this->dataClass;
     }
 
     /**
@@ -56,6 +71,14 @@ class Handler implements HandlerInterface
     public function getUploadDirectory(): string
     {
         return $this->uploadDirectory;
+    }
+
+    /**
+     * @return \Doctrine\Common\Persistence\ObjectRepository
+     */
+    public function getRepository()
+    {
+        return $this->getEntityManager()->getRepository($this->getDataClass());
     }
 
     /**
