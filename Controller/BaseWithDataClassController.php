@@ -69,11 +69,13 @@ class BaseWithDataClassController extends Controller
     }
 
     /**
+     * @param string $formTypeClass
+     *
      * @return $this|\Symfony\Component\Form\FormInterface
      */
-    protected function getAddForm()
+    protected function getAddForm($formTypeClass)
     {
-        $form = $this->createForm($this->getFormTypeClass())
+        $form = $this->createForm($formTypeClass)
             ->add('add', SubmitType::class, array(
                 'attr' => array(
                     'class' => 'btn btn-default',
@@ -85,11 +87,14 @@ class BaseWithDataClassController extends Controller
     }
 
     /**
+     * @param string $formTypeClass
+     * @param string $entity
+     *
      * @return $this|\Symfony\Component\Form\FormInterface
      */
-    protected function getUpdateForm()
+    protected function getUpdateForm($formTypeClass, $entity)
     {
-        $form = $this->createForm($this->getFormTypeClass())
+        $form = $this->createForm($formTypeClass, $entity)
             ->add('update', SubmitType::class, array(
                 'attr' => array(
                     'class' => 'btn btn-default',

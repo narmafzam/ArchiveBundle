@@ -12,6 +12,7 @@ use Narmafzam\ArchiveBundle\Controller\Common\ContractController as BaseControll
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class ContractController
@@ -26,16 +27,19 @@ class ContractController extends BaseController
      */
     public function indexAction()
     {
-
+        return $this->render('@NarmafzamArchive/Contract/index.html.twig');
     }
 
     /**
+     * @param Request   $request
+     * @return Response A Response instance
+     *
      * @Route("/new", name="front_contract_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
-        $form = $this->getAddForm();
+        $form = $this->getAddForm($this->getFormTypeClass());
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -51,12 +55,29 @@ class ContractController extends BaseController
     }
 
     /**
+     * @param Request   $request
+     * @param string    $id
+     * @return Response A Response instance
+     *
      * @Route("/{id}/edit", name="front_contract_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction()
+    public function editAction(Request $request, $id)
     {
+        $handler = $this->getHandler();
+        $contract = $handler->getContract($id);
 
+        $form = $this->getUpdateForm($this->getFormTypeClass(), $contract);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $handler->editContract($contract);
+        }
+
+        return $this->render('@NarmafzamArchive/Contract/new.html.twig', array(
+            'form' => $form->createView()
+        ));
     }
 
     /**

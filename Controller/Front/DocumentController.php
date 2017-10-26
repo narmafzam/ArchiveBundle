@@ -12,6 +12,7 @@ use Narmafzam\ArchiveBundle\Controller\Common\DocumentController as BaseControll
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class DocumentController
@@ -22,19 +23,23 @@ class DocumentController extends BaseController
 {
     /**
      * @Route("/", name="front_document_index")
+     * @Method("GET")
      */
     public function indexAction()
     {
-
+        return $this->render('NarmafzamArchiveBundle:Document:index.html.twig');
     }
 
     /**
+     * @param Request   $request
+     * @return Response A Response instance
+     *
      * @Route("/new", name="front_document_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
-        $form = $this->getAddForm();
+        $form = $this->getAddForm($this->getFormTypeClass());
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -50,18 +55,23 @@ class DocumentController extends BaseController
     }
 
     /**
+     * @param Request   $request
+     * @param string    $id
+     * @return Response A Response instance
+     *
      * @Route("/{id}/edit", name="front_document_edit")
      */
-    public function editAction(Request $request)
+    public function editAction(Request $request, $id)
     {
-        $form = $this->getUpdateForm();
+        $handler = $this->getHandler();
+        $document = $handler->getDocument($id);
+
+        $form = $this->getUpdateForm($this->getFormTypeClass(), $document);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $data = $form->getData();
-            $handler = $this->getHandler();
-            $handler->editDocument($data);
+            $handler->editDocument($document);
         }
 
         return $this->render('@NarmafzamArchive/Document/new.html.twig', array(
@@ -71,6 +81,7 @@ class DocumentController extends BaseController
 
     /**
      * @Route("/{id}", name="front_document_delete")
+     * @Method("DELETE")
      */
     public function deleteAction()
     {
