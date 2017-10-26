@@ -17,7 +17,29 @@ use Narmafzam\ArchiveBundle\Entity\Interfaces\AttachableInterface;
  */
 interface HandlerInterface
 {
-    public function __construct(EntityManagerInterface $entityManager, $uploadDirectory);
+    public function getRepository();
 
+    /**
+     * HandlerInterface constructor.
+     * @param EntityManagerInterface $entityManager
+     * @param string $dataClass
+     * @param string $uploadDirectory
+     */
+    public function __construct(EntityManagerInterface $entityManager, $dataClass, $uploadDirectory);
+
+    /**
+     * @return EntityManagerInterface
+     */
+    public function getEntityManager(): EntityManagerInterface;
+
+    /**
+     * @return string
+     */
+    public function getUploadDirectory(): string;
+
+    /**
+     * @param AttachableInterface $attachable
+     * @return AttachableInterface
+     */
     public function storeAttachments(AttachableInterface $attachable) : AttachableInterface;
 }

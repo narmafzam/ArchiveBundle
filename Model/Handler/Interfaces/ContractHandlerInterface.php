@@ -29,4 +29,9 @@ interface ContractHandlerInterface extends HandlerInterface
      * @return mixed
      */
     public function editContract(ContractInterface $contract);
+
+    /**
+     * @param string $id
+     */
+    public function getContract($id);
 }

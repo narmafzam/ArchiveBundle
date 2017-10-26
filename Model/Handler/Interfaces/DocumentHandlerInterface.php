@@ -29,4 +29,9 @@ interface DocumentHandlerInterface extends HandlerInterface
      * @return mixed
      */
     public function editDocument(DocumentInterface $document);
+
+    /**
+     * @param string $id
+     */
+    public function getDocument($id);
 }
