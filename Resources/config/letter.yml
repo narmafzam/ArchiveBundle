@@ -13,8 +13,9 @@ services:
     # Letter
     Narmafzam\ArchiveBundle\Model\Handler\LetterHandler:
         arguments:
-            - '@doctrine.orm.entity_manager'
-            - %upload_directory%
+            $entityManager: '@doctrine.orm.entity_manager'
+            $dataClass: %narmafzam_archive_entity_contract%
+            $uploadDirectory: %upload_directory%
 
     Narmafzam\ArchiveBundle\Form\Common\LetterType:
         arguments:
