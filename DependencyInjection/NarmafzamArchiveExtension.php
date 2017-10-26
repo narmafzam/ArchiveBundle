@@ -27,6 +27,9 @@ use Narmafzam\ArchiveBundle\Form\Common\Type\ContractLineKindChoicesType;
 use Narmafzam\ArchiveBundle\Form\Common\Type\ContractLineKindChoiceType;
 use Narmafzam\ArchiveBundle\Form\Common\Type\ContractTemplateChoicesType;
 use Narmafzam\ArchiveBundle\Form\Common\Type\ContractTemplateChoiceType;
+use Narmafzam\ArchiveBundle\Model\Handler\ContractHandler;
+use Narmafzam\ArchiveBundle\Model\Handler\DocumentHandler;
+use Narmafzam\ArchiveBundle\Model\Handler\LetterHandler;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
@@ -43,6 +46,9 @@ class NarmafzamArchiveExtension extends ConfigurableExtension implements Extensi
         // Contract
 
         if ($mergedConfig['contract']['entity']) {
+
+            $def = $container->getDefinition(ContractHandler::class);
+            $def->replaceArgument('$dataClass', $mergedConfig['contract']['entity']);
 
             $def = $container->getDefinition(ContractType::class);
             $def->replaceArgument('$dataClass', $mergedConfig['contract']['entity']);
@@ -119,6 +125,9 @@ class NarmafzamArchiveExtension extends ConfigurableExtension implements Extensi
 
         if ($mergedConfig['document']['entity']) {
 
+            $def = $container->getDefinition(DocumentHandler::class);
+            $def->replaceArgument('$dataClass', $mergedConfig['document']['entity']);
+
             $def = $container->getDefinition(DocumentType::class);
             $def->replaceArgument('$dataClass', $mergedConfig['document']['entity']);
 
@@ -152,6 +161,9 @@ class NarmafzamArchiveExtension extends ConfigurableExtension implements Extensi
         // Letter
 
         if ($mergedConfig['letter']['entity']) {
+
+            $def = $container->getDefinition(LetterHandler::class);
+            $def->replaceArgument('$dataClass', $mergedConfig['letter']['entity']);
 
             $def = $container->getDefinition(LetterType::class);
             $def->replaceArgument('$dataClass', $mergedConfig['letter']['entity']);
