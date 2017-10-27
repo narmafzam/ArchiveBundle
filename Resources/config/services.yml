@@ -1,4 +1,5 @@
 imports:
+    - { resource: 'menu.yml' }
     - { resource: 'contract.yml' }
     - { resource: 'document.yml' }
     - { resource: 'letter.yml' }

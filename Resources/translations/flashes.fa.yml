@@ -1,0 +1,13 @@
+archive:
+    flash:
+        error:
+            contract:
+                alreadyExist: قرارداد با مشخصات مذکور وجود دارد
+                cannotDelete: شما امکان حذف این قرارداد را ندارید
+            general: متأسفانه مشکلی رخ داده است
+        success:
+            contract:
+                created: قرارداد با موفقیت ایجاد شد
+                edited: تغییرات قرارداد با موفقیت ذخیره شد
+                deleted: قرارداد با موفقیت حذف شد
+            general: عملیات با موفقیت انجام شد

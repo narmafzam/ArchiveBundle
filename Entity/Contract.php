@@ -9,6 +9,7 @@
 namespace ArchiveBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Narmafzam\ArchiveBundle\Entity\Base\Contract as BaseClass;
 use Narmafzam\ArchiveBundle\Entity\Interfaces\ContractAttachmentInterface;
@@ -22,7 +23,7 @@ use Narmafzam\ArchiveBundle\Entity\Interfaces\ContractNoteInterface;
 class Contract extends BaseClass
 {
     /**
-     * @var ArrayCollection
+     * @var Collection
      *
      * @ORM\OneToMany(targetEntity="ArchiveBundle\Entity\ContractAttachment", mappedBy="contract", cascade={"persist", "remove"})
      */
@@ -45,7 +46,7 @@ class Contract extends BaseClass
         $this->notes = new ArrayCollection();
     }
 
-    public function getAttachments (): ArrayCollection
+    public function getAttachments (): Collection
     {
         return $this->attachments;
     }
@@ -61,7 +62,7 @@ class Contract extends BaseClass
         $this->attachments->removeElement($attachment);
     }
 
-    public function getLines(): ArrayCollection
+    public function getLines(): Collection
     {
         return $this->lines;
     }
@@ -77,7 +78,7 @@ class Contract extends BaseClass
         $this->lines->removeElement($line);
     }
 
-    public function getNotes(): ArrayCollection
+    public function getNotes(): Collection
     {
         return $this->notes;
     }

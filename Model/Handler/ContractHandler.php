@@ -50,4 +50,11 @@ class ContractHandler extends Handler implements ContractHandlerInterface
         return $this->getRepository()->find($id);
     }
 
+    /**
+     * @return array
+     */
+    public function getContracts()
+    {
+        return $this->getRepository()->findAll();
+    }
 }

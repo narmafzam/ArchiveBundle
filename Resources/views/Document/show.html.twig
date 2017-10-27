@@ -1,0 +1,11 @@
+{% extends '@NarmafzamArchive/Document/layout.html.twig' %}
+
+{% block main %}
+    <h1 class="page-header">{{ 'archive.document.title.show'|trans({'%title%': model.document.title}) }}</h1>
+
+    {% embed '@NarmafzamArchive/infobox.html.twig' with {
+        data: model.document,
+    } %}
+    {% endembed %}
+
+{% endblock %}

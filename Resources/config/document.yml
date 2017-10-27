@@ -28,6 +28,7 @@ services:
             $dataClass: %narmafzam_archive_entity_document%
             $formTypeClass: %narmafzam_archive_form_back_document%
             $handler: '@Narmafzam\ArchiveBundle\Model\Handler\DocumentHandler'
+            $router: '@router'
         tags:
             - name: 'controller.service_arguments'
 
@@ -36,6 +37,7 @@ services:
             $dataClass: %narmafzam_archive_entity_document%
             $formTypeClass: %narmafzam_archive_form_front_document%
             $handler: '@Narmafzam\ArchiveBundle\Model\Handler\DocumentHandler'
+            $router: '@router'
         tags:
             - name: 'controller.service_arguments'
 

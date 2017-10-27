@@ -8,7 +8,7 @@
 
 namespace Narmafzam\ArchiveBundle\Entity\Interfaces;
 
-use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * Interface AttachableInterface
@@ -17,7 +17,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 interface AttachableInterface
 {
     /**
-     * @return \Doctrine\Common\Collections\ArrayCollection
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function getAttachments() : ArrayCollection;
+    public function getAttachments() : Collection;
 }

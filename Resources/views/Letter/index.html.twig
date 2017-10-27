@@ -1,7 +1,12 @@
-{% extends '@NarmafzamArchive/container.html.twig' %}
+{% extends '@NarmafzamArchive/Letter/layout.html.twig' %}
 
 {% block main %}
-    <h1 class="page-header">Letter Index</h1>
+    <h1 class="page-header">{{ 'archive.letter.action.index'|trans }}</h1>
 
-    this is index
+    {% embed '@NarmafzamArchive/table.html.twig' with {
+        data: model.letters,
+        routeShow: model.routeShow
+    } %}
+    {% endembed %}
+
 {% endblock %}

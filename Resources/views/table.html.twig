@@ -1,0 +1,36 @@
+<table class="table table-striped table-responsive">
+    <thead>
+        <tr>
+        {% for field in model.fieldsAll %}
+            <th>{{ field }}</th>
+        {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+    {% for item in data %}
+        <tr>
+        {% for field in model.fieldsAll %}
+            <td>
+            {% if attribute(item, field) is iterable %}
+                <ul class="list-group">
+                {% for row in attribute(item, field) %}
+                    <li class="list-group-item">{{ row.title }}</li>
+                {% endfor %}
+                </ul>
+            {% elseif attribute(item, field).timestamp is defined %}
+                {{ attribute(item, field)|date }}
+            {% else %}
+                {% if field in ['id', 'title'] %}
+                    <a href="{{ url(routeShow, {'id': item.id}) }}">
+                        {{ attribute(item, field) }}
+                    </a>
+                {% else %}
+                    {{ attribute(item, field) }}
+                {% endif %}
+            {% endif %}
+            </td>
+        {% endfor %}
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

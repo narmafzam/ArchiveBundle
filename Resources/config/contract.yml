@@ -46,6 +46,7 @@ services:
             $dataClass: %narmafzam_archive_entity_contract%
             $formTypeClass: %narmafzam_archive_form_back_contract%
             $handler: '@Narmafzam\ArchiveBundle\Model\Handler\ContractHandler'
+            $router: '@router'
         tags:
             - name: 'controller.service_arguments'
 
@@ -54,6 +55,7 @@ services:
             $dataClass: %narmafzam_archive_entity_contract%
             $formTypeClass: %narmafzam_archive_form_front_contract%
             $handler: '@Narmafzam\ArchiveBundle\Model\Handler\ContractHandler'
+            $router: '@router'
         tags:
             - name: 'controller.service_arguments'
 

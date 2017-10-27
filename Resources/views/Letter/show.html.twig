@@ -1,0 +1,11 @@
+{% extends '@NarmafzamArchive/Letter/layout.html.twig' %}
+
+{% block main %}
+    <h1 class="page-header">{{ 'archive.letter.title.show'|trans({'%title%': model.letter.title}) }}</h1>
+
+    {% embed '@NarmafzamArchive/infobox.html.twig' with {
+        data: model.letter,
+    } %}
+    {% endembed %}
+
+{% endblock %}

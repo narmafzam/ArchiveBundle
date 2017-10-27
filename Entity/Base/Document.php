@@ -18,7 +18,6 @@ use Narmafzam\ArchiveBundle\Entity\Traits\IdTrait;
 use Narmafzam\ArchiveBundle\Entity\Traits\SubjectTrait;
 use Narmafzam\ArchiveBundle\Entity\Traits\TimestampTrait;
 use Narmafzam\ArchiveBundle\Entity\Traits\TitleTrait;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**

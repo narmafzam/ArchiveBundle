@@ -8,7 +8,7 @@
 
 namespace Narmafzam\ArchiveBundle\Entity\Interfaces;
 
-use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * Interface ContractCommonLine
@@ -17,9 +17,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 interface ContractCommonLineInterface
 {
     /**
-     * @return ArrayCollection
+     * @return Collection
      */
-    public function getTemplates() : ArrayCollection;
+    public function getTemplates() : Collection;
 
     /**
      * @param ContractTemplateInterface $contractTemplate

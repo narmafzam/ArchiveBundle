@@ -34,4 +34,9 @@ interface DocumentHandlerInterface extends HandlerInterface
      * @param string $id
      */
     public function getDocument($id);
+
+    /**
+     * @return array
+     */
+    public function getDocuments();
 }

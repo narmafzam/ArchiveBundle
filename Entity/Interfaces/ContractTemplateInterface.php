@@ -8,7 +8,7 @@
 
 namespace Narmafzam\ArchiveBundle\Entity\Interfaces;
 
-use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * Interface ContractTemplateInterface
@@ -29,9 +29,9 @@ interface ContractTemplateInterface
     public function setParent(ContractTemplateInterface $parent);
 
     /**
-     * @return ArrayCollection
+     * @return Collection
      */
-    public function getChildren() : ArrayCollection;
+    public function getChildren() : Collection;
 
     /**
      * @param ContractTemplateInterface $child
@@ -48,9 +48,9 @@ interface ContractTemplateInterface
     public function removeChild(ContractTemplateInterface $child);
 
     /**
-     * @return ArrayCollection
+     * @return Collection
      */
-    public function getCommonLines() : ArrayCollection;
+    public function getCommonLines() : Collection;
 
     /**
      * @param ContractCommonLineInterface $commonLine

@@ -34,4 +34,9 @@ interface ContractHandlerInterface extends HandlerInterface
      * @param string $id
      */
     public function getContract($id);
+
+    /**
+     * @return array
+     */
+    public function getContracts();
 }

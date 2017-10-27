@@ -1,0 +1,11 @@
+{% extends '@NarmafzamArchive/Contract/layout.html.twig' %}
+
+{% block main %}
+    <h1 class="page-header">{{ 'archive.contract.title.show'|trans({'%title%': model.contract.title}) }}</h1>
+
+    {% embed '@NarmafzamArchive/infobox.html.twig' with {
+        data: model.contract,
+    } %}
+    {% endembed %}
+
+{% endblock %}

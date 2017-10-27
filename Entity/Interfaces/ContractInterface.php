@@ -8,7 +8,7 @@
 
 namespace Narmafzam\ArchiveBundle\Entity\Interfaces;
 
-use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * Interface ContractInterface
@@ -31,9 +31,9 @@ interface ContractInterface extends AttachableInterface
     public function removeAttachment(ContractAttachmentInterface $attachment);
 
     /**
-     * @return ArrayCollection
+     * @return Collection
      */
-    public function getLines() : ArrayCollection;
+    public function getLines() : Collection;
 
     /**
      * @param ContractLineInterface $line
@@ -50,9 +50,9 @@ interface ContractInterface extends AttachableInterface
     public function removeLine(ContractLineInterface $line);
 
     /**
-     * @return ArrayCollection
+     * @return Collection
      */
-    public function getNotes() : ArrayCollection;
+    public function getNotes() : Collection;
 
     /**
      * @param ContractNoteInterface $note

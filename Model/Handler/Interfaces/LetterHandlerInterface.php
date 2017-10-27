@@ -34,4 +34,9 @@ interface LetterHandlerInterface extends HandlerInterface
      * @param string $id
      */
     public function getLetter($id);
+
+    /**
+     * @return mixed
+     */
+    public function getLetters();
 }

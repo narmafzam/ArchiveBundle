@@ -1,2 +1,105 @@
-imports:
-    - {resource: messages.fa_IR.yml}
+archive:
+    meta:
+        title:
+            main: سامانه مدیریت بایگانی اسناد
+        description:
+            main: سامانه‌ای برای ایجاد و مدیریت بایگانی اسناد، نامه‌ها و قرادادها
+    action:
+        contracts: قراردادها
+        documents: سندها
+        letters: نامه‌ها
+    title: # displayed in h1, h2, ...
+        welcome: به سامانه مدیریت بایگانی خوش آمدید
+    form:
+        label:
+            title: عنوان
+            description: شرح
+            subject: موضوع
+            attachments: پیوست‌ها
+            lines: خطوط
+        placeholder:
+            title: عنوان با حروف فارسی
+
+    contract:
+        action:
+            index: لیست قرارداد
+            show:  نمایش قرارداد
+            new: افزودن قرارداد
+            edit: ویرایش قرارداد
+        title:
+            index: لیست قراردادها
+            show: قرارداد %title%
+            new: ایجاد قرارداد جدید
+            edit: ویرایش قرارداد %title%
+        form:
+            help: اطلاعات مربوط به قرارداد را تکمیل کنید
+            label:
+                title: عنوان قرارداد
+                description: شرح قراداد
+                subject: موضوع قرارداد
+                attachments: پیوست‌های قرارداد
+                lines: خطوط قراداد
+            placeholder:
+                title: عنوان قرارداد با حروف فارسی
+        warn:
+            forbidden: شما امکان دسترسی به این قرارداد را ندارید
+            notFound: قرارداد مورد نظر یافت نشد
+        word:
+            contract: قرارداد|قراردادها
+
+    document:
+        action:
+            index: لیست سند
+            show:  نمایش سند
+            new: افزودن سند
+            edit: ویرایش سند
+        title:
+            index: لیست سندها
+            show: سند %title%
+            new: ایجاد سند جدید
+            edit: ویرایش سند %title%
+        form:
+            help: اطلاعات مربوط به سند را تکمیل کنید
+            label:
+                title: عنوان سند
+                description: شرح قراداد
+                subject: موضوع سند
+                attachments: پیوست‌های سند
+                lines: خطوط قراداد
+            placeholder:
+                title: عنوان سند با حروف فارسی
+        warn:
+            forbidden: شما امکان دسترسی به این سند را ندارید
+            notFound: سند مورد نظر یافت نشد
+        word:
+            contract: سند|سند‌ها
+
+    letter:
+        action:
+            index: لیست نامه
+            show:  نمایش نامه
+            new: افزودن نامه
+            edit: ویرایش نامه
+        title:
+            index: لیست نامهها
+            show: نامه %title%
+            new: ایجاد نامه جدید
+            edit: ویرایش نامه %title%
+        form:
+            help: اطلاعات مربوط به نامه را تکمیل کنید
+            label:
+                title: عنوان نامه
+                description: شرح قراداد
+                subject: موضوع نامه
+                attachments: پیوست‌های نامه
+                lines: خطوط قراداد
+            placeholder:
+                title: عنوان نامه با حروف فارسی
+        warn:
+            forbidden: شما امکان دسترسی به این نامه را ندارید
+            notFound: نامه مورد نظر یافت نشد
+        word:
+            contract: نامه|نامه‌ها
+
+    word:
+        search: جستجو

@@ -9,9 +9,10 @@
 namespace Narmafzam\ArchiveBundle\Controller;
 
 use Narmafzam\ArchiveBundle\Form\Common\Type\Generic\SubmitType;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Narmafzam\ArchiveBundle\Model\Handler\Interfaces\HandlerInterface;
+use Symfony\Component\Routing\RouterInterface;
 
-class BaseWithDataClassController extends Controller
+class BaseWithDataClassController extends BaseController
 {
     protected $dataClass;
     protected $formTypeClass;
@@ -19,16 +20,19 @@ class BaseWithDataClassController extends Controller
 
     /**
      * Controller constructor.
-     * @param $dataClass
-     * @param $formTypeClass
-     * @param $handler
+     * @param string           $dataClass
+     * @param string           $formTypeClass
+     * @param HandlerInterface $handler
+     * @param RouterInterface  $router
      */
-    public function __construct($dataClass, $formTypeClass, $handler)
+    public function __construct($dataClass, $formTypeClass, HandlerInterface $handler, RouterInterface $router)
     {
+        parent::__construct($router);
+
         $this->dataClass = $dataClass;
         $this->formTypeClass = $formTypeClass;
         $this->handler = $handler;
-   }
+    }
 
     /**
      * @return string FQCN for the injected Entity

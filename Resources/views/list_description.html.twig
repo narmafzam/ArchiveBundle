@@ -1,0 +1,17 @@
+<dl class="dl-horizontal">
+{% for field in model.fieldsSimple %}
+    <dt>{{ field|trans }}</dt>
+    <dd>
+        {% if attribute(data, field) is iterable %}
+            <ul>
+            {% for row in attribute(data, field) %}
+                <li>{{ row.title }}</li>
+            {% endfor %}
+            </ul>
+        {% elseif attribute(data, field).timestamp is defined %}
+            {{ attribute(data, field)|date }}
+        {% else %}
+            {{ attribute(data, field) }}
+        {% endif %}
+    </dd>
+{% endfor %}

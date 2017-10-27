@@ -1,0 +1,5 @@
+archive:
+    notBlank: فیلد نباید خالی باشد
+    emailInvalid: این یک آدرس ایمیل معتبر نیست
+    contract:
+        notBlank: فیلد قرارداد نباید خالی باشد

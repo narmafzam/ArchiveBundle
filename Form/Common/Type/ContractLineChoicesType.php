@@ -18,8 +18,8 @@ class ContractLineChoicesType extends AbstractWithDataClassType
     {
         $resolver->setDefaults(array(
             'class'    => $this->getDataClass(),
-            'expanded' => false,
-            'multiple' => false,
+            'expanded' => true,
+            'multiple' => true,
         ));
     }
 

@@ -6,4 +6,4 @@ narmafzam_archive_back:
 narmafzam_archive_front:
     resource: '@NarmafzamArchiveBundle/Controller/Front'
     type: annotation
-    prefix: /
+    prefix: /front/

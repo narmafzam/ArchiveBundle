@@ -50,4 +50,12 @@ class LetterHandler extends Handler implements LetterHandlerInterface
     {
         return $this->getRepository()->find($id);
     }
+
+    /**
+     * @return array
+     */
+    public function getLetters()
+    {
+        return $this->getRepository()->findAll();
+    }
 }

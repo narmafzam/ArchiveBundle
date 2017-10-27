@@ -1,0 +1,39 @@
+services:
+
+    # Back
+    Narmafzam\ArchiveBundle\Menu\Back\SideContractMenuBuilder:
+        arguments:
+            - "@knp_menu.factory"
+        tags:
+            - { name: knp_menu.menu_builder, method: createSideContractMenu, alias: backSideContract }
+
+    Narmafzam\ArchiveBundle\Menu\Back\SideDocumentMenuBuilder:
+        arguments:
+            - "@knp_menu.factory"
+        tags:
+            - { name: knp_menu.menu_builder, method: createSideDocumentMenu, alias: backSideDocument }
+
+    Narmafzam\ArchiveBundle\Menu\Back\SideLetterMenuBuilder:
+        arguments:
+            - "@knp_menu.factory"
+        tags:
+            - { name: knp_menu.menu_builder, method: createSideLetterMenu, alias: backSideLetter }
+
+    # Front
+    Narmafzam\ArchiveBundle\Menu\Front\SideContractMenuBuilder:
+        arguments:
+            - "@knp_menu.factory"
+        tags:
+            - { name: knp_menu.menu_builder, method: createSideContractMenu, alias: frontSideContract }
+
+    Narmafzam\ArchiveBundle\Menu\Front\SideDocumentMenuBuilder:
+        arguments:
+            - "@knp_menu.factory"
+        tags:
+            - { name: knp_menu.menu_builder, method: createSideDocumentMenu, alias: frontSideDocument }
+
+    Narmafzam\ArchiveBundle\Menu\Front\SideLetterMenuBuilder:
+        arguments:
+            - "@knp_menu.factory"
+        tags:
+            - { name: knp_menu.menu_builder, method: createSideLetterMenu, alias: frontSideLetter }

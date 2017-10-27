@@ -51,4 +51,8 @@ class DocumentHandler extends Handler implements DocumentHandlerInterface
         return $this->getRepository()->find($id);
     }
 
+    public function getDocuments()
+    {
+        return $this->getRepository()->findAll();
+    }
 }
