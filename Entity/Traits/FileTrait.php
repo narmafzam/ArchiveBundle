@@ -11,7 +11,7 @@ namespace Narmafzam\ArchiveBundle\Entity\Traits;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-trait LocationTrait
+trait FileTrait
 {
     /**
      * @Assert\NotBlank()
@@ -47,22 +47,22 @@ trait LocationTrait
      * )
      * @ORM\Column(type="string")
      */
-    protected $location;
+    protected $file;
 
     /**
      * @return string
      */
-    public function getLocation()
+    public function getFile()
     {
-        return $this->location;
+        return $this->file;
     }
 
     /**
-     * @param string $location
+     * @param str   ing $file
      */
-    public function setLocation($location)
+    public function setFile($file)
     {
-        $this->location = $location;
+        $this->file = $file;
     }
 
 }

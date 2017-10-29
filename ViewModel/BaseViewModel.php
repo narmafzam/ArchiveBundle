@@ -19,7 +19,7 @@ class BaseViewModel
         'subject',
         'createdAt',
         'updatedAt',
-        'description',
+//        'description',
         )
     ;
 

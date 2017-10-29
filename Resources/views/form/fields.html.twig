@@ -1,41 +1,57 @@
 {% use 'bootstrap_3_horizontal_layout.html.twig' %}
 
-{%- block file_widget -%}
-    <div class="input-group">
-        <input type="text" class="form-control" value="{{ form.vars.data ?? '' }}" readonly>
-        <label class="input-group-btn">
-            <span class="btn btn-primary">
-                {{ 'archive.word.browse'|trans }} <input type="file" {{ block('widget_attributes') }} style="display: none;" multiple>
-            </span>
-        </label>
-    </div>
-{%- endblock file_widget -%}
+{#{%- block file_widget -%}#}
+    {#<div class="input-group">#}
+        {#<input type="text" class="form-control" value="{{ form.vars.data ?? '' }}" readonly>#}
+        {#<label class="input-group-btn">#}
+            {#<span class="btn btn-primary">#}
+                {#{{ 'archive.word.browse'|trans }} <input type="file" {{ block('widget_attributes') }} style="display: none;" multiple>#}
+            {#</span>#}
+        {#</label>#}
+    {#</div>#}
+{#{%- endblock file_widget -%}#}
 
-{% block collection_widget %}
-    {% spaceless %}
-        {% if prototype is defined %}
-            {% set attr = attr|merge({'data-prototype': form_widget(prototype.location) }) %}
-        {% endif %}
-        {{ block('attachment_widget') }}
-    {% endspaceless %}
-{% endblock collection_widget %}
+{#{% function prototype_widget %}#}
+    {#<div id="front_contract_attachments___name__">#}
+        {#<div class="form-group">#}
+            {#<div class="col-sm-2">#}
+                {#{{ form_widget(form.file) }}#}
+            {#</div>#}
+            {#<div class="col-sm-10">#}
+                {#{{ form_widget(form.file) }}#}
+            {#</div>#}
+        {#</div>#}
+    {#</div>#}
+{#{% endblock prototype_widget %}#}
 
-{% block attachment_widget %}
-    {% import '@NarmafzamArchive/fileMimeIcon.html.twig' as thefile %}
-    <div {{ block('widget_attributes') }}>
-        {% for attachment in form.children %}
-            <div class="attachment form-group row-fluid">
-                <div class="col-md-10">
-                    <a href="{{ asset(attachment.vars.data.path ~ '/' ~ attachment.location.vars.data.filename) }}">
-                        <span class="filetypes {{ thefile.icon(attachment.vars.data.mime) }}"></span>
-                        {{ attachment.vars.data.title ?? '' }}
-                    </a>
-                </div>
-                <div class="col-md-2">
-                    <div class="links">
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
-{% endblock attachment_widget %}
+{#{% block collection_widget %}#}
+    {#{% spaceless %}#}
+        {#{% if prototype is defined %}#}
+            {#{% set attr = attr|merge({'data-prototype': prototype_widget(prototype.file) }) %}#}
+        {#{% endif %}#}
+        {#{{ block('attachment_widget') }}#}
+    {#{% endspaceless %}#}
+{#{% endblock collection_widget %}#}
+
+{#{% block attachment_widget %}#}
+    {#{% import '@NarmafzamArchive/fileMimeIcon.html.twig' as thefile %}#}
+    {#<div {{ block('widget_attributes') }}>#}
+        {#{% for attachment in form.children %}#}
+
+            {#{{ dump(attachment.file.vars.data) }}#}
+
+            {#<div class="attachment form-group row-fluid">#}
+                {#<div class="col-md-10">#}
+                    {#<a href="{{ asset(attachment.vars.data.path ~ '/' ~ attachment.file.vars.data.filename) }}">#}
+                        {#<span class="filetypes {{ thefile.icon(attachment.vars.data.mime) }}"></span>#}
+                        {#{{ attachment.vars.data.title ?? '' }}#}
+                    {#</a>#}
+                {#</div>#}
+                {#<div class="col-md-2">#}
+                    {#<div class="links">#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
+        {#{% endfor %}#}
+    {#</div>#}
+{#{% endblock attachment_widget %}#}

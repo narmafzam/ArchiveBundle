@@ -66,7 +66,6 @@ class ContractHandler extends Handler implements ContractHandlerInterface
     public function editContract(ContractInterface $contract)
     {
         $this->storeContractAttachments($contract);
-        $this->getEntityManager()->persist($contract);
         $this->getEntityManager()->flush();
 
         return $this;

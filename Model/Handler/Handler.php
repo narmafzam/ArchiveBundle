@@ -84,6 +84,7 @@ class Handler implements HandlerInterface
 
     /**
      * @param AttachableInterface $attachable
+     * @param string $path
      *
      * @return AttachableInterface
      * @throws \Exception
@@ -102,13 +103,13 @@ class Handler implements HandlerInterface
                 );
             }
 
-            $file = $attachment->getLocation();
+            $file = $attachment->getFile();
 
             if (!$file instanceof UploadedFile) {
 
                 throw new \Exception(
                     sprintf(
-                        "AttachmentInterface:getLocation should return instance of UploadedFile, %s given",
+                        "AttachmentInterface:getFile should return instance of UploadedFile, %s given",
                         is_object($file) ? get_class($file) : gettype($file)
                     )
                 );
@@ -116,14 +117,14 @@ class Handler implements HandlerInterface
 
             $guessedExtension = $file->guessExtension();
             $guessedMime = $file->getMimeType();
+            $originalName = $file->getClientOriginalName();
+            $storedName = md5(uniqid()) . '.' . $guessedExtension;
 
-            $fileOriginalName = $file->getClientOriginalName();
-            $fileFullName = md5(uniqid()) . '.' . $guessedExtension;
+            $file->move($this->getWebDirectory() . $path , $storedName);
 
-            $file->move($this->getWebDirectory() . $path , $fileFullName);
-
-            $attachment->setTitle($fileOriginalName);
-            $attachment->setLocation($path . '/' . $fileFullName);
+            $attachment->setTitle($originalName);
+            $attachment->setFile($path . '/' . $storedName);
+            $attachment->setFileName($originalName);
             $attachment->setPath($path);
             $attachment->setMime($guessedMime);
         }
@@ -144,9 +145,9 @@ class Handler implements HandlerInterface
                 );
             }
 
-            $fileLocation = $attachment->getLocation();
-            $attachment->setLocation(
-                new File($this->getWebDirectory() . '/' . $fileLocation)
+            $File = $attachment->getFile();
+            $attachment->setFile(
+                new File($this->getWebDirectory() . $File)
             );
         }
     }

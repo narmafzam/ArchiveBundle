@@ -66,13 +66,24 @@ interface AttachmentInterface
     /**
      * @return string
      */
-    public function getLocation();
+    public function getFileName();
 
     /**
-     * @param string $location
+     * @param string $fileName
      * @return mixed
      */
-    public function setLocation($location);
+    public function setFileName($fileName);
+
+    /**
+     * @return string
+     */
+    public function getFile();
+
+    /**
+     * @param string $file
+     * @return mixed
+     */
+    public function setFile($file);
 
     /**
      * @return string

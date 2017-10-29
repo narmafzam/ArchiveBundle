@@ -9,7 +9,7 @@
 namespace Narmafzam\ArchiveBundle\Form\Common;
 
 use Narmafzam\ArchiveBundle\Form\AbstractWithDataClassType;
-use Narmafzam\ArchiveBundle\Form\Common\Type\LocationType;
+use Narmafzam\ArchiveBundle\Form\Common\Type\Generic\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -18,7 +18,7 @@ class ContractAttachmentType extends AbstractWithDataClassType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('location', LocationType::class)
+            ->add('file', FileType::class)
         ;
     }
 

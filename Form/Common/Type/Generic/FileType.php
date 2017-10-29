@@ -10,9 +10,19 @@ namespace Narmafzam\ArchiveBundle\Form\Common\Type\Generic;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType as BaseType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class FileType extends AbstractType
 {
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults(array(
+            'label'      => false,
+            'required'   => false,
+            'data_class' => null
+        ));
+    }
+
     public function getParent()
     {
         return BaseType::class;
@@ -20,6 +30,7 @@ class FileType extends AbstractType
 
     public function getBlockPrefix()
     {
-        return 'file';
+        return 'narmafzam_file';
     }
+
 }
