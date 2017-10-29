@@ -8,6 +8,7 @@
 
 namespace Narmafzam\ArchiveBundle\Model\Handler;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Narmafzam\ArchiveBundle\Entity\Interfaces\DocumentInterface;
 use Narmafzam\ArchiveBundle\Model\Handler\Interfaces\DocumentHandlerInterface;
 
@@ -17,6 +18,33 @@ use Narmafzam\ArchiveBundle\Model\Handler\Interfaces\DocumentHandlerInterface;
  */
 class DocumentHandler extends Handler implements DocumentHandlerInterface
 {
+    /**
+     * @var string
+     */
+    protected $uploadDirectory;
+
+    /**
+     * DocumentHandler constructor.
+     *
+     * @param EntityManagerInterface $entityManager
+     * @param string                 $dataClass
+     * @param string                 $uploadDirectory
+     */
+    public function __construct(EntityManagerInterface $entityManager, string $dataClass, string $uploadDirectory)
+    {
+        parent::__construct($entityManager, $dataClass);
+
+        $this->uploadDirectory = $uploadDirectory;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUploadDirectory(): string
+    {
+        return $this->uploadDirectory;
+    }
+
     /**
      * @param DocumentInterface $document
      * @return true
@@ -48,11 +76,36 @@ class DocumentHandler extends Handler implements DocumentHandlerInterface
      */
     public function getDocument($id)
     {
-        return $this->getRepository()->find($id);
+        $document = $this->getRepository()->find($id);
+        $this->retrieveDocumentAttachments($document);
+
+        return $document;
     }
 
+    /**
+     * @return array
+     */
     public function getDocuments()
     {
         return $this->getRepository()->findAll();
     }
+
+    /**
+     * @param DocumentInterface $document
+     *
+     * @return DocumentInterface
+     */
+    public function storeDocumentAttachments(DocumentInterface $document): DocumentInterface
+    {
+        parent::storeAttachments($document, $this->getUploadDirectory());
+    }
+
+    /**
+     * @param DocumentInterface $document
+     */
+    public function retrieveDocumentAttachments(DocumentInterface $document)
+    {
+        parent::retrieveAttachments($document, $this->getUploadDirectory());
+    }
+
 }

@@ -111,7 +111,7 @@ class ContractController extends BaseController
 
             $handler->editContract($contract);
 
-            return $this->redirectToRoute(self::ROUTE__CONTRACT_SHOW, array('id' => $data->getId()));
+            return $this->redirectToRoute(self::ROUTE__CONTRACT_SHOW, array('id' => $contract->getId()));
         }
 
         $model = new ContractEdit($form, $contract);

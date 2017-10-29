@@ -16,8 +16,14 @@ class LocationType extends FileType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'label'    => 'location',
-            'required' => false
+            'label'      => false,
+            'required'   => false,
+//            'data_class' => null
         ));
+    }
+
+    public function getBlockPrefix()
+    {
+        return 'location';
     }
 }

@@ -1,7 +1,7 @@
 {% extends '@NarmafzamArchive/Contract/layout.html.twig' %}
 
 {% block main %}
-    <h1 class="page-header">{{ 'archive.contract.title.edit'|trans }}</h1>
+    <h1 class="page-header">{{ 'archive.contract.title.edit'|trans({'%title%': model.contract.title}) }}</h1>
 
     {{ form(model.form) }}
 {% endblock %}

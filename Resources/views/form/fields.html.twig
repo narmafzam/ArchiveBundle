@@ -1,0 +1,51 @@
+{% use 'bootstrap_3_horizontal_layout.html.twig' %}
+{% import '@NarmafzamArchive/fileMimeIcon.html.twig' as file %}
+
+{%- block file_widget -%}
+    <div class="input-group">
+        <input type="text" class="form-control" value="{{ form.vars.data ?? '' }}" readonly>
+        <label class="input-group-btn">
+            <span class="btn btn-primary">
+                {{ 'archive.word.browse'|trans }} <input type="file" {{ block('widget_attributes') }} style="display: none;" multiple>
+            </span>
+        </label>
+    </div>
+{%- endblock file_widget -%}
+
+{% block collection_widget %}
+    {% spaceless %}
+        {% if prototype is defined %}
+            {% set attr = attr|merge({'data-prototype': form_widget(prototype.location) }) %}
+        {% endif %}
+        {{ block('attachment_widget') }}
+    {% endspaceless %}
+{% endblock collection_widget %}
+
+{% block attachment_widget %}
+    <div {{ block('widget_attributes') }}>
+        {% for attachment in form.children %}
+            <div class="attachment form-group row-fluid">
+                <div class="col-md-2">
+
+                    <a href="{{ asset('uploads/contract/' ~ attachment.location.vars.data) }}">
+                        {#<span class="filetypes {{ attachment.icon(attachment.location.mime) }}"></span>#}
+                        {{ attachment.location.vars.data ?? '' }}
+                    </a>
+
+                    {#<div class="input-group">#}
+                        {#<input type="text" class="form-control" value="{{ attachment.location.vars.data ?? '' }}" readonly>#}
+                        {#<label class="input-group-btn">#}
+                            {#<span class="btn btn-primary">#}
+                                {#{{ 'archive.word.browse'|trans }} <input type="file" id="{{ attachment.location.vars.id }}" name="{{ attachment.location.vars.full_name }}" style="display: none;" multiple>#}
+                            {#</span>#}
+                        {#</label>#}
+                    {#</div>#}
+                </div>
+                <div>
+                    <div class="links">
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock attachment_widget %}

@@ -8,6 +8,7 @@
 
 namespace Narmafzam\ArchiveBundle\Model\Handler;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Narmafzam\ArchiveBundle\Entity\Interfaces\ContractInterface;
 use Narmafzam\ArchiveBundle\Model\Handler\Interfaces\ContractHandlerInterface;
 
@@ -17,6 +18,33 @@ use Narmafzam\ArchiveBundle\Model\Handler\Interfaces\ContractHandlerInterface;
  */
 class ContractHandler extends Handler implements ContractHandlerInterface
 {
+    /**
+     * @var string
+     */
+    protected $uploadDirectory;
+
+    /**
+     * ContractHandler constructor.
+     *
+     * @param EntityManagerInterface $entityManager
+     * @param string                 $dataClass
+     * @param string                 $uploadDirectory
+     */
+    public function __construct(EntityManagerInterface $entityManager, string $dataClass, string $uploadDirectory)
+    {
+        parent::__construct($entityManager, $dataClass);
+
+        $this->uploadDirectory = $uploadDirectory;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUploadDirectory(): string
+    {
+        return $this->uploadDirectory;
+    }
+
     /**
      * @param ContractInterface $contract
      * @return $this
@@ -44,10 +72,14 @@ class ContractHandler extends Handler implements ContractHandlerInterface
 
     /**
      * @param string $id
+     * @return null|object
      */
     public function getContract($id)
     {
-        return $this->getRepository()->find($id);
+        $contract = $this->getRepository()->find($id);
+        $this->retrieveContractAttachments($contract);
+
+        return $contract;
     }
 
     /**
@@ -57,4 +89,23 @@ class ContractHandler extends Handler implements ContractHandlerInterface
     {
         return $this->getRepository()->findAll();
     }
+
+    /**
+     * @param ContractInterface $contract
+     *
+     * @return ContractInterface
+     */
+    public function storeContractAttachments(ContractInterface $contract): ContractInterface
+    {
+        parent::storeAttachments($contract, $this->getUploadDirectory());
+    }
+
+    /**
+     * @param ContractInterface $contract
+     */
+    public function retrieveContractAttachments(ContractInterface $contract)
+    {
+        parent::retrieveAttachments($contract, $this->getUploadDirectory());
+    }
+
 }

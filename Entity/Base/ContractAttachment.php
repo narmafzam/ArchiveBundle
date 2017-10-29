@@ -10,8 +10,9 @@ namespace Narmafzam\ArchiveBundle\Entity\Base;
 
 use Narmafzam\ArchiveBundle\Entity\Interfaces\ContractAttachmentInterface;
 use Narmafzam\ArchiveBundle\Entity\Interfaces\TitleInterface;
-use Narmafzam\ArchiveBundle\Entity\Traits\AttachmentTrait;
+use Narmafzam\ArchiveBundle\Entity\Traits\LocationTrait;
 use Narmafzam\ArchiveBundle\Entity\Traits\IdTrait;
+use Narmafzam\ArchiveBundle\Entity\Traits\MimeTrait;
 use Narmafzam\ArchiveBundle\Entity\Traits\TimestampTrait;
 use Narmafzam\ArchiveBundle\Entity\Traits\TitleTrait;
 use Doctrine\ORM\Mapping as ORM;
@@ -24,6 +25,7 @@ abstract class ContractAttachment implements ContractAttachmentInterface, TitleI
 {
     use IdTrait;
     use TitleTrait;
-    use AttachmentTrait;
+    use LocationTrait;
+    use MimeTrait;
     use TimestampTrait;
 }

@@ -16,3 +16,62 @@
         </div>
     </div>
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% if model.form.children.attachments is defined %}
+        <script>
+            var $collectionHolder;
+
+            var $addAttachmentLink = $(
+                '<button type="button" class="btn btn-success add-attachment-link">{{ 'archive.attachment.action.new'|trans }}</button>'
+            );
+
+            $(document).ready(function() {
+
+                $collectionHolder = $('#{{ model.form.children.attachments.vars.id }}');
+
+                $collectionHolder.children('.attachment').each(function() {
+                    addTheRemoveAttachmentLink($(this));
+                });
+
+                $collectionHolder.append($addAttachmentLink);
+                $collectionHolder.data('index', $collectionHolder.find(':input[type=file]').length);
+
+                $addAttachmentLink.on('click', function(e) {
+                    e.preventDefault();
+                    addAttachmentField($collectionHolder, $addAttachmentLink);
+                });
+            });
+
+            function addAttachmentField($collectionHolder, $addAttachmentLink) {
+
+                var newField = $collectionHolder.data('prototype');
+                var index = $collectionHolder.data('index');
+                newField = newField.replace(/__name__/g, index);
+
+                var wrappedNewField = '<div class="col-md-10">' + newField + '</div>';
+                var wrappedLinks = '<div class="col-md-2"><div class="links"></div></div>';
+
+                $collectionHolder.data('index', index + 1);
+
+                var newFieldRow = $('<div class="attachment form-group row-fluid"></div>').append(wrappedNewField).append(wrappedLinks);
+                $addAttachmentLink.before(newFieldRow);
+                addTheRemoveAttachmentLink(newFieldRow);
+            }
+
+            function addTheRemoveAttachmentLink($attachment) {
+                var $removeAttachmentLink = $(
+                    '<button type="button" class="btn btn-danger remove-attachment-link">{{ 'archive.attachment.action.delete'|trans }}</button>'
+                );
+
+                $attachment.find('.links').append($removeAttachmentLink);
+
+                $removeAttachmentLink.on('click', function(e) {
+                    e.preventDefault();
+                    $attachment.remove();
+                });
+            }
+        </script>
+    {% endif %}
+{% endblock %}

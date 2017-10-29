@@ -29,4 +29,9 @@ class ContractEdit
     {
         return $this->contractFormView;
     }
+
+    public function getContract()
+    {
+        return $this->contract;
+    }
 }

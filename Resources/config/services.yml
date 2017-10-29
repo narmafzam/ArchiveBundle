@@ -5,6 +5,9 @@ imports:
     - { resource: 'letter.yml' }
 
 parameters:
-    upload_directory: '%kernel.project_dir%/var/uploads'
+    upload_directory: '%kernel.project_dir%/web/upload'
+    upload_contract_directory: '%upload_directory%/contract'
+    upload_document_directory: '%upload_directory%/document'
+    upload_letter_directory: '%upload_directory%/letter'
 
 services:

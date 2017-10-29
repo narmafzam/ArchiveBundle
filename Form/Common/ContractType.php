@@ -23,8 +23,8 @@ class ContractType extends AbstractWithDataClassType
     {
         $builder
             ->add('title', TitleType::class)
-            ->add('description', DescriptionType::class)
             ->add('subject', SubjectType::class)
+            ->add('description', DescriptionType::class)
             ->add('attachments', CollectionType::class, array(
                 'entry_type'    => ContractAttachmentType::class,
                 'entry_options' => array(

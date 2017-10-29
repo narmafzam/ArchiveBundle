@@ -64,4 +64,16 @@ interface AttachmentInterface
      * @return mixed
      */
     public function setTitle($title);
+
+    /**
+     * @return string
+     */
+    public function getMime();
+
+    /**
+     * @param string $mime
+     *
+     * @return mixed
+     */
+    public function setMime($mime);
 }

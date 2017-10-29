@@ -12,6 +12,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Narmafzam\ArchiveBundle\Entity\Interfaces\AttachableInterface;
 use Narmafzam\ArchiveBundle\Entity\Interfaces\AttachmentInterface;
 use Narmafzam\ArchiveBundle\Model\Handler\Interfaces\HandlerInterface;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
@@ -31,22 +32,16 @@ class Handler implements HandlerInterface
     protected $dataClass;
 
     /**
-     * @var string
-     */
-    protected $uploadDirectory;
-
-    /**
      * Handler constructor.
      *
      * @param EntityManagerInterface $entityManager
      * @param string                 $dataClass
      * @param string                 $uploadDirectory
      */
-    public function __construct(EntityManagerInterface $entityManager, $dataClass, $uploadDirectory)
+    public function __construct(EntityManagerInterface $entityManager, string $dataClass)
     {
         $this->entityManager = $entityManager;
         $this->dataClass = $dataClass;
-        $this->uploadDirectory = $uploadDirectory;
     }
 
     /**
@@ -66,14 +61,6 @@ class Handler implements HandlerInterface
     }
 
     /**
-     * @return string
-     */
-    public function getUploadDirectory(): string
-    {
-        return $this->uploadDirectory;
-    }
-
-    /**
      * @return \Doctrine\Common\Persistence\ObjectRepository
      */
     public function getRepository()
@@ -87,7 +74,7 @@ class Handler implements HandlerInterface
      * @return AttachableInterface
      * @throws \Exception
      */
-    public function storeAttachments(AttachableInterface $attachable) : AttachableInterface
+    public function storeAttachments(AttachableInterface $attachable, string $uploadDirectory): AttachableInterface
     {
         foreach ($attachable->getAttachments() as $attachment) {
 
@@ -113,18 +100,39 @@ class Handler implements HandlerInterface
                 );
             }
 
-            $originalFineName = $file->getClientOriginalName();
-            $fileName = md5($originalFineName) . '.' . $file->guessExtension();
+            $mimeExtension = $file->guessExtension();
 
-            $file->move(
-                $this->getUploadDirectory() . '/attachments',
-                $fileName
-            );
+            $originalFineName = $file->getClientOriginalName();
+            $fileName = md5($originalFineName) . '.' . $mimeExtension;
+
+            $file->move($uploadDirectory, $fileName);
 
             $attachment->setTitle($originalFineName);
             $attachment->setLocation($fileName);
+            $attachment->setMime($mimeExtension);
         }
 
         return $attachable;
+    }
+
+    public function retrieveAttachments(AttachableInterface $attachable, string $uploadDirectory)
+    {
+        foreach ($attachable->getAttachments() as &$attachment) {
+
+            if (!$attachment instanceof AttachmentInterface) {
+
+                throw new \Exception(
+                    sprintf(
+                        "AttachableInterface:getAttachments should return ArrayCollection of AttachmentInterface, %s given",
+                        is_object($attachment) ? get_class($attachment) : gettype($attachment)
+                    )
+                );
+            }
+
+            $fileLocation = $attachment->getLocation();
+            $attachment->setLocation(
+                new File($uploadDirectory . '/' . $fileLocation)
+            );
+        }
     }
 }

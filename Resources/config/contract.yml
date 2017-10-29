@@ -27,7 +27,7 @@ services:
         arguments:
             $entityManager: '@doctrine.orm.entity_manager'
             $dataClass: %narmafzam_archive_entity_contract%
-            $uploadDirectory: %upload_directory%
+            $uploadDirectory: %upload_contract_directory%
 
     Narmafzam\ArchiveBundle\Form\Common\ContractType:
         arguments:

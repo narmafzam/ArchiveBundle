@@ -26,11 +26,13 @@ archive:
             show:  نمایش قرارداد
             new: افزودن قرارداد
             edit: ویرایش قرارداد
+            delete: حذف قرارداد
         title:
             index: لیست قراردادها
             show: قرارداد %title%
             new: ایجاد قرارداد جدید
             edit: ویرایش قرارداد %title%
+            delete: حذف قرارداد
         form:
             help: اطلاعات مربوط به قرارداد را تکمیل کنید
             label:
@@ -53,11 +55,13 @@ archive:
             show:  نمایش سند
             new: افزودن سند
             edit: ویرایش سند
+            delete: حذف سند
         title:
             index: لیست سندها
             show: سند %title%
             new: ایجاد سند جدید
             edit: ویرایش سند %title%
+            delete: حذف سند
         form:
             help: اطلاعات مربوط به سند را تکمیل کنید
             label:
@@ -72,7 +76,7 @@ archive:
             forbidden: شما امکان دسترسی به این سند را ندارید
             notFound: سند مورد نظر یافت نشد
         word:
-            contract: سند|سند‌ها
+            letter: سند|سند‌ها
 
     letter:
         action:
@@ -80,26 +84,56 @@ archive:
             show:  نمایش نامه
             new: افزودن نامه
             edit: ویرایش نامه
+            delete: حذف نامه
         title:
-            index: لیست نامهها
+            index: لیست نامه‌ها
             show: نامه %title%
             new: ایجاد نامه جدید
             edit: ویرایش نامه %title%
+            delete: حذف نامه
         form:
             help: اطلاعات مربوط به نامه را تکمیل کنید
             label:
                 title: عنوان نامه
-                description: شرح قراداد
+                description: شرح نامه
                 subject: موضوع نامه
                 attachments: پیوست‌های نامه
-                lines: خطوط قراداد
+                lines: خطوط نامه
             placeholder:
                 title: عنوان نامه با حروف فارسی
         warn:
             forbidden: شما امکان دسترسی به این نامه را ندارید
             notFound: نامه مورد نظر یافت نشد
         word:
-            contract: نامه|نامه‌ها
+            letter: نامه|نامه‌ها
+
+    attachment:
+        action:
+            index: لیست پیوست
+            show:  نمایش پیوست
+            new: افزودن پیوست
+            edit: ویرایش پیوست
+            delete: حذف پیوست
+        title:
+            index: لیست پیوست‌ها
+            show: پیوست %title%
+            new: ایجاد پیوست جدید
+            edit: ویرایش پیوست %title%
+            delete: حذف پیوست
+        form:
+            help: اطلاعات مربوط به پیوست را تکمیل کنید
+            label:
+                title: عنوان پیوست
+                description: شرح پیوست
+                subject: موضوع پیوست
+            placeholder:
+                title: عنوان پیوست با حروف فارسی
+        warn:
+            forbidden: شما امکان دسترسی به این پیوست را ندارید
+            notFound: پیوست مورد نظر یافت نشد
+        word:
+            attachment: پیوست|پیوست‌ها
 
     word:
         search: جستجو
+        browse: گشتن

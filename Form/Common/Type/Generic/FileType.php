@@ -17,4 +17,9 @@ class FileType extends AbstractType
     {
         return BaseType::class;
     }
+
+    public function getBlockPrefix()
+    {
+        return 'file';
+    }
 }

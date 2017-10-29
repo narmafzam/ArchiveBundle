@@ -28,4 +28,9 @@ class ContractAttachmentType extends AbstractWithDataClassType
             'data_class' => $this->getDataClass()
         ));
     }
+
+    public function getBlockPrefix()
+    {
+        return 'attachment';
+    }
 }

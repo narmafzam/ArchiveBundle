@@ -8,6 +8,7 @@
 
 namespace Narmafzam\ArchiveBundle\Model\Handler\Interfaces;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Narmafzam\ArchiveBundle\Entity\Interfaces\ContractInterface;
 
 /**
@@ -16,6 +17,15 @@ use Narmafzam\ArchiveBundle\Entity\Interfaces\ContractInterface;
  */
 interface ContractHandlerInterface extends HandlerInterface
 {
+    /**
+     * ContractHandlerInterface constructor.
+     *
+     * @param EntityManagerInterface $entityManager
+     * @param string                 $dataClass
+     * @param string                 $uploadDirectory
+     */
+    public function __construct(EntityManagerInterface $entityManager, string $dataClass, string $uploadDirectory);
+
     /**
      * @param ContractInterface $contract
      *
