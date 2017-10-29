@@ -8,6 +8,7 @@
 
 namespace Narmafzam\ArchiveBundle\Entity\Base;
 
+use Narmafzam\ArchiveBundle\Entity\Traits\PathTrait;
 use Narmafzam\ArchiveBundle\Entity\Interfaces\DocumentAttachmentInterface;
 use Narmafzam\ArchiveBundle\Entity\Interfaces\TitleInterface;
 use Narmafzam\ArchiveBundle\Entity\Traits\LocationTrait;
@@ -25,6 +26,7 @@ abstract class DocumentAttachment implements DocumentAttachmentInterface, TitleI
 {
     use IdTrait;
     use TitleTrait;
+    use PathTrait;
     use LocationTrait;
     use MimeTrait;
     use TimestampTrait;

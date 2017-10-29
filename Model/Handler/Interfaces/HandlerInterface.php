@@ -34,7 +34,17 @@ interface HandlerInterface
 
     /**
      * @param AttachableInterface $attachable
+     * @param string              $path
+     *
      * @return AttachableInterface
      */
-    public function storeAttachments(AttachableInterface $attachable, string $uploadDirectory): AttachableInterface;
+    public function storeAttachments(AttachableInterface $attachable, string $path);
+
+    /**
+     * @param AttachableInterface $attachable
+     *
+     * @return mixed
+     */
+    public function retrieveAttachments(AttachableInterface $attachable);
+
 }

@@ -1,5 +1,4 @@
 {% use 'bootstrap_3_horizontal_layout.html.twig' %}
-{% import '@NarmafzamArchive/fileMimeIcon.html.twig' as file %}
 
 {%- block file_widget -%}
     <div class="input-group">
@@ -22,26 +21,17 @@
 {% endblock collection_widget %}
 
 {% block attachment_widget %}
+    {% import '@NarmafzamArchive/fileMimeIcon.html.twig' as thefile %}
     <div {{ block('widget_attributes') }}>
         {% for attachment in form.children %}
             <div class="attachment form-group row-fluid">
-                <div class="col-md-2">
-
-                    <a href="{{ asset('uploads/contract/' ~ attachment.location.vars.data) }}">
-                        {#<span class="filetypes {{ attachment.icon(attachment.location.mime) }}"></span>#}
-                        {{ attachment.location.vars.data ?? '' }}
+                <div class="col-md-10">
+                    <a href="{{ asset(attachment.vars.data.path ~ '/' ~ attachment.location.vars.data.filename) }}">
+                        <span class="filetypes {{ thefile.icon(attachment.vars.data.mime) }}"></span>
+                        {{ attachment.vars.data.title ?? '' }}
                     </a>
-
-                    {#<div class="input-group">#}
-                        {#<input type="text" class="form-control" value="{{ attachment.location.vars.data ?? '' }}" readonly>#}
-                        {#<label class="input-group-btn">#}
-                            {#<span class="btn btn-primary">#}
-                                {#{{ 'archive.word.browse'|trans }} <input type="file" id="{{ attachment.location.vars.id }}" name="{{ attachment.location.vars.full_name }}" style="display: none;" multiple>#}
-                            {#</span>#}
-                        {#</label>#}
-                    {#</div>#}
                 </div>
-                <div>
+                <div class="col-md-2">
                     <div class="links">
                     </div>
                 </div>

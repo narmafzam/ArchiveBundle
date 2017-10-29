@@ -21,28 +21,29 @@ class DocumentHandler extends Handler implements DocumentHandlerInterface
     /**
      * @var string
      */
-    protected $uploadDirectory;
+    protected $uploadPath;
 
     /**
      * DocumentHandler constructor.
      *
      * @param EntityManagerInterface $entityManager
      * @param string                 $dataClass
-     * @param string                 $uploadDirectory
+     * @param string                 $webDirectory
+     * @param string                 $uploadPath
      */
-    public function __construct(EntityManagerInterface $entityManager, string $dataClass, string $uploadDirectory)
+    public function __construct(EntityManagerInterface $entityManager, string $dataClass, string $webDirectory, string $uploadPath)
     {
-        parent::__construct($entityManager, $dataClass);
+        parent::__construct($entityManager, $dataClass, $webDirectory);
 
-        $this->uploadDirectory = $uploadDirectory;
+        $this->uploadPath = $uploadPath;
     }
 
     /**
      * @return string
      */
-    public function getUploadDirectory(): string
+    public function getUploadPath(): string
     {
-        return $this->uploadDirectory;
+        return $this->uploadPath;
     }
 
     /**
@@ -51,7 +52,7 @@ class DocumentHandler extends Handler implements DocumentHandlerInterface
      */
     public function newDocument(DocumentInterface $document)
     {
-        $this->storeAttachments($document);
+        $this->storeDocumentAttachments($document);
         $this->getEntityManager()->persist($document);
         $this->getEntityManager()->flush();
 
@@ -97,7 +98,7 @@ class DocumentHandler extends Handler implements DocumentHandlerInterface
      */
     public function storeDocumentAttachments(DocumentInterface $document): DocumentInterface
     {
-        parent::storeAttachments($document, $this->getUploadDirectory());
+        parent::storeAttachments($document, $this->getUploadPath());
     }
 
     /**
@@ -105,7 +106,7 @@ class DocumentHandler extends Handler implements DocumentHandlerInterface
      */
     public function retrieveDocumentAttachments(DocumentInterface $document)
     {
-        parent::retrieveAttachments($document, $this->getUploadDirectory());
+        parent::retrieveAttachments($document);
     }
 
 }

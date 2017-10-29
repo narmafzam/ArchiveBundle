@@ -32,16 +32,22 @@ class Handler implements HandlerInterface
     protected $dataClass;
 
     /**
+     * @var string
+     */
+    protected $webDirectory;
+
+    /**
      * Handler constructor.
      *
      * @param EntityManagerInterface $entityManager
      * @param string                 $dataClass
-     * @param string                 $uploadDirectory
+     * @param string                 $webDirectory
      */
-    public function __construct(EntityManagerInterface $entityManager, string $dataClass)
+    public function __construct(EntityManagerInterface $entityManager, string $dataClass, string $webDirectory)
     {
         $this->entityManager = $entityManager;
         $this->dataClass = $dataClass;
+        $this->webDirectory = $webDirectory;
     }
 
     /**
@@ -61,6 +67,14 @@ class Handler implements HandlerInterface
     }
 
     /**
+     * @return string
+     */
+    public function getWebDirectory(): string
+    {
+        return $this->webDirectory;
+    }
+
+    /**
      * @return \Doctrine\Common\Persistence\ObjectRepository
      */
     public function getRepository()
@@ -74,7 +88,7 @@ class Handler implements HandlerInterface
      * @return AttachableInterface
      * @throws \Exception
      */
-    public function storeAttachments(AttachableInterface $attachable, string $uploadDirectory): AttachableInterface
+    public function storeAttachments(AttachableInterface $attachable, string $path)
     {
         foreach ($attachable->getAttachments() as $attachment) {
 
@@ -100,22 +114,23 @@ class Handler implements HandlerInterface
                 );
             }
 
-            $mimeExtension = $file->guessExtension();
+            $guessedExtension = $file->guessExtension();
+            $guessedMime = $file->getMimeType();
 
-            $originalFineName = $file->getClientOriginalName();
-            $fileName = md5($originalFineName) . '.' . $mimeExtension;
+            $fileOriginalName = $file->getClientOriginalName();
+            $fileFullName = md5(uniqid()) . '.' . $guessedExtension;
 
-            $file->move($uploadDirectory, $fileName);
+            $file->move($this->getWebDirectory() . $path , $fileFullName);
 
-            $attachment->setTitle($originalFineName);
-            $attachment->setLocation($fileName);
-            $attachment->setMime($mimeExtension);
+            $attachment->setTitle($fileOriginalName);
+            $attachment->setLocation($path . '/' . $fileFullName);
+            $attachment->setPath($path);
+            $attachment->setMime($guessedMime);
         }
 
-        return $attachable;
     }
 
-    public function retrieveAttachments(AttachableInterface $attachable, string $uploadDirectory)
+    public function retrieveAttachments(AttachableInterface $attachable)
     {
         foreach ($attachable->getAttachments() as &$attachment) {
 
@@ -131,7 +146,7 @@ class Handler implements HandlerInterface
 
             $fileLocation = $attachment->getLocation();
             $attachment->setLocation(
-                new File($uploadDirectory . '/' . $fileLocation)
+                new File($this->getWebDirectory() . '/' . $fileLocation)
             );
         }
     }

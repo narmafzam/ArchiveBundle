@@ -8,4 +8,7 @@
     } %}
     {% endembed %}
 
+    <a type="button" class="btn btn-info" href="{{
+    url(constant('Narmafzam\\ArchiveBundle\\Controller\\Front\\ContractController::ROUTE__CONTRACT_EDIT'), {'id': model.contract.id})
+    }}">{{ 'archive.contract.action.edit'|trans }}</a>
 {% endblock %}

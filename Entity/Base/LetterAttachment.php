@@ -7,6 +7,7 @@
 
 namespace Narmafzam\ArchiveBundle\Entity\Base;
 
+use Narmafzam\ArchiveBundle\Entity\Traits\PathTrait;
 use Narmafzam\ArchiveBundle\Entity\Interfaces\LetterAttachmentInterface;
 use Narmafzam\ArchiveBundle\Entity\Interfaces\TitleInterface;
 use Narmafzam\ArchiveBundle\Entity\Traits\LocationTrait;
@@ -24,6 +25,7 @@ abstract class LetterAttachment implements LetterAttachmentInterface, TitleInter
 {
     use IdTrait;
     use TitleTrait;
+    use PathTrait;
     use LocationTrait;
     use MimeTrait;
     use TimestampTrait;

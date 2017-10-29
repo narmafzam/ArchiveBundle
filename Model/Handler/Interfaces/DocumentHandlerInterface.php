@@ -22,9 +22,10 @@ interface DocumentHandlerInterface extends HandlerInterface
      *
      * @param EntityManagerInterface $entityManager
      * @param string                 $dataClass
-     * @param string                 $uploadDirectory
+     * @param string                 $webDirectory
+     * @param string                 $uploadPath
      */
-    public function __construct(EntityManagerInterface $entityManager, string $dataClass, string $uploadDirectory);
+    public function __construct(EntityManagerInterface $entityManager, string $dataClass, string $webDirectory, string $uploadPath);
 
     /**
      * @param DocumentInterface $document

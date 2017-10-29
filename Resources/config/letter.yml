@@ -14,19 +14,20 @@ services:
     Narmafzam\ArchiveBundle\Model\Handler\LetterHandler:
         arguments:
             $entityManager: '@doctrine.orm.entity_manager'
-            $dataClass: %narmafzam_archive_entity_contract%
-            $uploadDirectory: %upload_letter_directory%
+            $dataClass: '%narmafzam_archive_entity_contract%'
+            $webDirectory: '%web_dir%'
+            $uploadPath: '%upload_letter_path%'
 
     Narmafzam\ArchiveBundle\Form\Common\LetterType:
         arguments:
-            $dataClass: %narmafzam_archive_entity_letter%
+            $dataClass: '%narmafzam_archive_entity_letter%'
         tags:
             - {name: form.type}
 
     Narmafzam\ArchiveBundle\Controller\Back\LetterController:
         arguments:
-            $dataClass: %narmafzam_archive_entity_letter%
-            $formTypeClass: %narmafzam_archive_form_back_letter%
+            $dataClass: '%narmafzam_archive_entity_letter%'
+            $formTypeClass: '%narmafzam_archive_form_back_letter%'
             $handler: '@Narmafzam\ArchiveBundle\Model\Handler\LetterHandler'
             $router: '@router'
         tags:
@@ -34,8 +35,8 @@ services:
 
     Narmafzam\ArchiveBundle\Controller\Front\LetterController:
         arguments:
-            $dataClass: %narmafzam_archive_entity_letter%
-            $formTypeClass: %narmafzam_archive_form_front_letter%
+            $dataClass: '%narmafzam_archive_entity_letter%'
+            $formTypeClass: '%narmafzam_archive_form_front_letter%'
             $handler: '@Narmafzam\ArchiveBundle\Model\Handler\LetterHandler'
             $router: '@router'
         tags:
@@ -44,6 +45,6 @@ services:
     # LetterAttachment
     Narmafzam\ArchiveBundle\Form\Common\LetterAttachmentType:
         arguments:
-            $dataClass: %narmafzam_archive_entity_letter_attachment%
+            $dataClass: '%narmafzam_archive_entity_letter_attachment%'
         tags:
             - {name: form.type}

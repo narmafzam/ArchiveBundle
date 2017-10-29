@@ -21,28 +21,29 @@ class ContractHandler extends Handler implements ContractHandlerInterface
     /**
      * @var string
      */
-    protected $uploadDirectory;
+    protected $uploadPath;
 
     /**
      * ContractHandler constructor.
      *
      * @param EntityManagerInterface $entityManager
      * @param string                 $dataClass
-     * @param string                 $uploadDirectory
+     * @param string                 $webDirectory
+     * @param string                 $uploadPath
      */
-    public function __construct(EntityManagerInterface $entityManager, string $dataClass, string $uploadDirectory)
+    public function __construct(EntityManagerInterface $entityManager, string $dataClass, string $webDirectory, string $uploadPath)
     {
-        parent::__construct($entityManager, $dataClass);
+        parent::__construct($entityManager, $dataClass, $webDirectory);
 
-        $this->uploadDirectory = $uploadDirectory;
+        $this->uploadPath = $uploadPath;
     }
 
     /**
      * @return string
      */
-    public function getUploadDirectory(): string
+    public function getUploadPath(): string
     {
-        return $this->uploadDirectory;
+        return $this->uploadPath;
     }
 
     /**
@@ -51,7 +52,7 @@ class ContractHandler extends Handler implements ContractHandlerInterface
      */
     public function newContract(ContractInterface $contract)
     {
-        $this->storeAttachments($contract);
+        $this->storeContractAttachments($contract);
         $this->getEntityManager()->persist($contract);
         $this->getEntityManager()->flush();
 
@@ -64,6 +65,7 @@ class ContractHandler extends Handler implements ContractHandlerInterface
      */
     public function editContract(ContractInterface $contract)
     {
+        $this->storeContractAttachments($contract);
         $this->getEntityManager()->persist($contract);
         $this->getEntityManager()->flush();
 
@@ -95,9 +97,9 @@ class ContractHandler extends Handler implements ContractHandlerInterface
      *
      * @return ContractInterface
      */
-    public function storeContractAttachments(ContractInterface $contract): ContractInterface
+    public function storeContractAttachments(ContractInterface $contract)
     {
-        parent::storeAttachments($contract, $this->getUploadDirectory());
+        parent::storeAttachments($contract, $this->getUploadPath());
     }
 
     /**
@@ -105,7 +107,7 @@ class ContractHandler extends Handler implements ContractHandlerInterface
      */
     public function retrieveContractAttachments(ContractInterface $contract)
     {
-        parent::retrieveAttachments($contract, $this->getUploadDirectory());
+        parent::retrieveAttachments($contract);
     }
 
 }

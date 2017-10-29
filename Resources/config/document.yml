@@ -14,19 +14,20 @@ services:
     Narmafzam\ArchiveBundle\Model\Handler\DocumentHandler:
         arguments:
             $entityManager: '@doctrine.orm.entity_manager'
-            $dataClass: %narmafzam_archive_entity_contract%
-            $uploadDirectory: %upload_contract_directory%
+            $dataClass: '%narmafzam_archive_entity_contract%'
+            $webDirectory: '%web_dir%'
+            $uploadPath: '%upload_document_path%'
 
     Narmafzam\ArchiveBundle\Form\Common\DocumentType:
         arguments:
-            $dataClass: %narmafzam_archive_entity_document%
+            $dataClass: '%narmafzam_archive_entity_document%'
         tags:
             - {name: form.type}
 
     Narmafzam\ArchiveBundle\Controller\Back\DocumentController:
         arguments:
-            $dataClass: %narmafzam_archive_entity_document%
-            $formTypeClass: %narmafzam_archive_form_back_document%
+            $dataClass: '%narmafzam_archive_entity_document%'
+            $formTypeClass: '%narmafzam_archive_form_back_document%'
             $handler: '@Narmafzam\ArchiveBundle\Model\Handler\DocumentHandler'
             $router: '@router'
         tags:
@@ -34,8 +35,8 @@ services:
 
     Narmafzam\ArchiveBundle\Controller\Front\DocumentController:
         arguments:
-            $dataClass: %narmafzam_archive_entity_document%
-            $formTypeClass: %narmafzam_archive_form_front_document%
+            $dataClass: '%narmafzam_archive_entity_document%'
+            $formTypeClass: '%narmafzam_archive_form_front_document%'
             $handler: '@Narmafzam\ArchiveBundle\Model\Handler\DocumentHandler'
             $router: '@router'
         tags:
@@ -44,6 +45,6 @@ services:
     #DocumentAttachment
     Narmafzam\ArchiveBundle\Form\Common\DocumentAttachmentType:
         arguments:
-            $dataClass: %narmafzam_archive_entity_document_attachment%
+            $dataClass: '%narmafzam_archive_entity_document_attachment%'
         tags:
             - {name: form.type}

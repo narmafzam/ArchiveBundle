@@ -44,26 +44,35 @@ interface AttachmentInterface
     /**
      * @return string
      */
-    public function getLocation();
-
-    /**
-     * @param string $location
-     *
-     * @return mixed
-     */
-    public function setLocation($location);
-
-    /**
-     * @return string
-     */
     public function getTitle();
 
     /**
      * @param string $title
-     *
-     * @return mixed
+     * @return string
      */
     public function setTitle($title);
+
+    /**
+     * @return string
+     */
+    public function getPath();
+
+    /**
+     * @param string $path
+     * @return mixed
+     */
+    public function setPath($path);
+
+    /**
+     * @return string
+     */
+    public function getLocation();
+
+    /**
+     * @param string $location
+     * @return mixed
+     */
+    public function setLocation($location);
 
     /**
      * @return string
@@ -72,7 +81,6 @@ interface AttachmentInterface
 
     /**
      * @param string $mime
-     *
      * @return mixed
      */
     public function setMime($mime);

@@ -1,3 +1,8 @@
+narmafzam_archive:
+    resource: '@NarmafzamArchiveBundle/Controller'
+    type: annotation
+    prefix: /
+
 narmafzam_archive_back:
     resource: '@NarmafzamArchiveBundle/Controller/Back'
     type: annotation

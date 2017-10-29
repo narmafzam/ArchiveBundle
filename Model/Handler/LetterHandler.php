@@ -21,28 +21,29 @@ class LetterHandler extends Handler implements LetterHandlerInterface
     /**
      * @var string
      */
-    protected $uploadDirectory;
+    protected $uploadPath;
 
     /**
      * LetterHandler constructor.
      *
      * @param EntityManagerInterface $entityManager
      * @param string                 $dataClass
-     * @param string                 $uploadDirectory
+     * @param string                 $webDirectory
+     * @param string                 $uploadPath
      */
-    public function __construct(EntityManagerInterface $entityManager, string $dataClass, string $uploadDirectory)
+    public function __construct(EntityManagerInterface $entityManager, string $dataClass, string $webDirectory, string $uploadPath)
     {
-        parent::__construct($entityManager, $dataClass);
+        parent::__construct($entityManager, $dataClass, $webDirectory);
 
-        $this->uploadDirectory = $uploadDirectory;
+        $this->uploadPath = $uploadPath;
     }
 
     /**
      * @return string
      */
-    public function getUploadDirectory(): string
+    public function getUploadPath(): string
     {
-        return $this->uploadDirectory;
+        return $this->uploadPath;
     }
 
     /**
@@ -51,7 +52,7 @@ class LetterHandler extends Handler implements LetterHandlerInterface
      */
     public function newLetter(LetterInterface $letter)
     {
-        $this->storeAttachments($letter);
+        $this->storeLetterAttachments($letter);
         $this->getEntityManager()->persist($letter);
         $this->getEntityManager()->flush();
 
@@ -97,7 +98,7 @@ class LetterHandler extends Handler implements LetterHandlerInterface
      */
     public function storeLetterAttachments(LetterInterface $letter): LetterInterface
     {
-        parent::storeAttachments($letter, $this->getUploadDirectory());
+        parent::storeAttachments($letter, $this->getUploadPath());
     }
 
     /**
@@ -105,7 +106,7 @@ class LetterHandler extends Handler implements LetterHandlerInterface
      */
     public function retrieveLetterAttachments(LetterInterface $letter)
     {
-        parent::retrieveAttachments($letter, $this->getUploadDirectory());
+        parent::retrieveAttachments($letter);
     }
 
 }
