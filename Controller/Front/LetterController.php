@@ -32,7 +32,7 @@ class LetterController extends BaseController
     const ROUTE__LETTER_DELETE = 'front_letter_delete';
 
     /**
-     * @Route("/", name = Narmafzam\ArchiveBundle\Controller\Front\LetterController::ROUTE__LETTER_INDEX)
+     * @Route("", name = Narmafzam\ArchiveBundle\Controller\Front\LetterController::ROUTE__LETTER_INDEX)
      * @Method("GET")
      */
     public function indexAction()

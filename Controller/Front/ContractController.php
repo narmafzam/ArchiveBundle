@@ -32,7 +32,7 @@ class ContractController extends BaseController
     const ROUTE__CONTRACT_DELETE = 'front_contract_delete';
 
     /**
-     * @Route("/", name = Narmafzam\ArchiveBundle\Controller\Front\ContractController::ROUTE__CONTRACT_INDEX)
+     * @Route("", name = Narmafzam\ArchiveBundle\Controller\Front\ContractController::ROUTE__CONTRACT_INDEX)
      * @Method("GET")
      */
     public function indexAction()

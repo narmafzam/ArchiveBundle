@@ -8,4 +8,8 @@
     } %}
     {% endembed %}
 
+
+    <a type="button" class="btn btn-info" href="{{
+    url(constant('Narmafzam\\ArchiveBundle\\Controller\\Front\\LetterController::ROUTE__LETTER_EDIT'), {'id': model.letter.id})
+    }}">{{ 'archive.letter.action.edit'|trans }}</a>
 {% endblock %}

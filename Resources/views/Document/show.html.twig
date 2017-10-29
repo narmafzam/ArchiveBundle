@@ -8,4 +8,8 @@
     } %}
     {% endembed %}
 
+
+    <a type="button" class="btn btn-info" href="{{
+    url(constant('Narmafzam\\ArchiveBundle\\Controller\\Front\\DocumentController::ROUTE__DOCUMENT_EDIT'), {'id': model.document.id})
+    }}">{{ 'archive.document.action.edit'|trans }}</a>
 {% endblock %}

@@ -32,7 +32,7 @@ class DocumentController extends BaseController
     const ROUTE__DOCUMENT_DELETE = 'front_document_delete';
 
     /**
-     * @Route("/", name = Narmafzam\ArchiveBundle\Controller\Front\DocumentController::ROUTE__DOCUMENT_INDEX)
+     * @Route("", name = Narmafzam\ArchiveBundle\Controller\Front\DocumentController::ROUTE__DOCUMENT_INDEX)
      * @Method("GET")
      */
     public function indexAction()
