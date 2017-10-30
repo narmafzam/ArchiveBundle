@@ -17,6 +17,8 @@ archive:
             subject: موضوع
             attachments: پیوست‌ها
             lines: خطوط
+            add: افزودن
+            update: به روز رسانی
         placeholder:
             title: عنوان با حروف فارسی
 

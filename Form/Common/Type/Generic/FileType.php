@@ -19,7 +19,7 @@ class FileType extends AbstractType
         $resolver->setDefaults(array(
             'label'      => false,
             'required'   => false,
-            'data_class' => null
+//            'data_class' => null
         ));
     }
 

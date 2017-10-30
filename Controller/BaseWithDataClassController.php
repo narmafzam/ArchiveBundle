@@ -81,9 +81,9 @@ class BaseWithDataClassController extends BaseController
     {
         $form = $this->createForm($formTypeClass)
             ->add('add', SubmitType::class, array(
+                'label' => 'archive.form.label.add',
                 'attr' => array(
-                    'class' => 'btn btn-default',
-                    'label' => 'add'
+                    'class' => 'btn btn-primary btn-lg',
                 ),
             ));
 
@@ -100,9 +100,9 @@ class BaseWithDataClassController extends BaseController
     {
         $form = $this->createForm($formTypeClass, $entity)
             ->add('update', SubmitType::class, array(
+                'label' => 'archive.form.label.update',
                 'attr' => array(
-                    'class' => 'btn btn-default',
-                    'label' => 'update',
+                    'class' => 'btn btn-primary btn-lg',
                 ),
             ));
 
