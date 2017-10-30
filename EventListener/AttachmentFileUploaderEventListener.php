@@ -8,7 +8,7 @@
 
 namespace Narmafzam\ArchiveBundle\EventListener;
 
-class FileUploadListener
+class AttachmentFileUploaderEventListener
 {
 
 }
