@@ -76,6 +76,9 @@ class ContractController extends BaseController
     }
 
     /**
+     * @param Request   $request
+     * @return Response A Response instance
+     *
      * @Route("/{id}", name = Narmafzam\ArchiveBundle\Controller\Front\ContractController::ROUTE__CONTRACT_SHOW)
      * @Method("GET")
      */

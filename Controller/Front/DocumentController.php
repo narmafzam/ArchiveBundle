@@ -76,6 +76,9 @@ class DocumentController extends BaseController
     }
 
     /**
+     * @param Request   $request
+     * @return Response A Response instance
+     *
      * @Route("/{id}", name = Narmafzam\ArchiveBundle\Controller\Front\DocumentController::ROUTE__DOCUMENT_SHOW)
      * @Method("GET")
      */
@@ -86,7 +89,7 @@ class DocumentController extends BaseController
 
         $model = new DocumentShow($this->getDataClass(), $document, $this->getRouter());
 
-        return $this->renderResponse(ContractShow::TEMPLATE, array(
+        return $this->renderResponse(DocumentShow::TEMPLATE, array(
             'model' => $model
         ));
     }
@@ -111,7 +114,7 @@ class DocumentController extends BaseController
 
             $handler->editDocument($document);
 
-            return $this->redirectToRoute(self::ROUTE__DOCUMENT_SHOW, array('id' => $data->getId()));
+            return $this->redirectToRoute(self::ROUTE__DOCUMENT_SHOW, array('id' => $document->getId()));
         }
 
         $model = new DocumentEdit($form, $document);

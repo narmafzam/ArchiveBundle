@@ -76,6 +76,9 @@ class LetterController extends BaseController
     }
 
     /**
+     * @param Request   $request
+     * @return Response A Response instance
+     *
      * @Route("/{id}", name = Narmafzam\ArchiveBundle\Controller\Back\LetterController::ROUTE__LETTER_SHOW)
      * @Method("GET")
      */
@@ -111,7 +114,7 @@ class LetterController extends BaseController
 
             $handler->editLetter($letter);
 
-            return $this->redirectToRoute(self::ROUTE__LETTER_SHOW, array('id' => $data->getId()));
+            return $this->redirectToRoute(self::ROUTE__LETTER_SHOW, array('id' => $letter->getId()));
         }
 
         $model = new LetterEdit($form, $letter);

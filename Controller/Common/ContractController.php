@@ -9,11 +9,11 @@
 namespace Narmafzam\ArchiveBundle\Controller\Common;
 
 use Narmafzam\ArchiveBundle\Controller\BaseWithDataClassController;
-use Narmafzam\ArchiveBundle\Model\Handler\Interfaces\HandlerInterface;
+use Narmafzam\ArchiveBundle\Model\Handler\Interfaces\ContractHandlerInterface;
 
 class ContractController extends BaseWithDataClassController
 {
-    protected function getHandler(): HandlerInterface
+    protected function getHandler(): ContractHandlerInterface
     {
         return $this->handler;
     }

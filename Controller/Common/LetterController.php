@@ -9,11 +9,11 @@
 namespace Narmafzam\ArchiveBundle\Controller\Common;
 
 use Narmafzam\ArchiveBundle\Controller\BaseWithDataClassController;
-use Narmafzam\ArchiveBundle\Model\Handler\Interfaces\LetterHandlerInterface;
+use Narmafzam\ArchiveBundle\Model\Handler\Interfaces\AttachableHandlerInterface;
 
 class LetterController extends BaseWithDataClassController
 {
-    protected function getHandler(): LetterHandlerInterface
+    protected function getHandler(): AttachableHandlerInterface
     {
         return $this->handler;
     }

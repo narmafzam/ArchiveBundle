@@ -9,11 +9,11 @@
 namespace Narmafzam\ArchiveBundle\Controller\Common;
 
 use Narmafzam\ArchiveBundle\Controller\BaseWithDataClassController;
-use Narmafzam\ArchiveBundle\Model\Handler\Interfaces\DocumentHandlerInterface;
+use Narmafzam\ArchiveBundle\Model\Handler\Interfaces\AttachableHandlerInterface;
 
 class DocumentController extends BaseWithDataClassController
 {
-    protected function getHandler(): DocumentHandlerInterface
+    protected function getHandler(): AttachableHandlerInterface
     {
         return $this->handler;
     }
