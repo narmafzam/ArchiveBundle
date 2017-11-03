@@ -8,67 +8,36 @@
 
 namespace Narmafzam\ArchiveBundle\Model\Handler;
 
-use Doctrine\ORM\EntityManagerInterface;
 use Narmafzam\ArchiveBundle\Entity\Interfaces\DocumentInterface;
 use Narmafzam\ArchiveBundle\Model\Handler\Interfaces\DocumentHandlerInterface;
 
 /**
  * Class DocumentHandler
- * @package Narmafzam\ArchiveBundle\Model\Handler
+ * @package Narmafzam\ArchiveBundle\Model\AttachableHandler
  */
-class DocumentHandler extends Handler implements DocumentHandlerInterface
+class DocumentHandler extends AttachableHandler implements DocumentHandlerInterface
 {
     /**
-     * @var string
-     */
-    protected $uploadPath;
-
-    /**
-     * DocumentHandler constructor.
-     *
-     * @param EntityManagerInterface $entityManager
-     * @param string                 $dataClass
-     * @param string                 $webDirectory
-     * @param string                 $uploadPath
-     */
-    public function __construct(EntityManagerInterface $entityManager, string $dataClass, string $webDirectory, string $uploadPath)
-    {
-        parent::__construct($entityManager, $dataClass, $webDirectory);
-
-        $this->uploadPath = $uploadPath;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUploadPath(): string
-    {
-        return $this->uploadPath;
-    }
-
-    /**
      * @param DocumentInterface $document
-     * @return true
+     * @return $this
      */
     public function newDocument(DocumentInterface $document)
     {
-        $this->storeDocumentAttachments($document);
         $this->getEntityManager()->persist($document);
         $this->getEntityManager()->flush();
 
-        return true;
+        return $this;
     }
 
     /**
      * @param DocumentInterface $document
-     * @return true
+     * @return $this
      */
     public function editDocument(DocumentInterface $document)
     {
-        $this->getEntityManager()->persist($document);
         $this->getEntityManager()->flush();
 
-        return true;
+        return $this;
     }
 
     /**
@@ -78,7 +47,6 @@ class DocumentHandler extends Handler implements DocumentHandlerInterface
     public function getDocument($id)
     {
         $document = $this->getRepository()->find($id);
-        $this->retrieveDocumentAttachments($document);
 
         return $document;
     }
@@ -89,24 +57,6 @@ class DocumentHandler extends Handler implements DocumentHandlerInterface
     public function getDocuments()
     {
         return $this->getRepository()->findAll();
-    }
-
-    /**
-     * @param DocumentInterface $document
-     *
-     * @return DocumentInterface
-     */
-    public function storeDocumentAttachments(DocumentInterface $document): DocumentInterface
-    {
-        parent::storeAttachments($document, $this->getUploadPath());
-    }
-
-    /**
-     * @param DocumentInterface $document
-     */
-    public function retrieveDocumentAttachments(DocumentInterface $document)
-    {
-        parent::retrieveAttachments($document);
     }
 
 }

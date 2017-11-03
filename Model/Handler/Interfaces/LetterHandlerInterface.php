@@ -8,25 +8,14 @@
 
 namespace Narmafzam\ArchiveBundle\Model\Handler\Interfaces;
 
-use Doctrine\ORM\EntityManagerInterface;
 use Narmafzam\ArchiveBundle\Entity\Interfaces\LetterInterface;
 
 /**
  * Interface LetterHandlerInterface
  * @package Narmafzam\ArchiveBundle\Model\Handler\Interfaces
  */
-interface LetterHandlerInterface extends HandlerInterface
+interface LetterHandlerInterface extends AttachableHandlerInterface
 {
-    /**
-     * LetterHandlerInterface constructor.
-     *
-     * @param EntityManagerInterface $entityManager
-     * @param string                 $dataClass
-     * @param string                 $webDirectory
-     * @param string                 $uploadPath
-     */
-    public function __construct(EntityManagerInterface $entityManager, string $dataClass, string $webDirectory, string $uploadPath);
-
     /**
      * @param LetterInterface $letter
      *
@@ -43,6 +32,7 @@ interface LetterHandlerInterface extends HandlerInterface
 
     /**
      * @param string $id
+     * @return null|object
      */
     public function getLetter($id);
 

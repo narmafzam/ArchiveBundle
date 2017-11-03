@@ -8,51 +8,21 @@
 
 namespace Narmafzam\ArchiveBundle\Model\Handler;
 
-use Doctrine\ORM\EntityManagerInterface;
 use Narmafzam\ArchiveBundle\Entity\Interfaces\ContractInterface;
 use Narmafzam\ArchiveBundle\Model\Handler\Interfaces\ContractHandlerInterface;
 
 /**
  * Class ContractHandler
- * @package Narmafzam\ArchiveBundle\Model\Handler
+ * @package Narmafzam\ArchiveBundle\Model\AttachableHandler
  */
-class ContractHandler extends Handler implements ContractHandlerInterface
+class ContractHandler extends AttachableHandler implements ContractHandlerInterface
 {
-    /**
-     * @var string
-     */
-    protected $uploadPath;
-
-    /**
-     * ContractHandler constructor.
-     *
-     * @param EntityManagerInterface $entityManager
-     * @param string                 $dataClass
-     * @param string                 $webDirectory
-     * @param string                 $uploadPath
-     */
-    public function __construct(EntityManagerInterface $entityManager, string $dataClass, string $webDirectory, string $uploadPath)
-    {
-        parent::__construct($entityManager, $dataClass, $webDirectory);
-
-        $this->uploadPath = $uploadPath;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUploadPath(): string
-    {
-        return $this->uploadPath;
-    }
-
     /**
      * @param ContractInterface $contract
      * @return $this
      */
     public function newContract(ContractInterface $contract)
     {
-        $this->storeContractAttachments($contract);
         $this->getEntityManager()->persist($contract);
         $this->getEntityManager()->flush();
 
@@ -65,7 +35,6 @@ class ContractHandler extends Handler implements ContractHandlerInterface
      */
     public function editContract(ContractInterface $contract)
     {
-        $this->storeContractAttachments($contract);
         $this->getEntityManager()->flush();
 
         return $this;
@@ -73,12 +42,18 @@ class ContractHandler extends Handler implements ContractHandlerInterface
 
     /**
      * @param string $id
-     * @return null|object
+     * @return null|ContractInterface
+     *
+     * @throws \Exception
      */
     public function getContract($id)
     {
         $contract = $this->getRepository()->find($id);
-        $this->retrieveContractAttachments($contract);
+
+        if (is_object($contract) && !$contract instanceof ContractInterface) {
+
+            throw new \Exception();
+        }
 
         return $contract;
     }
@@ -89,24 +64,6 @@ class ContractHandler extends Handler implements ContractHandlerInterface
     public function getContracts()
     {
         return $this->getRepository()->findAll();
-    }
-
-    /**
-     * @param ContractInterface $contract
-     *
-     * @return ContractInterface
-     */
-    public function storeContractAttachments(ContractInterface $contract)
-    {
-        parent::storeAttachments($contract, $this->getUploadPath());
-    }
-
-    /**
-     * @param ContractInterface $contract
-     */
-    public function retrieveContractAttachments(ContractInterface $contract)
-    {
-        parent::retrieveAttachments($contract);
     }
 
 }

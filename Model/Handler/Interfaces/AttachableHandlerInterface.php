@@ -9,13 +9,12 @@
 namespace Narmafzam\ArchiveBundle\Model\Handler\Interfaces;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Narmafzam\ArchiveBundle\Entity\Interfaces\AttachableInterface;
 
 /**
- * Interface HandlerInterface
- * @package Narmafzam\ArchiveBundle\Model\Handler\Interfaces
+ * Interface AttachableHandlerInterface
+ * @package Narmafzam\ArchiveBundle\Model\AttachableHandler\Interfaces
  */
-interface HandlerInterface
+interface AttachableHandlerInterface
 {
     /**
      * @return EntityManagerInterface
@@ -23,28 +22,13 @@ interface HandlerInterface
     public function getEntityManager(): EntityManagerInterface;
 
     /**
-     * @return mixed
-     */
-    public function getRepository();
-
-    /**
      * @return string
      */
     public function getDataClass(): string;
 
     /**
-     * @param AttachableInterface $attachable
-     * @param string              $path
-     *
-     * @return AttachableInterface
+     * @return \Doctrine\Common\Persistence\ObjectRepository
      */
-    public function storeAttachments(AttachableInterface $attachable, string $path);
-
-    /**
-     * @param AttachableInterface $attachable
-     *
-     * @return mixed
-     */
-    public function retrieveAttachments(AttachableInterface $attachable);
+    public function getRepository();
 
 }

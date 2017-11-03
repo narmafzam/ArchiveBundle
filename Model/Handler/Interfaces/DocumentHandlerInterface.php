@@ -8,25 +8,14 @@
 
 namespace Narmafzam\ArchiveBundle\Model\Handler\Interfaces;
 
-use Doctrine\ORM\EntityManagerInterface;
 use Narmafzam\ArchiveBundle\Entity\Interfaces\DocumentInterface;
 
 /**
  * Interface DocumentHandlerInterface
  * @package Narmafzam\ArchiveBundle\Model\Handler\Interfaces
  */
-interface DocumentHandlerInterface extends HandlerInterface
+interface DocumentHandlerInterface extends AttachableHandlerInterface
 {
-    /**
-     * ContractHandlerInterface constructor.
-     *
-     * @param EntityManagerInterface $entityManager
-     * @param string                 $dataClass
-     * @param string                 $webDirectory
-     * @param string                 $uploadPath
-     */
-    public function __construct(EntityManagerInterface $entityManager, string $dataClass, string $webDirectory, string $uploadPath);
-
     /**
      * @param DocumentInterface $document
      *
@@ -43,6 +32,7 @@ interface DocumentHandlerInterface extends HandlerInterface
 
     /**
      * @param string $id
+     * @return null|object
      */
     public function getDocument($id);
 

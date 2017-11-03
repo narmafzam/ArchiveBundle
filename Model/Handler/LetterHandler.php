@@ -8,67 +8,36 @@
 
 namespace Narmafzam\ArchiveBundle\Model\Handler;
 
-use Doctrine\ORM\EntityManagerInterface;
 use Narmafzam\ArchiveBundle\Entity\Interfaces\LetterInterface;
 use Narmafzam\ArchiveBundle\Model\Handler\Interfaces\LetterHandlerInterface;
 
 /**
  * Class LetterHandler
- * @package Narmafzam\ArchiveBundle\Model\Handler
+ * @package Narmafzam\ArchiveBundle\Model\AttachableHandler
  */
-class LetterHandler extends Handler implements LetterHandlerInterface
+class LetterHandler extends AttachableHandler implements LetterHandlerInterface
 {
     /**
-     * @var string
-     */
-    protected $uploadPath;
-
-    /**
-     * LetterHandler constructor.
-     *
-     * @param EntityManagerInterface $entityManager
-     * @param string                 $dataClass
-     * @param string                 $webDirectory
-     * @param string                 $uploadPath
-     */
-    public function __construct(EntityManagerInterface $entityManager, string $dataClass, string $webDirectory, string $uploadPath)
-    {
-        parent::__construct($entityManager, $dataClass, $webDirectory);
-
-        $this->uploadPath = $uploadPath;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUploadPath(): string
-    {
-        return $this->uploadPath;
-    }
-
-    /**
      * @param LetterInterface $letter
-     * @return true
+     * @return $this
      */
     public function newLetter(LetterInterface $letter)
     {
-        $this->storeLetterAttachments($letter);
         $this->getEntityManager()->persist($letter);
         $this->getEntityManager()->flush();
 
-        return true;
+        return $this;
     }
 
     /**
      * @param LetterInterface $letter
-     * @return true
+     * @return $this
      */
     public function editLetter(LetterInterface $letter)
     {
-        $this->getEntityManager()->persist($letter);
         $this->getEntityManager()->flush();
 
-        return true;
+        return $this;
     }
 
     /**
@@ -78,7 +47,6 @@ class LetterHandler extends Handler implements LetterHandlerInterface
     public function getLetter($id)
     {
         $letter = $this->getRepository()->find($id);
-        $this->retrieveLetterAttachments($letter);
 
         return $letter;
     }
@@ -89,24 +57,6 @@ class LetterHandler extends Handler implements LetterHandlerInterface
     public function getLetters()
     {
         return $this->getRepository()->findAll();
-    }
-
-    /**
-     * @param LetterInterface $letter
-     *
-     * @return LetterInterface
-     */
-    public function storeLetterAttachments(LetterInterface $letter): LetterInterface
-    {
-        parent::storeAttachments($letter, $this->getUploadPath());
-    }
-
-    /**
-     * @param LetterInterface $letter
-     */
-    public function retrieveLetterAttachments(LetterInterface $letter)
-    {
-        parent::retrieveAttachments($letter);
     }
 
 }
