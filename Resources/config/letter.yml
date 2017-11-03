@@ -15,8 +15,6 @@ services:
         arguments:
             $entityManager: '@doctrine.orm.entity_manager'
             $dataClass: '%narmafzam_archive_entity_contract%'
-            $webDirectory: '%web_dir%'
-            $uploadPath: '%upload_letter_path%'
 
     Narmafzam\ArchiveBundle\Form\Common\LetterType:
         arguments:
