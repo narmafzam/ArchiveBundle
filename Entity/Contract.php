@@ -25,7 +25,7 @@ class Contract extends BaseClass
     /**
      * @var Collection
      *
-     * @ORM\OneToMany(targetEntity="ArchiveBundle\Entity\ContractAttachment", mappedBy="contract", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="ArchiveBundle\Entity\ContractAttachment", mappedBy="contract", cascade={"persist", "remove"}, fetch="EAGER")
      */
     protected $attachments;
 
