@@ -7,8 +7,19 @@ imports:
 parameters:
     web_dir: '%kernel.project_dir%/web'
     upload_path: '/upload'
-    upload_contract_path: '%upload_path%/contract'
-    upload_document_path: '%upload_path%/document'
-    upload_letter_path: '%upload_path%/letter'
 
 services:
+
+    Narmafzam\ArchiveBundle\Model\Handler\FileHandler:
+        arguments:
+            $webDirectory: '%web_dir%'
+            $uploadPath: '%upload_path%'
+
+    Narmafzam\ArchiveBundle\EventListener\AttachmentFileEventListener:
+        arguments:
+            - '@Narmafzam\ArchiveBundle\Model\Handler\FileHandler'
+
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+            - { name: doctrine.event_listener, event: postLoad }

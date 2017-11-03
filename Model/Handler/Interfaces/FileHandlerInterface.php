@@ -12,13 +12,13 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
- * Interface FileUploadHandlerInterface
+ * Interface FileHandlerInterface
  * @package Narmafzam\ArchiveBundle\Model\AttachableHandler\Interfaces
  */
-interface FileUploadHandlerInterface
+interface FileHandlerInterface
 {
     /**
-     * FileUploadHandlerInterface constructor.
+     * FileHandlerInterface constructor.
      *
      * @param string $webDirectory
      * @param string $uploadPath
@@ -33,11 +33,11 @@ interface FileUploadHandlerInterface
     public function upload(UploadedFile $file): string ;
 
     /**
-     * @param string $filePath
+     * @param string $filePathAndName
      *
      * @return File
      */
-    public function download(string $filePath): File ;
+    public function download(string $filePathAndName): File ;
 
     /**
      * @return string

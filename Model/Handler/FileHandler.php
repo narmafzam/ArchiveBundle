@@ -8,15 +8,15 @@
 
 namespace Narmafzam\ArchiveBundle\Model\Handler;
 
-use Narmafzam\ArchiveBundle\Model\Handler\Interfaces\FileUploadHandlerInterface;
+use Narmafzam\ArchiveBundle\Model\Handler\Interfaces\FileHandlerInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
- * Class FileUploadHandler
+ * Class FileHandler
  * @package Narmafzam\ArchiveBundle\Model\Handler
  */
-class FileUploadHandler implements FileUploadHandlerInterface
+class FileHandler implements FileHandlerInterface
 {
     /**
      * @var string
@@ -29,7 +29,7 @@ class FileUploadHandler implements FileUploadHandlerInterface
     protected $uploadPath;
 
     /**
-     * FileUploadHandler constructor.
+     * FileHandler constructor.
      *
      * @param string $webDirectory
      * @param string $uploadPath
@@ -72,12 +72,12 @@ class FileUploadHandler implements FileUploadHandlerInterface
     }
 
     /**
-     * @param string $filePath
+     * @param string $filePathAndName
      *
      * @return File
      */
-    public function download(string $filePath): File
+    public function download(string $filePathAndName): File
     {
-        return new File($this->webDirectory . '/' . $filePath);
+        return new File($this->webDirectory . $filePathAndName);
     }
 }
