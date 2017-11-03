@@ -8,11 +8,12 @@
 
 namespace Narmafzam\ArchiveBundle\Model\Handler\Interfaces;
 
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Interface FileUploadHandlerInterface
- * @package Narmafzam\ArchiveBundle\Model\Handler\Interfaces
+ * @package Narmafzam\ArchiveBundle\Model\AttachableHandler\Interfaces
  */
 interface FileUploadHandlerInterface
 {
@@ -20,20 +21,28 @@ interface FileUploadHandlerInterface
      * FileUploadHandlerInterface constructor.
      *
      * @param string $webDirectory
+     * @param string $uploadPath
      */
-    public function __construct(string $webDirectory);
+    public function __construct(string $webDirectory, string $uploadPath);
 
     /**
      * @param UploadedFile $file
      *
-     * @return string
+     * @return string
      */
-    public function upload(UploadedFile $file): string ;
+    public function upload(UploadedFile $file): string ;
 
     /**
-     * @return array
+     * @param string $filePath
+     *
+     * @return File
      */
-    public function getWebDirectory(): array ;
+    public function download(string $filePath): File ;
+
+    /**
+     * @return string
+     */
+    public function getWebDirectory(): string ;
 
     /**
      * @return string

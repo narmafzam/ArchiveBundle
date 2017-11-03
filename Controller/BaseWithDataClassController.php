@@ -9,7 +9,7 @@
 namespace Narmafzam\ArchiveBundle\Controller;
 
 use Narmafzam\ArchiveBundle\Form\Common\Type\Generic\SubmitType;
-use Narmafzam\ArchiveBundle\Model\Handler\Interfaces\HandlerInterface;
+use Narmafzam\ArchiveBundle\Model\Handler\Interfaces\AttachableHandlerInterface;
 use Symfony\Component\Routing\RouterInterface;
 
 class BaseWithDataClassController extends BaseController
@@ -20,12 +20,13 @@ class BaseWithDataClassController extends BaseController
 
     /**
      * Controller constructor.
-     * @param string           $dataClass
-     * @param string           $formTypeClass
-     * @param HandlerInterface $handler
-     * @param RouterInterface  $router
+     *
+     * @param string                     $dataClass
+     * @param string                     $formTypeClass
+     * @param AttachableHandlerInterface $handler
+     * @param RouterInterface            $router
      */
-    public function __construct($dataClass, $formTypeClass, HandlerInterface $handler, RouterInterface $router)
+    public function __construct($dataClass, $formTypeClass, AttachableHandlerInterface $handler, RouterInterface $router)
     {
         parent::__construct($router);
 
@@ -83,7 +84,7 @@ class BaseWithDataClassController extends BaseController
             ->add('add', SubmitType::class, array(
                 'label' => 'archive.form.label.add',
                 'attr' => array(
-                    'class' => 'btn btn-primary btn-lg',
+                    'class' => 'btn btn-primary',
                 ),
             ));
 
@@ -102,7 +103,7 @@ class BaseWithDataClassController extends BaseController
             ->add('update', SubmitType::class, array(
                 'label' => 'archive.form.label.update',
                 'attr' => array(
-                    'class' => 'btn btn-primary btn-lg',
+                    'class' => 'btn btn-primary',
                 ),
             ));
 
