@@ -21,7 +21,7 @@ trait PathTrait
     protected $path;
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getPath()
     {
@@ -29,7 +29,7 @@ trait PathTrait
     }
 
     /**
-     * @param mixed $path
+     * @param string $path
      */
     public function setPath($path)
     {
