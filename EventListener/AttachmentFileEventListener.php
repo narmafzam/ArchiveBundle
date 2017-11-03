@@ -11,43 +11,42 @@ namespace Narmafzam\ArchiveBundle\EventListener;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Narmafzam\ArchiveBundle\Entity\Interfaces\AttachmentInterface;
-use Narmafzam\ArchiveBundle\Model\Handler\FileUploadHandler;
-use Narmafzam\ArchiveBundle\Model\Handler\Interfaces\FileUploadHandlerInterface;
+use Narmafzam\ArchiveBundle\Model\Handler\FileHandler;
+use Narmafzam\ArchiveBundle\Model\Handler\Interfaces\FileHandlerInterface;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
- * Class AttachmentFileUploadEventListener
+ * Class AttachmentFileEventListener
  * @package Narmafzam\ArchiveBundle\EventListener
  */
-class AttachmentFileUploadEventListener
+class AttachmentFileEventListener
 {
     /**
-     * @var FileUploadHandler
+     * @var FileHandler
      */
-    protected $fileUploadHandler;
+    protected $fileHandler;
 
     /**
-     * AttachmentFileUploadEventListener constructor.
+     * AttachmentFileEventListener constructor.
      *
-     * @param FileUploadHandlerInterface $fileUploadHandler
+     * @param FileHandlerInterface $fileHandler
      */
-    public function __construct(FileUploadHandlerInterface $fileUploadHandler)
+    public function __construct(FileHandlerInterface $fileHandler)
     {
-        $this->fileUploadHandler = $fileUploadHandler;
+        $this->fileHandler = $fileHandler;
     }
 
     /**
-     * @return FileUploadHandlerInterface
+     * @return FileHandlerInterface
      */
-    public function getFileUploadHandler(): FileUploadHandlerInterface
+    public function getFileHandler(): FileHandlerInterface
     {
-        return $this->fileUploadHandler;
+        return $this->fileHandler;
     }
 
     /**
      * @param LifecycleEventArgs $args
-     *
-     * @throws \Exception
      */
     public function prePersist(LifecycleEventArgs $args)
     {
@@ -57,13 +56,10 @@ class AttachmentFileUploadEventListener
 
             $this->uploadAttachmentFile($attachment);
         }
-
     }
 
     /**
      * @param PreUpdateEventArgs $args
-     *
-     * @throws \Exception
      */
     public function preUpdate(PreUpdateEventArgs $args)
     {
@@ -73,7 +69,6 @@ class AttachmentFileUploadEventListener
 
             $this->uploadAttachmentFile($attachment);
         }
-
     }
 
     /**
@@ -85,13 +80,8 @@ class AttachmentFileUploadEventListener
 
         if ($attachment instanceof AttachmentInterface) {
 
-            if ($filePath = $attachment->getBrochure()) {
-
-                $file = $this->getFileUploadHandler()->download($filePath);
-                $attachment->setFile($file);
-            }
+            $this->downloadAttachmentFile($attachment);
         }
-
     }
 
     /**
@@ -105,15 +95,29 @@ class AttachmentFileUploadEventListener
 
             $originalName     = $file->getClientOriginalName();
             $guessedMime      = $file->getMimeType();
-            $fileName         = $this->getFileUploadHandler()->upload($file);
-            $path             = $this->getFileUploadHandler()->getUploadPath();
+            $fileName         = $this->getFileHandler()->upload($file);
+            $path             = $this->getFileHandler()->getUploadPath();
 
             $attachment->setFile($fileName);
             $attachment->setFileName($originalName);
             $attachment->setTitle($originalName);
             $attachment->setPath($path);
             $attachment->setMime($guessedMime);
+        } elseif ($file instanceof File) {
 
+            $attachment->setFile($file->getBasename());
         }
+    }
+
+    /**
+     * @param AttachmentInterface $attachment
+     */
+    private function downloadAttachmentFile(AttachmentInterface $attachment)
+    {
+        $fileName = $attachment->getFile();
+        $filePath = $attachment->getPath();
+
+        $file = $this->getFileHandler()->download($filePath . '/' . $fileName);
+        $attachment->setFile($file);
     }
 }
