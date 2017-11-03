@@ -2,7 +2,7 @@
     {% if attribute(data, field) is iterable %}
         <ul class="list-group">
         {% for row in attribute(data, field) %}
-            <li class="list-group-item">{{ row.title }}</li>
+            <li class="list-group-item"><a href="{{ asset(row.path ~ '/' ~ row.file.fileName) }}">{{ row.fileName }}</a></li>
         {% endfor %}
         </ul>
     {% endif %}

@@ -1,7 +1,7 @@
 {% macro icon(mimeType) %}
-    {% spaceless %}
+{% spaceless %}
         {% if mimeType == 'pdf' %}
-            filetypes-pdf
+            fa-file-pdf-o
         {% elseif mimeType in [
         'application/msword',
         'application/rtf',
@@ -59,7 +59,7 @@
         {% else %}
             fa-file-o
         {% endif %}
-    {% endspaceless %}
+{% endspaceless %}
 {% endmacro %}
 
 {% macro bytesToSize(bytes) %}
