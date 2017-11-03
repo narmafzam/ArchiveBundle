@@ -33,7 +33,7 @@ archive:
             index: لیست قراردادها
             show: قرارداد %title%
             new: ایجاد قرارداد جدید
-            edit: ویرایش قرارداد %title%
+            edit: ویرایش %title%
             delete: حذف قرارداد
         form:
             help: اطلاعات مربوط به قرارداد را تکمیل کنید
@@ -62,7 +62,7 @@ archive:
             index: لیست سندها
             show: سند %title%
             new: ایجاد سند جدید
-            edit: ویرایش سند %title%
+            edit: ویرایش %title%
             delete: حذف سند
         form:
             help: اطلاعات مربوط به سند را تکمیل کنید
@@ -91,7 +91,7 @@ archive:
             index: لیست نامه‌ها
             show: نامه %title%
             new: ایجاد نامه جدید
-            edit: ویرایش نامه %title%
+            edit: ویرایش %title%
             delete: حذف نامه
         form:
             help: اطلاعات مربوط به نامه را تکمیل کنید
