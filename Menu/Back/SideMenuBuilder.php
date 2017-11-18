@@ -9,6 +9,7 @@
 namespace Narmafzam\ArchiveBundle\Menu\Back;
 
 use Knp\Menu\FactoryInterface;
+use Knp\Menu\ItemInterface;
 
 /**
  * Class SideMenuBuilder
@@ -41,6 +42,7 @@ class SideMenuBuilder
 
     /**
      * @param array $options
+     * @return ItemInterface
      */
     protected function createSideMenu(array $options)
     {

@@ -8,7 +8,6 @@
 
 namespace Narmafzam\ArchiveBundle\ViewModel\Common\Contract;
 
-use Narmafzam\ArchiveBundle\Entity\Interfaces\ContractInterface;
 use Narmafzam\ArchiveBundle\ViewModel\BaseViewModel;
 use Narmafzam\ArchiveBundle\ViewModel\Interfaces\ContractIndexInterface;
 use Symfony\Component\Routing\RouterInterface;
